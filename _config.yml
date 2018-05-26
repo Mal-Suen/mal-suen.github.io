@@ -1,0 +1,99 @@
+# Site settings
+title: Malcolm`s Blog
+SEOTitle: Malcolm的博客 | Malcolm Blog
+header-img: img/home-bg.jpg
+email: malcolmsuen@gmail.com
+description: ""
+# description: "关于前端与设计、黑客与画家 | 黄玄，Web & Mobile Lover，Software Engineer，UX Designer | 这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界。"
+keyword: "孙长智, 阿扎提路的贝斯手, MalcolmSuen, 孙长智的博客, Malcolm`s Blog, 博客, 个人网站, 信息安全, 网络空间安全, 互联网, Web, JavaScript, 前端, 新疆大学"
+# url: "https://huangxuan.me"              # your host, for absolute URL
+# baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+
+
+
+# SNS settings
+RSS: false
+weibo_username:     u/6214594529
+github_username:    belikovvv
+# twitter_username:   malcolm_suen
+# zhihu_username:     sun-chang-zhi-41
+e-mail_username:      malcolmsuen
+music_username:     287462241
+# facebook_username:  huxpro
+# linkedin_username:  firstname-lastname-idxxxx
+
+
+
+# Build settings
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+gems: [jekyll-paginate]
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
+
+# Disqus settings
+# disqus_username:
+
+# Netease setttings
+netease_comment: false
+
+
+
+# Analytics settings
+
+# Baidu Analytics 
+# ba_track_id: [your track id]
+
+# Google Analytics
+# ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+# ga_domain: huangxuan.me
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "根音贝斯手，网络空间安全破坏者，开源项目伸手党，驻守边疆，保家卫国。"
+sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: false                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
+
+
+
+# Friends
+friends: [
+    {
+         title: "一只朴素的贝叶斯",
+         href: "https://blog.csdn.net/BYS_PrintF_/"
+     },{
+        # title: "乱序",
+        # href: "http://mida.re/"
+    }
+]
