@@ -77,22 +77,22 @@ layout: default
                         {% endif %}
                         <!-- SNS Link -->
                         <ul class="list-inline">
-                            {% if site.RSS %}
-                            <li>
-                                <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
                             {% if site.twitter_username %}
                             <li>
                                 <a href="https://twitter.com/{{ site.twitter_username }}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if site.music_username %}
+                            <li>
+                                <a target="_blank" href="http://music.163.com/user/home?id={{ site.music_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-music fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
@@ -137,12 +137,12 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
-                            {% if site.linkedin_username %}
+                            {% if site.e-mail_username %}
                             <li>
-                                <a target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
+                                <a target="_blank" href="mailto:malcolmsuen@gmail.com">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                        <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
