@@ -5,9 +5,182 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 26 May 2018 22:06:28 +0800</pubDate>
-    <lastBuildDate>Sat, 26 May 2018 22:06:28 +0800</lastBuildDate>
+    <pubDate>Sun, 27 May 2018 22:55:30 +0800</pubDate>
+    <lastBuildDate>Sun, 27 May 2018 22:55:30 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>MySQL安全设置命令mysql_secure_installation</title>
+        <description>&lt;h2 id=&quot;安装mysql&quot;&gt;安装MySQL&lt;/h2&gt;
+
+&lt;p&gt;通过&lt;code class=&quot;highlighter-rouge&quot;&gt;Homebrew&lt;/code&gt;安装，执行&lt;code class=&quot;highlighter-rouge&quot;&gt;brew install mysql&lt;/code&gt;即可。&lt;/p&gt;
+
+&lt;p&gt;安装完成后会显示&lt;code class=&quot;highlighter-rouge&quot;&gt;Caveats &lt;/code&gt;警告，如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;We've installed your MySQL database without a root password. To secure it run:
+    mysql_secure_installation
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+    mysql -uroot
+
+To have launchd start mysql now and restart at login:
+  brew services start mysql
+Or, if you don't want/need a background service you can just run:
+  mysql.server start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我们可以根据提示进行简单的配置。&lt;/p&gt;
+
+&lt;h2 id=&quot;安全设置向导mysql_secure_installation&quot;&gt;安全设置向导mysql_secure_installation&lt;/h2&gt;
+
+&lt;p&gt;使用brew命令安装完mysql后，根据提示我们可以知道当前root是没有密码的，我们可以通过执行&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql_secure_installation&lt;/code&gt;命令来进行安全设置。&lt;/p&gt;
+
+&lt;p&gt;同时这种方法也同样可以用来解决使用&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql -u root -p&lt;/code&gt;登录时的&lt;code class=&quot;highlighter-rouge&quot;&gt;Access denied &lt;/code&gt;问题。&lt;/p&gt;
+
+&lt;p&gt;首先执行命令&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql_secure_installation&lt;/code&gt;，会出现如下的错误：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Error: Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;当前&lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/&lt;/code&gt; 目录下并没有&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql.sock&lt;/code&gt;这个文件，它在mysql服务启动时才会创建，所以需要提前执行&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql.server start &lt;/code&gt;命令。提示如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Starting MySQL
+. SUCCESS! 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这时候就可以正常执行&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql_secure_installation&lt;/code&gt;命令了。&lt;/p&gt;
+
+&lt;h3 id=&quot;建立密码验证插件&quot;&gt;建立密码验证插件&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Securing the MySQL server deployment.
+
+Connecting to MySQL using a blank password.
+
+VALIDATE PASSWORD PLUGIN can be used to test passwords and improve security. It checks the strength of password and allows the users to set only those passwords which are secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+
+Press y|Y for Yes, any other key for No: y 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;选择密码规则&quot;&gt;选择密码规则&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;There are three levels of password validation policy:
+
+LOW    Length &amp;gt;= 8
+#长度大于等于8
+MEDIUM Length &amp;gt;= 8, numeric, mixed case, and special characters
+#长度大于等于8，数字、大小写字母、特殊符号
+STRONG Length &amp;gt;= 8, numeric, mixed case, special characters and dictionary                  file
+#长度大于等于8，数字、大小写字母、特殊符号和字典文件（慎选！）
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 1
+Please set the password for root here.
+
+New password: （输入你的密码）
+Re-enter new password: （再次输入你的密码）
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;创建符合规则的新密码&quot;&gt;创建符合规则的新密码&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Estimated strength of the password: 50 		#密码强度
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;删除匿名用户&quot;&gt;删除匿名用户&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;By default, a MySQL installation has an anonymous user, allowing anyone to log into MySQL without having to have a user account created for them. This is intended only for testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;禁止远程登录&quot;&gt;禁止远程登录&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Normally, root should only be allowed to connect from 'localhost'. This ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+Success.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;删除测试数据表&quot;&gt;删除测试数据表&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;By default, MySQL comes with a database named 'test' that anyone can access. This is also intended only for testing, and should be removed before moving into a production environment.
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;done&quot;&gt;Done&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Reloading the privilege tables will ensure that all changes made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+#是否重新加载权限表
+Success.
+
+All done! 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;现在可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql -u root -p&lt;/code&gt;进行密码链接了。&lt;/p&gt;
+
+&lt;h2 id=&quot;可能会出现的问题&quot;&gt;可能会出现的问题&lt;/h2&gt;
+
+&lt;h3 id=&quot;your-password-does-not-satisfy-the-current-policy-requirements&quot;&gt;Your password does not satisfy the current policy requirements.&lt;/h3&gt;
+
+&lt;p&gt;如果你在选择密码规则的时候不小心选择了2，也就是数字、大小写字母、特殊符号和字典文件的组合。这时候设置密码会出现如下提示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Your password does not satisfy the current policy requirements.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这时候重新运行&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql_secure_installation&lt;/code&gt;也不会再给你机会重新设置了。手动微笑，mmp。&lt;/p&gt;
+
+&lt;p&gt;解决方案如下：&lt;/p&gt;
+
+&lt;p&gt;使用命令&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql -uroot&lt;/code&gt;登陆，执行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set global validate_password_policy=0;  
+#将密码规则设置为LOW，就可以使用纯数字纯字母密码
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;LOW强度下密码位数的最低要求为8位，如果你想用诸如123456这类的密码，执行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set global validate_password_length=4;  
+#最低位数为4位
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个时候重新运行&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql_secure_installation&lt;/code&gt;就可以安心设置了。&lt;/p&gt;
+
+&lt;h3 id=&quot;相关参数&quot;&gt;相关参数&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;validate_password_dictionary_file：插件用于验证密码强度的字典文件路径。
+
+validate_password_length：密码最小长度。
+
+validate_password_mixed_case_count：密码至少要包含的小写字母个数和大写字母个数。
+
+validate_password_number_count：密码至少要包含的数字个数。
+
+validate_password_policy：密码强度检查等级，0/LOW、1/MEDIUM、2/STRONG。
+
+validate_password_special_char_count：密码至少要包含的特殊字符数。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sun, 27 May 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/05/27/MySQL%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE%E5%91%BD%E4%BB%A4mysql_secure_installation/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/27/MySQL%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE%E5%91%BD%E4%BB%A4mysql_secure_installation/</guid>
+        
+        <category>MySQL</category>
+        
+        <category>数据库</category>
+        
+        
+      </item>
     
       <item>
         <title>基于Python的LDA文档主题分布处理及TF-IDF计算</title>
