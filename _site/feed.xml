@@ -5,9 +5,134 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 27 May 2018 22:55:30 +0800</pubDate>
-    <lastBuildDate>Sun, 27 May 2018 22:55:30 +0800</lastBuildDate>
+    <pubDate>Thu, 31 May 2018 12:23:13 +0800</pubDate>
+    <lastBuildDate>Thu, 31 May 2018 12:23:13 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Atom安装与配置</title>
+        <description>&lt;h2 id=&quot;atom介绍&quot;&gt;Atom介绍&lt;/h2&gt;
+
+&lt;p&gt;Atom 是 Github 开源的文本编辑器，这个编辑器完全是使用Web技术构建的(基于Node-Webkit)。启动速度快，提供很多常用功能的插件和主题，可以说Atom已经足以胜任“半个IDE”了。&lt;/p&gt;
+
+&lt;p&gt;优点如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;多平台支持（Windows、Mac、Linux）&lt;/li&gt;
+  &lt;li&gt;界面美观、现代化,使用舒适&lt;/li&gt;
+  &lt;li&gt;多文件管理（Atom提供了文件树列表的功能）&lt;/li&gt;
+  &lt;li&gt;设置管理很方便，不用像Sublime需要自己手动安装第三方管理插件&lt;/li&gt;
+  &lt;li&gt;由GitHub打造，社区活跃,免费使用&lt;/li&gt;
+  &lt;li&gt;支持各种编程语言的代码高亮和代码补全(部分需要插件支持)&lt;/li&gt;
+  &lt;li&gt;原生Git的支持&lt;/li&gt;
+  &lt;li&gt;原生Markdown支持（实时预览、代码高亮，比Mou的代码高亮效果好很多）&lt;/li&gt;
+  &lt;li&gt;主题插件越来越丰富&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;atom的安装使用&quot;&gt;Atom的安装使用&lt;/h2&gt;
+
+&lt;h3 id=&quot;安装设置&quot;&gt;安装设置&lt;/h3&gt;
+
+&lt;p&gt;直接去Atom&lt;a href=&quot;[https://atom.io](https://atom.io/)&quot;&gt;官网下载&lt;/a&gt;安装即可.&lt;/p&gt;
+
+&lt;p&gt;Atom文本编辑器支持Windows、Mac、Linux 三大桌面平台，完全免费，并且已经在 GitHub 上开放了全部的源代码。功能设置和插件安装直接在设置选项里面即可设置，默认的很多设置选项已经很不错了，也不需要太多地修改。&lt;/p&gt;
+
+&lt;p&gt;主题插件的安装也很简单。打开&lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;Settings&lt;/code&gt;。在&lt;code class=&quot;highlighter-rouge&quot;&gt;Install&lt;/code&gt;中，输入自己的需要安装的主题或者插件的部分名称即可匹配搜索，点击’INSTALL’即可安装成功使用了（主题需要切换到Themes选项卡上）&lt;/p&gt;
+
+&lt;h3 id=&quot;原生markdown书写和预览&quot;&gt;原生Markdown书写和预览&lt;/h3&gt;
+
+&lt;p&gt;Atom原生支持Markdown的书写和预览，这相较于Sublime的需要安装第三方Markdown插件使用起来还要优秀，由于时Github自家打造，Markdown语法当然也是与github语法完全同步。&lt;/p&gt;
+
+&lt;p&gt;使用快捷键 Ctrl + Shift + M 则可打开Markdown的预览界面。&lt;/p&gt;
+
+&lt;h3 id=&quot;部分常用插件&quot;&gt;部分常用插件&lt;/h3&gt;
+
+&lt;p&gt;Atom的常用插件基本上都在 Atom Packages 首页中能找到，选择热门的、下载量较多的适合自己需要的基本上都是正确的选择。&lt;/p&gt;
+
+&lt;h4 id=&quot;minimap&quot;&gt;minimap&lt;/h4&gt;
+
+&lt;p&gt;minimap是一个预览全部代码的一个插件，同时能方便的移动到指定的文件位置。&lt;/p&gt;
+
+&lt;h4 id=&quot;atom-beautify&quot;&gt;atom-beautify&lt;/h4&gt;
+
+&lt;p&gt;atom-beautify是一个格式化代码的插件，支持HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C,CoffeeScript, TypeScript, SQL等多种语言。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;安装后可以使用 Crtl + Alt + B 快捷键进行格式化。&lt;/li&gt;
+  &lt;li&gt;也可以点击菜单“Packages”-&amp;gt;“Atom Beautify”-&amp;gt;“Beautify”进行格式化。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;emmet&quot;&gt;emmet&lt;/h4&gt;
+
+&lt;p&gt;emmet是HTML,CSS快速编写的神器。前端必备，又geek又方便。但是atom的emmet占的快捷键有点多，建议手工调教改掉不常用的一部分。&lt;/p&gt;
+
+&lt;h4 id=&quot;autocomplete--系列&quot;&gt;autocomplete-* 系列&lt;/h4&gt;
+
+&lt;p&gt;autocomplete-*系列包含各个语言的代码自动补全功能，你需要什么语言的就可以下载该语言相关的插件即可。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;autocomplete-paths：填写路径的时候有Sug提示&lt;/li&gt;
+  &lt;li&gt;autocomplete-php：php代码提示补全&lt;/li&gt;
+  &lt;li&gt;autocomplete-java：java代码提示补全&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;pigments&quot;&gt;pigments&lt;/h4&gt;
+
+&lt;p&gt;pigments是项目文件中，样式显色显示的的插件。在Atom中的下载量可是相当的高。对于前端人员来讲还是很重要的一个插件。&lt;/p&gt;
+
+&lt;h4 id=&quot;terminal-panel&quot;&gt;terminal-panel&lt;/h4&gt;
+
+&lt;p&gt;用于执行命令并显示输出。打开终端面板快捷键：&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + &lt;/code&gt;（别的终端插件在win10都有蜜汁问题）&lt;/p&gt;
+
+&lt;h4 id=&quot;docblockr&quot;&gt;docblockr&lt;/h4&gt;
+
+&lt;p&gt;可以帮助我们方便快速地写注释。&lt;/p&gt;
+
+&lt;h4 id=&quot;javascript-snippets&quot;&gt;javascript-snippets&lt;/h4&gt;
+
+&lt;p&gt;让我们书写js时使用各种缩写，自动补全代码。&lt;/p&gt;
+
+&lt;h4 id=&quot;markdown-preview&quot;&gt;markdown-preview&lt;/h4&gt;
+
+&lt;p&gt;Atom 自带的 markdown 预览插件，直接&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl+shift+m&lt;/code&gt;即可左右分屏实时预览编辑&lt;/p&gt;
+
+&lt;h4 id=&quot;markdown-writer&quot;&gt;markdown-writer&lt;/h4&gt;
+
+&lt;p&gt;各种各样的优化和具体配置，专为Blog写手而生。settings 列表&lt;strong&gt;仿佛&lt;/strong&gt;可以配置图片文件夹的路径&lt;/p&gt;
+
+&lt;h4 id=&quot;markdown-scroll-sync&quot;&gt;markdown-scroll-sync&lt;/h4&gt;
+
+&lt;p&gt;自动滚动，写到哪滚到哪&lt;/p&gt;
+
+&lt;h4 id=&quot;language-markdown&quot;&gt;language-markdown&lt;/h4&gt;
+
+&lt;p&gt;Markdown 语言语法支持，进行高亮。安装后在右下角选择即可。&lt;/p&gt;
+
+&lt;p&gt;Markdown保存时会把自然段尾部的双空格换行自动去除 该功能由&lt;code class=&quot;highlighter-rouge&quot;&gt;Whitespace&lt;/code&gt;包提供，默认开启。通过设置&lt;code class=&quot;highlighter-rouge&quot;&gt;config.cson&lt;/code&gt;可以解决：&lt;/p&gt;
+
+&lt;h2 id=&quot;相关问题&quot;&gt;相关问题&lt;/h2&gt;
+
+&lt;h3 id=&quot;zh-cn&quot;&gt;zh-CN&lt;/h3&gt;
+
+&lt;p&gt;问题：Cannot load the system dictionary for &lt;code class=&quot;highlighter-rouge&quot;&gt;zh-CN&lt;/code&gt;. Checked the following paths for dictionary files.&lt;/p&gt;
+
+&lt;p&gt;解决方案：遇到这种错误，我们可以在插件中禁用 &lt;code class=&quot;highlighter-rouge&quot;&gt;spell-check&lt;/code&gt; 来解决这个问题。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;参考资料：&lt;a href=&quot;http://donggu.me/2017/04/12/Atom/#&quot;&gt;冬菇酱 Atom 安装与配置记录&lt;/a&gt;，&lt;a href=&quot;http://www.hangge.com/blog/cache/detail_1149.html&quot;&gt;航歌 Atom - 介绍和使用方法&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Wed, 30 May 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+        
+        <category>Atom</category>
+        
+        <category>IDE</category>
+        
+        
+      </item>
     
       <item>
         <title>MySQL安全设置命令mysql_secure_installation</title>
@@ -438,8 +563,6 @@ INFO:lda:&amp;lt;10&amp;gt; log likelihood: -140
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;感谢来自北京理工大学的杨秀璋同学，现任教于贵州财经大学信息学院；感谢陈炳宏同学的数据&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;预祝陈炳宏同学西电读研顺利。&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;附录&quot;&gt;附录&lt;/h2&gt;
 

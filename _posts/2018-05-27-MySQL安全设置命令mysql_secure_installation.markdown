@@ -6,7 +6,7 @@ date:       2018-05-27
 author:     "Malcolm Suen"
 header-img: "img/post-bg-2015.jpg"
 header-mask:  0.3
-catalog: false
+catalog: true
 tags:
     - MySQL
     - 数据库

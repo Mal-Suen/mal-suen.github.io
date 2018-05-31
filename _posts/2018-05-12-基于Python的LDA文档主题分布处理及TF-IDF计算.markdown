@@ -6,7 +6,7 @@ date:       2018-05-12
 author:     "Malcolm Suen"
 header-img: "img/post-bg-2015.jpg"
 header-mask:  0.3
-catalog: false
+catalog: true
 tags:
     - Python
     - 机器学习
@@ -279,8 +279,6 @@ Features length: 15
 
 
 **感谢来自北京理工大学的杨秀璋同学，现任教于贵州财经大学信息学院；感谢陈炳宏同学的数据**。
-
-**预祝陈炳宏同学西电读研顺利。**
 
 
 

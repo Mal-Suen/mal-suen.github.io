@@ -6,7 +6,7 @@ date:       2018-01-18
 author:     "Malcolm Suen"
 header-img: "img/post-bg-2015.jpg"
 header-mask:  0.3
-catalog: false
+catalog: true
 tags:
     - Jekyll
     - 个人博客

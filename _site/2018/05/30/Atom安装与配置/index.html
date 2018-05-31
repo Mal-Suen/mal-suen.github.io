@@ -9,7 +9,7 @@
     <meta name="keywords"  content="孙长智, 阿扎提路的贝斯手, MalcolmSuen, 孙长智的博客, Malcolm`s Blog, 博客, 个人网站, 信息安全, 网络空间安全, 互联网, Web, JavaScript, 前端, 新疆大学">
     <meta name="theme-color" content="#000000">
     
-    <title>MySQL安全设置命令mysql_secure_installation - Malcolm的博客 | Malcolm Blog</title>
+    <title>Atom安装与配置 - Malcolm的博客 | Malcolm Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2018/05/27/MySQL%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE%E5%91%BD%E4%BB%A4mysql_secure_installation/">
+    <link rel="canonical" href="http://localhost:4000/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -177,17 +177,17 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
+                        <a class="tag" href="/tags/#Atom" title="Atom">Atom</a>
                         
-                        <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
+                        <a class="tag" href="/tags/#IDE" title="IDE">IDE</a>
                         
                     </div>
-                    <h1>MySQL安全设置命令mysql_secure_installation</h1>
+                    <h1>Atom安装与配置</h1>
                     
                     
-                    <h2 class="subheading">这篇文章主要介绍如何使用安全设置命令mysql_secure_installation修改mysql密码及进行相关配置</h2>
+                    <h2 class="subheading">性能极强的开源文本编辑器Atom</h2>
                     
-                    <span class="meta">Posted by Malcolm Suen on May 27, 2018</span>
+                    <span class="meta">Posted by Malcolm Suen on May 30, 2018</span>
                 </div>
             </div>
         </div>
@@ -208,165 +208,117 @@
                 <!-- Multi-Lingual -->
                 
 
-				<h2 id="安装mysql">安装MySQL</h2>
+				<h2 id="atom介绍">Atom介绍</h2>
 
-<p>通过<code class="highlighter-rouge">Homebrew</code>安装，执行<code class="highlighter-rouge">brew install mysql</code>即可。</p>
+<p>Atom 是 Github 开源的文本编辑器，这个编辑器完全是使用Web技术构建的(基于Node-Webkit)。启动速度快，提供很多常用功能的插件和主题，可以说Atom已经足以胜任“半个IDE”了。</p>
 
-<p>安装完成后会显示<code class="highlighter-rouge">Caveats </code>警告，如下所示：</p>
+<p>优点如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>We've installed your MySQL database without a root password. To secure it run:
-    mysql_secure_installation
+<ul>
+  <li>多平台支持（Windows、Mac、Linux）</li>
+  <li>界面美观、现代化,使用舒适</li>
+  <li>多文件管理（Atom提供了文件树列表的功能）</li>
+  <li>设置管理很方便，不用像Sublime需要自己手动安装第三方管理插件</li>
+  <li>由GitHub打造，社区活跃,免费使用</li>
+  <li>支持各种编程语言的代码高亮和代码补全(部分需要插件支持)</li>
+  <li>原生Git的支持</li>
+  <li>原生Markdown支持（实时预览、代码高亮，比Mou的代码高亮效果好很多）</li>
+  <li>主题插件越来越丰富</li>
+</ul>
 
-MySQL is configured to only allow connections from localhost by default
+<h2 id="atom的安装使用">Atom的安装使用</h2>
 
-To connect run:
-    mysql -uroot
+<h3 id="安装设置">安装设置</h3>
 
-To have launchd start mysql now and restart at login:
-  brew services start mysql
-Or, if you don't want/need a background service you can just run:
-  mysql.server start
-</code></pre></div></div>
+<p>直接去Atom<a href="[https://atom.io](https://atom.io/)">官网下载</a>安装即可.</p>
 
-<p>我们可以根据提示进行简单的配置。</p>
+<p>Atom文本编辑器支持Windows、Mac、Linux 三大桌面平台，完全免费，并且已经在 GitHub 上开放了全部的源代码。功能设置和插件安装直接在设置选项里面即可设置，默认的很多设置选项已经很不错了，也不需要太多地修改。</p>
 
-<h2 id="安全设置向导mysql_secure_installation">安全设置向导mysql_secure_installation</h2>
+<p>主题插件的安装也很简单。打开<code class="highlighter-rouge">Preferences</code>或<code class="highlighter-rouge">Settings</code>。在<code class="highlighter-rouge">Install</code>中，输入自己的需要安装的主题或者插件的部分名称即可匹配搜索，点击’INSTALL’即可安装成功使用了（主题需要切换到Themes选项卡上）</p>
 
-<p>使用brew命令安装完mysql后，根据提示我们可以知道当前root是没有密码的，我们可以通过执行<code class="highlighter-rouge">mysql_secure_installation</code>命令来进行安全设置。</p>
+<h3 id="原生markdown书写和预览">原生Markdown书写和预览</h3>
 
-<p>同时这种方法也同样可以用来解决使用<code class="highlighter-rouge">mysql -u root -p</code>登录时的<code class="highlighter-rouge">Access denied </code>问题。</p>
+<p>Atom原生支持Markdown的书写和预览，这相较于Sublime的需要安装第三方Markdown插件使用起来还要优秀，由于时Github自家打造，Markdown语法当然也是与github语法完全同步。</p>
 
-<p>首先执行命令<code class="highlighter-rouge">mysql_secure_installation</code>，会出现如下的错误：</p>
+<p>使用快捷键 Ctrl + Shift + M 则可打开Markdown的预览界面。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
-</code></pre></div></div>
+<h3 id="部分常用插件">部分常用插件</h3>
 
-<p>当前<code class="highlighter-rouge">/tmp/</code> 目录下并没有<code class="highlighter-rouge">mysql.sock</code>这个文件，它在mysql服务启动时才会创建，所以需要提前执行<code class="highlighter-rouge">mysql.server start </code>命令。提示如下：</p>
+<p>Atom的常用插件基本上都在 Atom Packages 首页中能找到，选择热门的、下载量较多的适合自己需要的基本上都是正确的选择。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Starting MySQL
-. SUCCESS! 
-</code></pre></div></div>
+<h4 id="minimap">minimap</h4>
 
-<p>这时候就可以正常执行<code class="highlighter-rouge">mysql_secure_installation</code>命令了。</p>
+<p>minimap是一个预览全部代码的一个插件，同时能方便的移动到指定的文件位置。</p>
 
-<h3 id="建立密码验证插件">建立密码验证插件</h3>
+<h4 id="atom-beautify">atom-beautify</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Securing the MySQL server deployment.
+<p>atom-beautify是一个格式化代码的插件，支持HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C,CoffeeScript, TypeScript, SQL等多种语言。</p>
 
-Connecting to MySQL using a blank password.
+<ul>
+  <li>安装后可以使用 Crtl + Alt + B 快捷键进行格式化。</li>
+  <li>也可以点击菜单“Packages”-&gt;“Atom Beautify”-&gt;“Beautify”进行格式化。</li>
+</ul>
 
-VALIDATE PASSWORD PLUGIN can be used to test passwords and improve security. It checks the strength of password and allows the users to set only those passwords which are secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+<h4 id="emmet">emmet</h4>
 
-Press y|Y for Yes, any other key for No: y 
-</code></pre></div></div>
+<p>emmet是HTML,CSS快速编写的神器。前端必备，又geek又方便。但是atom的emmet占的快捷键有点多，建议手工调教改掉不常用的一部分。</p>
 
-<h3 id="选择密码规则">选择密码规则</h3>
+<h4 id="autocomplete--系列">autocomplete-* 系列</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>There are three levels of password validation policy:
+<p>autocomplete-*系列包含各个语言的代码自动补全功能，你需要什么语言的就可以下载该语言相关的插件即可。</p>
 
-LOW    Length &gt;= 8
-#长度大于等于8
-MEDIUM Length &gt;= 8, numeric, mixed case, and special characters
-#长度大于等于8，数字、大小写字母、特殊符号
-STRONG Length &gt;= 8, numeric, mixed case, special characters and dictionary                  file
-#长度大于等于8，数字、大小写字母、特殊符号和字典文件（慎选！）
+<ul>
+  <li>autocomplete-paths：填写路径的时候有Sug提示</li>
+  <li>autocomplete-php：php代码提示补全</li>
+  <li>autocomplete-java：java代码提示补全</li>
+</ul>
 
-Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 1
-Please set the password for root here.
+<h4 id="pigments">pigments</h4>
 
-New password: （输入你的密码）
-Re-enter new password: （再次输入你的密码）
-</code></pre></div></div>
+<p>pigments是项目文件中，样式显色显示的的插件。在Atom中的下载量可是相当的高。对于前端人员来讲还是很重要的一个插件。</p>
 
-<h3 id="创建符合规则的新密码">创建符合规则的新密码</h3>
+<h4 id="terminal-panel">terminal-panel</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Estimated strength of the password: 50 		#密码强度
-Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
-</code></pre></div></div>
+<p>用于执行命令并显示输出。打开终端面板快捷键：<code class="highlighter-rouge">Ctrl + </code>（别的终端插件在win10都有蜜汁问题）</p>
 
-<h3 id="删除匿名用户">删除匿名用户</h3>
+<h4 id="docblockr">docblockr</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>By default, a MySQL installation has an anonymous user, allowing anyone to log into MySQL without having to have a user account created for them. This is intended only for testing, and to make the installation go a bit smoother.
-You should remove them before moving into a production environment.
+<p>可以帮助我们方便快速地写注释。</p>
 
-Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
-Success.
-</code></pre></div></div>
+<h4 id="javascript-snippets">javascript-snippets</h4>
 
-<h3 id="禁止远程登录">禁止远程登录</h3>
+<p>让我们书写js时使用各种缩写，自动补全代码。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normally, root should only be allowed to connect from 'localhost'. This ensures that someone cannot guess at the root password from the network.
+<h4 id="markdown-preview">markdown-preview</h4>
 
-Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
-Success.
-</code></pre></div></div>
+<p>Atom 自带的 markdown 预览插件，直接<code class="highlighter-rouge">ctrl+shift+m</code>即可左右分屏实时预览编辑</p>
 
-<h3 id="删除测试数据表">删除测试数据表</h3>
+<h4 id="markdown-writer">markdown-writer</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>By default, MySQL comes with a database named 'test' that anyone can access. This is also intended only for testing, and should be removed before moving into a production environment.
+<p>各种各样的优化和具体配置，专为Blog写手而生。settings 列表<strong>仿佛</strong>可以配置图片文件夹的路径</p>
 
-Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
- - Dropping test database...
-Success.
+<h4 id="markdown-scroll-sync">markdown-scroll-sync</h4>
 
- - Removing privileges on test database...
-Success.
-</code></pre></div></div>
+<p>自动滚动，写到哪滚到哪</p>
 
-<h3 id="done">Done</h3>
+<h4 id="language-markdown">language-markdown</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Reloading the privilege tables will ensure that all changes made so far will take effect immediately.
+<p>Markdown 语言语法支持，进行高亮。安装后在右下角选择即可。</p>
 
-Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
-#是否重新加载权限表
-Success.
+<p>Markdown保存时会把自然段尾部的双空格换行自动去除 该功能由<code class="highlighter-rouge">Whitespace</code>包提供，默认开启。通过设置<code class="highlighter-rouge">config.cson</code>可以解决：</p>
 
-All done! 
-</code></pre></div></div>
+<h2 id="相关问题">相关问题</h2>
 
-<p>现在可以使用<code class="highlighter-rouge">mysql -u root -p</code>进行密码链接了。</p>
+<h3 id="zh-cn">zh-CN</h3>
 
-<h2 id="可能会出现的问题">可能会出现的问题</h2>
+<p>问题：Cannot load the system dictionary for <code class="highlighter-rouge">zh-CN</code>. Checked the following paths for dictionary files.</p>
 
-<h3 id="your-password-does-not-satisfy-the-current-policy-requirements">Your password does not satisfy the current policy requirements.</h3>
+<p>解决方案：遇到这种错误，我们可以在插件中禁用 <code class="highlighter-rouge">spell-check</code> 来解决这个问题。</p>
 
-<p>如果你在选择密码规则的时候不小心选择了2，也就是数字、大小写字母、特殊符号和字典文件的组合。这时候设置密码会出现如下提示：</p>
+<blockquote>
+  <p>参考资料：<a href="http://donggu.me/2017/04/12/Atom/#">冬菇酱 Atom 安装与配置记录</a>，<a href="http://www.hangge.com/blog/cache/detail_1149.html">航歌 Atom - 介绍和使用方法</a></p>
+</blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Your password does not satisfy the current policy requirements.
-</code></pre></div></div>
-
-<p>这时候重新运行<code class="highlighter-rouge">mysql_secure_installation</code>也不会再给你机会重新设置了。手动微笑，mmp。</p>
-
-<p>解决方案如下：</p>
-
-<p>使用命令<code class="highlighter-rouge">mysql -uroot</code>登陆，执行：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set global validate_password_policy=0;  
-#将密码规则设置为LOW，就可以使用纯数字纯字母密码
-</code></pre></div></div>
-
-<p>LOW强度下密码位数的最低要求为8位，如果你想用诸如123456这类的密码，执行：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set global validate_password_length=4;  
-#最低位数为4位
-</code></pre></div></div>
-
-<p>这个时候重新运行<code class="highlighter-rouge">mysql_secure_installation</code>就可以安心设置了。</p>
-
-<h3 id="相关参数">相关参数</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>validate_password_dictionary_file：插件用于验证密码强度的字典文件路径。
-
-validate_password_length：密码最小长度。
-
-validate_password_mixed_case_count：密码至少要包含的小写字母个数和大写字母个数。
-
-validate_password_number_count：密码至少要包含的数字个数。
-
-validate_password_policy：密码强度检查等级，0/LOW、1/MEDIUM、2/STRONG。
-
-validate_password_special_char_count：密码至少要包含的特殊字符数。
-</code></pre></div></div>
 
 
                 <hr style="visibility: hidden;">
@@ -374,19 +326,12 @@ validate_password_special_char_count：密码至少要包含的特殊字符数�
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/05/12/%E5%9F%BA%E4%BA%8EPython%E7%9A%84LDA%E6%96%87%E6%A1%A3%E4%B8%BB%E9%A2%98%E5%88%86%E5%B8%83%E5%A4%84%E7%90%86%E5%8F%8ATF-IDF%E8%AE%A1%E7%AE%97/" data-toggle="tooltip" data-placement="top" title="基于Python的LDA文档主题分布处理及TF-IDF计算">
+                        <a href="/2018/05/27/MySQL%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE%E5%91%BD%E4%BB%A4mysql_secure_installation/" data-toggle="tooltip" data-placement="top" title="MySQL安全设置命令mysql_secure_installation">
                         Previous<br>
-                        <span>基于Python的LDA文档主题分布处理及TF-IDF计算</span>
+                        <span>MySQL安全设置命令mysql_secure_installation</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" data-toggle="tooltip" data-placement="top" title="Atom安装与配置">
-                        Next<br>
-                        <span>Atom安装与配置</span>
-                        </a>
-                    </li>
                     
                 </ul>
                 
