@@ -9,7 +9,7 @@
     <meta name="keywords"  content="孙长智, 阿扎提路的贝斯手, MalcolmSuen, 孙长智的博客, Malcolm`s Blog, 博客, 个人网站, 信息安全, 网络空间安全, 互联网, Web, JavaScript, 前端, 新疆大学">
     <meta name="theme-color" content="#000000">
     
-    <title>Atom安装与配置 - Malcolm的博客 | Malcolm Blog</title>
+    <title>Node.js和npm的安装及npm的简单使用 - Malcolm的博客 | Malcolm Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+    <link rel="canonical" href="http://localhost:4000/2018/06/03/Node.js%E5%92%8Cnpm%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8Anpm%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -177,17 +177,17 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Atom" title="Atom">Atom</a>
+                        <a class="tag" href="/tags/#Node.js" title="Node.js">Node.js</a>
                         
-                        <a class="tag" href="/tags/#IDE" title="IDE">IDE</a>
+                        <a class="tag" href="/tags/#npm" title="npm">npm</a>
                         
                     </div>
-                    <h1>Atom安装与配置</h1>
+                    <h1>Node.js和npm的安装及npm的简单使用</h1>
                     
                     
-                    <h2 class="subheading">性能极强的开源文本编辑器Atom</h2>
+                    <h2 class="subheading">重装了一遍node和npm出现了一些问题，进行了简单的整理</h2>
                     
-                    <span class="meta">Posted by Malcolm Suen on May 30, 2018</span>
+                    <span class="meta">Posted by Malcolm Suen on June 3, 2018</span>
                 </div>
             </div>
         </div>
@@ -208,115 +208,129 @@
                 <!-- Multi-Lingual -->
                 
 
-				<h2 id="atom介绍">Atom介绍</h2>
+				<h2 id="安装nodejs和npm">安装Node.js和npm</h2>
 
-<p>Atom 是 Github 开源的文本编辑器，这个编辑器完全是使用Web技术构建的(基于Node-Webkit)。启动速度快，提供很多常用功能的插件和主题，可以说Atom已经足以胜任“半个IDE”了。</p>
+<p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。  Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。  Node.js 的包管理器 npm，是全球最大的开源库生态系统。</p>
 
-<p>优点如下：</p>
+<h3 id="安装nodejs">安装Node.js</h3>
+
+<p>首先，从<a href="https://nodejs.org/">Node.js官网</a>下载对应平台的安装程序，网速慢的童鞋请移步<a href="https://pan.baidu.com/s/1kU5OCOB#list/path=%2Fpub%2Fnodejs">国内镜像</a>。</p>
+
+<p>在Windows上安装时务必选择全部组件，包括勾选<code class="highlighter-rouge">Add to Path</code>，macOS上可以使用<code class="highlighter-rouge">brew</code>命令进行安装即可。</p>
+
+<p>安装完成后，输入<code class="highlighter-rouge">node -v</code>查看版本号。</p>
+
+<h3 id="npm">npm</h3>
+
+<p>我们为什么需要npm呢？因为我们在Node.js上开发时，会用到很多别人写的JavaScript代码。如果我们要使用别人写的某个包，每次都根据名称搜索一下官方网站，下载代码，解压，再使用，非常繁琐。于是一个集中管理的工具应运而生：大家都把自己开发的模块打包后放到npm官网上，如果要使用，直接通过npm安装就可以直接用，不用管代码存在哪，应该从哪下载。</p>
+
+<p>更重要的是，如果我们要使用模块A，而模块A又依赖于模块B，模块B又依赖于模块X和模块Y，npm可以根据依赖关系，把所有依赖的包都下载下来并管理起来。否则，靠我们自己手动管理，肯定既麻烦又容易出错。</p>
+
+<p>npm已经在Node.js安装的时候顺带装好了，使用<code class="highlighter-rouge">npm -v</code>查看版本号。</p>
+
+<h2 id="npm更新">npm更新</h2>
+
+<p>可以使用<code class="highlighter-rouge">npm update &lt;name&gt;</code>对单个包进行升级，版本大于 <code class="highlighter-rouge">2.6.1</code>则可以使用<code class="highlighter-rouge">npm install</code>进行升级。</p>
+
+<p>有时候使用<code class="highlighter-rouge">npm install</code>并不能正常升级，我们还可以使用<code class="highlighter-rouge">npm outdated</code>查看哪些包有更新，然后将带待更新的包进行更新。</p>
+
+<p><a href="https://www.npmjs.com/package/npm-check">npm-check</a>是用来检查npm依赖包是否有更新，错误以及不在使用的，我们也可以使用npm-check进行包的更新。
+安装npm-check：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install npm-check
+</code></pre></div></div>
+
+<p>检查npm包的状态:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm-check -u
+</code></pre></div></div>
+
+<p>那么<code class="highlighter-rouge">npm install</code>和<code class="highlighter-rouge">npm update</code>有什么区别呢，简而言之就是除了在package.json中处理依赖关系之外，npm install的功能更多。stackoverflow上的问题<a href="https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference">npm install vs. update - what’s the difference?</a>有详细的对比，部分原文如下：</p>
+
+<blockquote>
+  <p><strong>Why use npm install at all?</strong></p>
+
+  <p>Because <code class="highlighter-rouge">npm install</code> does more when you look besides handling your dependencies in <code class="highlighter-rouge">package.json</code>. As you can see in <a href="https://docs.npmjs.com/cli/install">npm install</a> you can …</p>
+
+  <ul>
+    <li>manually install node-modules</li>
+    <li>set them as <em>global</em> (which puts them in the shell’s <code class="highlighter-rouge">PATH</code>) using <code class="highlighter-rouge">npm install -g &lt;name&gt;</code></li>
+    <li>install certain versions described by git tags</li>
+    <li>install from a git url</li>
+    <li>force a reinstall with <code class="highlighter-rouge">--force</code></li>
+  </ul>
+</blockquote>
+
+<h2 id="本地安装与全局安装的区别">本地安装与全局安装的区别</h2>
+
+<p>npm的包安装分为本地安装（local）、全局安装（global）两种，从命令来看，差别只是有没有<code class="highlighter-rouge">-g</code>而已，比如之前的<code class="highlighter-rouge">npm-check</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install npm-check # 本地安装
+npm install -g npm-check # 全局安装
+</code></pre></div></div>
+
+<p>这两种安装方式有什么区别呢？从<a href="https://npmjs.org/doc/files/npm-folders.html">npm官方文档的说明</a>来看，主要区别在于（后面通过具体的例子来说明）：
+<strong>本地安装</strong></p>
 
 <ul>
-  <li>多平台支持（Windows、Mac、Linux）</li>
-  <li>界面美观、现代化,使用舒适</li>
-  <li>多文件管理（Atom提供了文件树列表的功能）</li>
-  <li>设置管理很方便，不用像Sublime需要自己手动安装第三方管理插件</li>
-  <li>由GitHub打造，社区活跃,免费使用</li>
-  <li>支持各种编程语言的代码高亮和代码补全(部分需要插件支持)</li>
-  <li>原生Git的支持</li>
-  <li>原生Markdown支持（实时预览、代码高亮，比Mou的代码高亮效果好很多）</li>
-  <li>主题插件越来越丰富</li>
+  <li>将安装包放在 ./node_modules 下（运行npm时所在的目录）</li>
+  <li>本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块</li>
 </ul>
 
-<h2 id="atom的安装使用">Atom的安装使用</h2>
-
-<h3 id="安装设置">安装设置</h3>
-
-<p>直接去Atom<a href="[https://atom.io](https://atom.io/)">官网下载</a>安装即可.</p>
-
-<p>Atom文本编辑器支持Windows、Mac、Linux 三大桌面平台，完全免费，并且已经在 GitHub 上开放了全部的源代码。功能设置和插件安装直接在设置选项里面即可设置，默认的很多设置选项已经很不错了，也不需要太多地修改。</p>
-
-<p>主题插件的安装也很简单。打开<code class="highlighter-rouge">Preferences</code>或<code class="highlighter-rouge">Settings</code>。在<code class="highlighter-rouge">Install</code>中，输入自己的需要安装的主题或者插件的部分名称即可匹配搜索，点击’INSTALL’即可安装成功使用了（主题需要切换到Themes选项卡上）</p>
-
-<h3 id="原生markdown书写和预览">原生Markdown书写和预览</h3>
-
-<p>Atom原生支持Markdown的书写和预览，这相较于Sublime的需要安装第三方Markdown插件使用起来还要优秀，由于时Github自家打造，Markdown语法当然也是与github语法完全同步。</p>
-
-<p>使用快捷键 Ctrl + Shift + M 则可打开Markdown的预览界面。</p>
-
-<h3 id="部分常用插件">部分常用插件</h3>
-
-<p>Atom的常用插件基本上都在 Atom Packages 首页中能找到，选择热门的、下载量较多的适合自己需要的基本上都是正确的选择。</p>
-
-<h4 id="minimap">minimap</h4>
-
-<p>minimap是一个预览全部代码的一个插件，同时能方便的移动到指定的文件位置。</p>
-
-<h4 id="atom-beautify">atom-beautify</h4>
-
-<p>atom-beautify是一个格式化代码的插件，支持HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C,CoffeeScript, TypeScript, SQL等多种语言。</p>
+<p><strong>全局安装</strong></p>
 
 <ul>
-  <li>安装后可以使用 Crtl + Alt + B 快捷键进行格式化。</li>
-  <li>也可以点击菜单“Packages”-&gt;“Atom Beautify”-&gt;“Beautify”进行格式化。</li>
+  <li>将安装包放在 /usr/local 下</li>
+  <li>全局安装后可以供命令行(command line)使用，用户可以在命令行中直接运行该组件包支持的命令</li>
 </ul>
 
-<h4 id="emmet">emmet</h4>
+<h3 id="为什么全局安装还要本地安装">为什么全局安装还要本地安装？</h3>
 
-<p>emmet是HTML,CSS快速编写的神器。前端必备，又geek又方便。但是atom的emmet占的快捷键有点多，建议手工调教改掉不常用的一部分。</p>
-
-<h4 id="autocomplete--系列">autocomplete-* 系列</h4>
-
-<p>autocomplete-*系列包含各个语言的代码自动补全功能，你需要什么语言的就可以下载该语言相关的插件即可。</p>
-
-<ul>
-  <li>autocomplete-paths：填写路径的时候有Sug提示</li>
-  <li>autocomplete-php：php代码提示补全</li>
-  <li>autocomplete-java：java代码提示补全</li>
-</ul>
-
-<h4 id="pigments">pigments</h4>
-
-<p>pigments是项目文件中，样式显色显示的的插件。在Atom中的下载量可是相当的高。对于前端人员来讲还是很重要的一个插件。</p>
-
-<h4 id="terminal-panel">terminal-panel</h4>
-
-<p>用于执行命令并显示输出。打开终端面板快捷键：<code class="highlighter-rouge">Ctrl + </code>（别的终端插件在win10都有蜜汁问题）</p>
-
-<h4 id="docblockr">docblockr</h4>
-
-<p>可以帮助我们方便快速地写注释。</p>
-
-<h4 id="javascript-snippets">javascript-snippets</h4>
-
-<p>让我们书写js时使用各种缩写，自动补全代码。</p>
-
-<h4 id="markdown-preview">markdown-preview</h4>
-
-<p>Atom 自带的 markdown 预览插件，直接<code class="highlighter-rouge">ctrl+shift+m</code>即可左右分屏实时预览编辑</p>
-
-<h4 id="markdown-writer">markdown-writer</h4>
-
-<p>各种各样的优化和具体配置，专为Blog写手而生。settings 列表<strong>仿佛</strong>可以配置图片文件夹的路径</p>
-
-<h4 id="markdown-scroll-sync">markdown-scroll-sync</h4>
-
-<p>自动滚动，写到哪滚到哪</p>
-
-<h4 id="language-markdown">language-markdown</h4>
-
-<p>Markdown 语言语法支持，进行高亮。安装后在右下角选择即可。</p>
-
-<p>Markdown保存时会把自然段尾部的双空格换行自动去除 该功能由<code class="highlighter-rouge">Whitespace</code>包提供，默认开启。通过设置<code class="highlighter-rouge">config.cson</code>可以解决：</p>
+<p>每一次的更新可能带来不一样的功能，在多人合作、发布模块到npmjs社区、上传到github给其他人使用时，保留模块的版本信息可用于下载指定的版本号显得特别重要。
+ 本地安装可以让每个项目拥有独立的包，不受全局包的影响，方便项目的移动、复制、打包等，<strong>保证不同版本包之间的相互依赖</strong>，这些优点是全局安装难以做到的。
+另外，据node团队介绍，本地安装包对于项目的加载会更快。</p>
 
 <h2 id="相关问题">相关问题</h2>
 
-<h3 id="zh-cn">zh-CN</h3>
+<h3 id="npm-installno-such-file-or-directory">npm install：no such file or directory</h3>
 
-<p>问题：Cannot load the system dictionary for <code class="highlighter-rouge">zh-CN</code>. Checked the following paths for dictionary files.</p>
+<p>重新安装一次node之后，执行npm install命令时，报错如下：</p>
 
-<p>解决方案：遇到这种错误，我们可以在插件中禁用 <code class="highlighter-rouge">spell-check</code> 来解决这个问题。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm WARN saveError ENOENT: no such file or directory, open '/Users/username/package.json'
+npm WARN enoent ENOENT: no such file or directory, open '/Users/username/package.json'
+npm WARN username No description
+npm WARN username No repository field.
+npm WARN username No README data
+npm WARN username No license field.
+
+up to date in 2.522s
+found 0 vulnerabilities
+</code></pre></div></div>
+
+<p>根据提示，出错的原因是缺少 <code class="highlighter-rouge">package.json</code> 这个文件，解决方法如下：</p>
+
+<p>初始化项目：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm init -f
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">-f</code>表示force的意思，不加这个，npm会让你输入一堆信息，比如name、version之类，如果只是做做实验小demo，直接<code class="highlighter-rouge">-f</code>，npm帮你初始化package.json，并填充各种默认值，省事。</p>
+
+<p>安装依赖：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install formidable --save
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">--save</code>表示将安装的包加入依赖列表的意思，可以看下package.json 里的<code class="highlighter-rouge">dependencies</code>字段。后面再运行 <code class="highlighter-rouge">npm install</code>，就会把所有依赖安装下来。如果不加<code class="highlighter-rouge">--save</code>，什么都不会安装。</p>
 
 <blockquote>
-  <p>参考资料：<a href="http://donggu.me/2017/04/12/Atom/#">冬菇酱 Atom 安装与配置记录</a>，<a href="http://www.hangge.com/blog/cache/detail_1149.html">航歌 Atom - 介绍和使用方法</a></p>
+  <p>参考资料：</p>
+
+  <p><a href="https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference">npm install vs. update - what’s the difference?</a></p>
+
+  <p><a href="https://www.cnblogs.com/chyingp/p/npm-install-difference-between-local-global.html">npm install —— 从一个简单例子，看本地安装与全局安装的区别</a></p>
+
+  <p><a href="https://segmentfault.com/q/1010000012930521">npm install模块时 报错：not such file or directory。是何原因？</a></p>
 </blockquote>
 
 
@@ -326,19 +340,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/05/27/MySQL%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE%E5%91%BD%E4%BB%A4mysql_secure_installation/" data-toggle="tooltip" data-placement="top" title="MySQL安全设置命令mysql_secure_installation">
+                        <a href="/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" data-toggle="tooltip" data-placement="top" title="Atom安装与配置">
                         Previous<br>
-                        <span>MySQL安全设置命令mysql_secure_installation</span>
+                        <span>Atom安装与配置</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2018/06/03/Node.js%E5%92%8Cnpm%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8Anpm%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-toggle="tooltip" data-placement="top" title="Node.js和npm的安装及npm的简单使用">
-                        Next<br>
-                        <span>Node.js和npm的安装及npm的简单使用</span>
-                        </a>
-                    </li>
                     
                 </ul>
                 

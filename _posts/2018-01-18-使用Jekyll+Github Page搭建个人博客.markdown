@@ -183,3 +183,11 @@ GitHub Pages有提供制作404页面的指引：[Custom 404 Pages](https://help.
 这里介绍的站点统计是[Google  Analytics](http://www.google.cn/analytics/)，analytics的使用十分简单，同样的原理，利用注入脚本来实现流量统计的外挂，统计功能十分强大，谁用谁知道。
 
 当然[百度统计](https://tongji.baidu.com/)功能也很强大，比较适合在国内使用。
+
+
+
+## 相关问题
+
+对于`Deprecation: The 'gems' configuration option has been renamed to 'plugins'. Please update your config file accordingly.`这个警告，解决办法是打开`_config.yml`将`gems:`改成`plugins:`
+
+ 
