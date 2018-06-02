@@ -269,15 +269,16 @@
 npm install -g npm-check # 全局安装
 </code></pre></div></div>
 
-<p>这两种安装方式有什么区别呢？从<a href="https://npmjs.org/doc/files/npm-folders.html">npm官方文档的说明</a>来看，主要区别在于（后面通过具体的例子来说明）：
-<strong>本地安装</strong></p>
+<p>这两种安装方式有什么区别呢？从<a href="https://npmjs.org/doc/files/npm-folders.html">npm官方文档的说明</a>来看，主要区别在于（后面通过具体的例子来说明）：</p>
+
+<h3 id="本地安装">本地安装</h3>
 
 <ul>
   <li>将安装包放在 ./node_modules 下（运行npm时所在的目录）</li>
   <li>本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块</li>
 </ul>
 
-<p><strong>全局安装</strong></p>
+<h3 id="全局安装">全局安装</h3>
 
 <ul>
   <li>将安装包放在 /usr/local 下</li>

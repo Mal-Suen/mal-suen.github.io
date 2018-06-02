@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 03 Jun 2018 02:14:53 +0800</pubDate>
-    <lastBuildDate>Sun, 03 Jun 2018 02:14:53 +0800</lastBuildDate>
+    <pubDate>Sun, 03 Jun 2018 02:22:03 +0800</pubDate>
+    <lastBuildDate>Sun, 03 Jun 2018 02:22:03 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -72,15 +72,16 @@
 npm install -g npm-check # 全局安装
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;这两种安装方式有什么区别呢？从&lt;a href=&quot;https://npmjs.org/doc/files/npm-folders.html&quot;&gt;npm官方文档的说明&lt;/a&gt;来看，主要区别在于（后面通过具体的例子来说明）：
-&lt;strong&gt;本地安装&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这两种安装方式有什么区别呢？从&lt;a href=&quot;https://npmjs.org/doc/files/npm-folders.html&quot;&gt;npm官方文档的说明&lt;/a&gt;来看，主要区别在于（后面通过具体的例子来说明）：&lt;/p&gt;
+
+&lt;h3 id=&quot;本地安装&quot;&gt;本地安装&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;将安装包放在 ./node_modules 下（运行npm时所在的目录）&lt;/li&gt;
   &lt;li&gt;本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;全局安装&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;全局安装&quot;&gt;全局安装&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;将安装包放在 /usr/local 下&lt;/li&gt;
