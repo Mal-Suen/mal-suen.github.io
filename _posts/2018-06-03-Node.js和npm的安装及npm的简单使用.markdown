@@ -72,7 +72,7 @@ npm install npm-check # 本地安装
 npm install -g npm-check # 全局安装
 ```
 
-这两种安装方式有什么区别呢？从[npm官方文档的说明](https://npmjs.org/doc/files/npm-folders.html)来看，主要区别在于（后面通过具体的例子来说明）：
+这两种安装方式有什么区别呢？从[npm官方文档的说明](https://npmjs.org/doc/files/npm-folders.html)来看，主要区别在于：
 
 ### 本地安装
 
