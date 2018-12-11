@@ -56,7 +56,7 @@ Starting MySQL
 
 这时候就可以正常执行`mysql_secure_installation`命令了。
 
-### 建立密码验证插件
+#### 建立密码验证插件
 
 ```
 Securing the MySQL server deployment.
@@ -68,7 +68,7 @@ VALIDATE PASSWORD PLUGIN can be used to test passwords and improve security. It 
 Press y|Y for Yes, any other key for No: y 
 ```
 
-### 选择密码规则
+#### 选择密码规则
 
 ```
 There are three levels of password validation policy:
@@ -87,14 +87,14 @@ New password: （输入你的密码）
 Re-enter new password: （再次输入你的密码）
 ```
 
-### 创建符合规则的新密码
+#### 创建符合规则的新密码
 
 ```
 Estimated strength of the password: 50 		#密码强度
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
 ```
 
-### 删除匿名用户
+#### 删除匿名用户
 
 ```
 By default, a MySQL installation has an anonymous user, allowing anyone to log into MySQL without having to have a user account created for them. This is intended only for testing, and to make the installation go a bit smoother.
@@ -104,7 +104,7 @@ Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
 Success.
 ```
 
-### 禁止远程登录
+#### 禁止远程登录
 
 ```
 Normally, root should only be allowed to connect from 'localhost'. This ensures that someone cannot guess at the root password from the network.
@@ -113,7 +113,7 @@ Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
 Success.
 ```
 
-### 删除测试数据表
+#### 删除测试数据表
 
 ```
 By default, MySQL comes with a database named 'test' that anyone can access. This is also intended only for testing, and should be removed before moving into a production environment.
@@ -126,7 +126,7 @@ Success.
 Success.
 ```
 
-### Done
+#### Done
 
 ```
 Reloading the privilege tables will ensure that all changes made so far will take effect immediately.
@@ -142,7 +142,7 @@ All done!
 
 ## 可能会出现的问题
 
-### Your password does not satisfy the current policy requirements.
+#### Your password does not satisfy the current policy requirements.
 
 如果你在选择密码规则的时候不小心选择了2，也就是数字、大小写字母、特殊符号和字典文件的组合。这时候设置密码会出现如下提示：
 
@@ -170,7 +170,7 @@ set global validate_password_length=4;
 
  这个时候重新运行`mysql_secure_installation`就可以安心设置了。
 
-### 相关参数
+## 相关参数
 
 ```
 validate_password_dictionary_file：插件用于验证密码强度的字典文件路径。

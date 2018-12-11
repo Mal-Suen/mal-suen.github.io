@@ -9,7 +9,7 @@
     <meta name="keywords"  content="孙长智, 阿扎提路的贝斯手, MalcolmSuen, 孙长智的博客, Malcolm`s Blog, 博客, 个人网站, 信息安全, 网络空间安全, 互联网, Web, JavaScript, 前端, 新疆大学">
     <meta name="theme-color" content="#000000">
     
-    <title>Atom安装与配置 - Malcolm的博客 | Malcolm Blog</title>
+    <title>淘宝RubyGems镜像源暴毙后的求生之路 - Malcolm的博客 | Malcolm Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+    <link rel="canonical" href="http://localhost:4000/2018/12/12/%E6%B7%98%E5%AE%9DRubyGems%E9%95%9C%E5%83%8F%E6%BA%90%E6%9A%B4%E6%AF%99%E5%90%8E%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF/">
 
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -186,17 +186,17 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Atom" title="Atom">Atom</a>
+                        <a class="tag" href="/tags/#Ruby" title="Ruby">Ruby</a>
                         
-                        <a class="tag" href="/tags/#IDE" title="IDE">IDE</a>
+                        <a class="tag" href="/tags/#Gem" title="Gem">Gem</a>
                         
                     </div>
-                    <h1>Atom安装与配置</h1>
+                    <h1>淘宝RubyGems镜像源暴毙后的求生之路</h1>
                     
                     
-                    <h2 class="subheading">性能极强的开源文本编辑器Atom</h2>
+                    <h2 class="subheading">晚上更新gem的时候突然发现……</h2>
                     
-                    <span class="meta">Posted by Malcolm Suen on May 30, 2018</span>
+                    <span class="meta">Posted by Malcolm Suen on December 12, 2018</span>
                 </div>
             </div>
         </div>
@@ -217,117 +217,79 @@
                 <!-- Multi-Lingual -->
                 
 
-				<h2 id="atom介绍">Atom介绍</h2>
+				<h3 id="淘宝镜像的暴毙">淘宝镜像的暴毙</h3>
 
-<p>Atom 是 Github 开源的文本编辑器，这个编辑器完全是使用Web技术构建的(基于Node-Webkit)。启动速度快，提供很多常用功能的插件和主题，可以说Atom已经足以胜任“半个IDE”了。</p>
+<p>晚上更新gem的时候忽然发现报了错，错误原因前所未见……</p>
 
-<p>优点如下：</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR:  Certificate /C=CN/ST=ZheJiang/L=HangZhou/O=Alibaba (China)
+Technology Co., Ltd./CN=<span class="err">*</span>.taobao.org expired at 2018-12-05T03:16:02Z
+</code></pre></div></div>
 
-<ul>
-  <li>多平台支持（Windows、Mac、Linux）</li>
-  <li>界面美观、现代化,使用舒适</li>
-  <li>多文件管理（Atom提供了文件树列表的功能）</li>
-  <li>设置管理很方便，不用像Sublime需要自己手动安装第三方管理插件</li>
-  <li>由GitHub打造，社区活跃,免费使用</li>
-  <li>支持各种编程语言的代码高亮和代码补全(部分需要插件支持)</li>
-  <li>原生Git的支持</li>
-  <li>原生Markdown支持（实时预览、代码高亮，比Mou的代码高亮效果好很多）</li>
-  <li>主题插件越来越丰富</li>
-</ul>
-
-<h2 id="atom的安装使用">Atom的安装使用</h2>
-
-<h3 id="安装设置">安装设置</h3>
-
-<p>直接去Atom<a href="[https://atom.io](https://atom.io/)">官网下载</a>安装即可.</p>
-
-<p>Atom文本编辑器支持Windows、Mac、Linux 三大桌面平台，完全免费，并且已经在 GitHub 上开放了全部的源代码。功能设置和插件安装直接在设置选项里面即可设置，默认的很多设置选项已经很不错了，也不需要太多地修改。</p>
-
-<p>主题插件的安装也很简单。打开<code class="highlighter-rouge">Preferences</code>或<code class="highlighter-rouge">Settings</code>。在<code class="highlighter-rouge">Install</code>中，输入自己的需要安装的主题或者插件的部分名称即可匹配搜索，点击’INSTALL’即可安装成功使用了（主题需要切换到Themes选项卡上）</p>
-
-<h3 id="原生markdown书写和预览">原生Markdown书写和预览</h3>
-
-<p>Atom原生支持Markdown的书写和预览，这相较于Sublime的需要安装第三方Markdown插件使用起来还要优秀，由于时Github自家打造，Markdown语法当然也是与github语法完全同步。</p>
-
-<p>使用快捷键 Ctrl + Shift + M 则可打开Markdown的预览界面。</p>
-
-<h3 id="部分常用插件">部分常用插件</h3>
-
-<p>Atom的常用插件基本上都在 Atom Packages 首页中能找到，选择热门的、下载量较多的适合自己需要的基本上都是正确的选择。</p>
-
-<h4 id="minimap">minimap</h4>
-
-<p>minimap是一个预览全部代码的一个插件，同时能方便的移动到指定的文件位置。</p>
-
-<h4 id="atom-beautify">atom-beautify</h4>
-
-<p>atom-beautify是一个格式化代码的插件，支持HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C,CoffeeScript, TypeScript, SQL等多种语言。</p>
-
-<ul>
-  <li>安装后可以使用 Crtl + Alt + B 快捷键进行格式化。</li>
-  <li>也可以点击菜单“Packages”-&gt;“Atom Beautify”-&gt;“Beautify”进行格式化。</li>
-</ul>
-
-<h4 id="emmet">emmet</h4>
-
-<p>emmet是HTML,CSS快速编写的神器。前端必备，又geek又方便。但是atom的emmet占的快捷键有点多，建议手工调教改掉不常用的一部分。</p>
-
-<h4 id="autocomplete--系列">autocomplete-* 系列</h4>
-
-<p>autocomplete-*系列包含各个语言的代码自动补全功能，你需要什么语言的就可以下载该语言相关的插件即可。</p>
-
-<ul>
-  <li>autocomplete-paths：填写路径的时候有Sug提示</li>
-  <li>autocomplete-php：php代码提示补全</li>
-  <li>autocomplete-java：java代码提示补全</li>
-</ul>
-
-<h4 id="pigments">pigments</h4>
-
-<p>pigments是项目文件中，样式显色显示的的插件。在Atom中的下载量可是相当的高。对于前端人员来讲还是很重要的一个插件。</p>
-
-<h4 id="terminal-panel">terminal-panel</h4>
-
-<p>用于执行命令并显示输出。打开终端面板快捷键：<code class="highlighter-rouge">Ctrl + </code>（别的终端插件在win10都有蜜汁问题）</p>
-
-<h4 id="docblockr">docblockr</h4>
-
-<p>可以帮助我们方便快速地写注释。</p>
-
-<h4 id="javascript-snippets">javascript-snippets</h4>
-
-<p>让我们书写js时使用各种缩写，自动补全代码。</p>
-
-<h4 id="markdown-preview">markdown-preview</h4>
-
-<p>Atom 自带的 markdown 预览插件，直接<code class="highlighter-rouge">ctrl+shift+m</code>即可左右分屏实时预览编辑</p>
-
-<h4 id="markdown-writer">markdown-writer</h4>
-
-<p>各种各样的优化和具体配置，专为Blog写手而生。settings 列表<strong>仿佛</strong>可以配置图片文件夹的路径</p>
-
-<h4 id="markdown-scroll-sync">markdown-scroll-sync</h4>
-
-<p>自动滚动，写到哪滚到哪</p>
-
-<h4 id="language-markdown">language-markdown</h4>
-
-<p>Markdown 语言语法支持，进行高亮。安装后在右下角选择即可。</p>
-
-<p>Markdown保存时会把自然段尾部的双空格换行自动去除 该功能由<code class="highlighter-rouge">Whitespace</code>包提供，默认开启。通过设置<code class="highlighter-rouge">config.cson</code>可以解决：</p>
-
-<h2 id="相关问题">相关问题</h2>
-
-<h3 id="zh-cn">zh-CN</h3>
-
-<p>问题：Cannot load the system dictionary for <code class="highlighter-rouge">zh-CN</code>. Checked the following paths for dictionary files.</p>
-
-<p>解决方案：遇到这种错误，我们可以在插件中禁用 <code class="highlighter-rouge">spell-check</code> 来解决这个问题。</p>
+<p>淘宝镜像竟然失效了？（虽然我从来都没用过淘宝的镜像）吓得我赶紧打开了<code class="highlighter-rouge">ruby.taobao.org</code>，果不其然：</p>
 
 <blockquote>
-  <p>参考资料：<a href="http://donggu.me/2017/04/12/Atom/#">冬菇酱 Atom 安装与配置记录</a>，<a href="http://www.hangge.com/blog/cache/detail_1149.html">航歌 Atom - 介绍和使用方法</a></p>
+  <p>RubyGems 镜像的管理工作以后将交由 <a href="http://gems.ruby-china.org/">Ruby China</a> 负责，以便能有更多的社区爱好者参与进来，保持持续发展。</p>
+
+  <p>本站将不在继续维护，本站的维护者已经或即将参与到 <a href="http://gems.ruby-china.org/">Ruby China 镜像</a> 的维护工作中，目前已将安装请求重定向到 <a href="http://gems.ruby-china.org/">Ruby China 镜像</a>，请大家注意更换本地的 Gem Source。</p>
 </blockquote>
 
+<p>我:<img src="https://ws1.sinaimg.cn/large/006MzNVDly1fy3a2rd27vj30ib0bzmy0.jpg" alt="" /></p>
+
+<p>百度了一下发现原来是镜像的维护者很多年前就已经离职了……直到2018-12-05彻底失效我才知道。不过原来的维护人员已经把请求重新定向到了Ruby China，应该没什么问题了？结果：</p>
+
+<blockquote>
+  <p>因域名备案问题，<code class="highlighter-rouge">.org</code> 域名无法继续提供 RubyGems 镜像服务，我们提供 <code class="highlighter-rouge">.com</code> 代替 <code class="highlighter-rouge">.org</code> 的域名，其他一切不变！！</p>
+
+  <p>详情访问</p>
+
+  <p><a href="https://gems.ruby-china.com/">https://gems.ruby-china.com</a></p>
+</blockquote>
+
+<p>我：</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/006MzNVDly1fy3a2rhptgj307g07fdft.jpg" alt="" /></p>
+
+<h3 id="ruby镜像源的修改设置">Ruby镜像源的修改设置</h3>
+
+<p>查看当前镜像</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">source </span>l
+或
+<span class="nv">$ </span>gem <span class="nb">source</span>
+</code></pre></div></div>
+
+<p>查询结果如下：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">***</span> CURRENT SOURCES <span class="k">***</span>
+
+https://rubygems.org/
+https://ruby.taobao.org/
+</code></pre></div></div>
+
+<p>然后删除掉已经失效的镜像：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">source</span> <span class="nt">-r</span> https://ruby.taobao.org/
+<span class="c">#删除成功</span>
+https://ruby.taobao.org/ removed from sources
+</code></pre></div></div>
+
+<p>删除成功后，再添加新的镜像：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem sources <span class="nt">--add</span> https://gems.ruby-china.com/ <span class="nt">--remove</span> https://rubygems.org/
+<span class="nv">$ </span>gem sources <span class="nt">-l</span>
+https://gems.ruby-china.com
+<span class="c"># 官方注明确保只有 gems.ruby-china.com</span>
+</code></pre></div></div>
+
+<p>如果有条件还是使用原版镜像吧，万一国内的又不好使了呢……</p>
+
+<blockquote>
+  <p>参考资料：</p>
+
+  <p><a href="https://gems.ruby-china.com/">RubyGems - Ruby China</a></p>
+
+  <p><a href="https://blog.csdn.net/hsl0530hsl/article/details/80056289">修改Ruby的Gem镜像</a></p>
+</blockquote>
 
 
                 <hr style="visibility: hidden;">
@@ -335,19 +297,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/05/27/MySQL%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE%E5%91%BD%E4%BB%A4mysql_secure_installation/" data-toggle="tooltip" data-placement="top" title="MySQL安全设置命令mysql_secure_installation">
-                        Previous<br>
-                        <span>MySQL安全设置命令mysql_secure_installation</span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="next">
                         <a href="/2018/06/03/Node.js%E5%92%8Cnpm%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8Anpm%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-toggle="tooltip" data-placement="top" title="Node.js和npm的安装及npm的简单使用">
-                        Next<br>
+                        Previous<br>
                         <span>Node.js和npm的安装及npm的简单使用</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
                 
@@ -468,7 +423,7 @@
                     
                     
                     <li>
-                        <a target="_blank" href="https://github.com/belikovvv">
+                        <a target="_blank" href="https://github.com/mal-suen">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>

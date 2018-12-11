@@ -233,75 +233,75 @@
 
 <p>如果你打算学习 Ruby / Rails, RVM 是必不可少的工具之一。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-$ curl -sSL https://get.rvm.io | bash -s stable
-# 如果上面的连接失败，可以尝试: 
-$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gpg <span class="nt">--keyserver</span> hkp://keys.gnupg.net <span class="nt">--recv-keys</span> 409B6B1796C275462A1703113804BB82D39DC0E3
+<span class="nv">$ </span>curl <span class="nt">-sSL</span> https://get.rvm.io | bash <span class="nt">-s</span> stable
+<span class="c"># 如果上面的连接失败，可以尝试: </span>
+<span class="nv">$ </span>curl <span class="nt">-L</span> https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash <span class="nt">-s</span> stable
 </code></pre></div></div>
 
 <p>期间可能会问你 sudo 管理员密码，以及自动通过 <code class="highlighter-rouge">Homebrew</code> 安装依赖包，等待一段时间后就可以成功安装好 RVM。</p>
 
 <p>相关的配置会写入.bashrc与.bash_profile中，也可以手动进行配置：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add RVM to PATH for scripting. Make sure this is the last PATH variable change.</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PATH</span><span class="s2">:</span><span class="nv">$HOME</span><span class="s2">/.rvm/bin"</span>
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+<span class="o">[[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.rvm/scripts/rvm"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.rvm/scripts/rvm"</span> <span class="c"># Load RVM into a shell session *as a function*</span>
 </code></pre></div></div>
 
 <p>然后，载入 RVM 环境（新开终端就不用这么做了，会自动重新载入的）</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ source ~/.rvm/scripts/rvm
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> ~/.rvm/scripts/rvm
 </code></pre></div></div>
 
 <p>如果不能科学上网的话，可以修改 RVM 下载 Ruby 的源，到 Ruby China 的镜像，不然网速会很感人:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "ruby_url=https://cache.ruby-china.org/pub/ruby" &gt; ~/.rvm/user/db
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"ruby_url=https://cache.ruby-china.org/pub/ruby"</span> <span class="o">&gt;</span> ~/.rvm/user/db
 </code></pre></div></div>
 
 <p>检查一下是否安装正确</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rvm -v
-rvm 1.29.3 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm <span class="nt">-v</span>
+rvm 1.29.3 <span class="o">(</span>latest<span class="o">)</span> by Michal Papis, Piotr Kuczynski, Wayne E. Seguin <span class="o">[</span>https://rvm.io]
 </code></pre></div></div>
 
 <h2 id="使用rvm安装ruby环境">使用RVM安装Ruby环境</h2>
 
 <p>列出已知的 Ruby 版本</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rvm list known
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm list known
 </code></pre></div></div>
 
 <p>安装一个 Ruby 版本</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rvm install 2.5.0
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm <span class="nb">install </span>2.5.0
 </code></pre></div></div>
 
 <p>这里安装了最新的 2.5.0, <code class="highlighter-rouge">rvm list known</code> 列表里面的都可以拿来安装。</p>
 
 <p>切换 Ruby 版本</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rvm use 2.5.0
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm use 2.5.0
 </code></pre></div></div>
 
 <p>如果想设置为默认版本，这样一来以后新打开的控制台默认的 Ruby 就是这个版本</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rvm use 2.5.0 --default 
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm use 2.5.0 <span class="nt">--default</span> 
 </code></pre></div></div>
 
 <p>这时候使用<code class="highlighter-rouge">ruby -v</code>查看当前的Ruby的版本</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-darwin17]
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby 2.5.0p0 <span class="o">(</span>2017-12-25 revision 61468<span class="o">)</span> <span class="o">[</span>x86_64-darwin17]
 </code></pre></div></div>
 
 <p>查询已经安装的ruby</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm list
 </code></pre></div></div>
 
 <p>卸载一个已安装版本</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm remove 2.2.0
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm remove 2.2.0
 </code></pre></div></div>
 
 <h2 id="gemset的使用补充">gemset的使用（补充）</h2>
@@ -314,56 +314,56 @@ rvm 1.29.3 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://r
 
 <p>gemset 是附加在 Ruby 语言版本下面的，例如你用了 1.9.2, 建立了一个叫 rails3 的 gemset,当切换到 1.8.7 的时候，rails3 这个 gemset 并不存在。</p>
 
-<h3 id="建立-gemset">建立 gemset</h3>
+<p>建立 gemset</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm use 1.8.7
-rvm gemset create rails23
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm use 1.8.7
+<span class="nv">$ </span>rvm gemset create rails23
 </code></pre></div></div>
 
 <p>然后可以设定已建立的 gemset 做为当前环境</p>
 
-<h3 id="use-可以用来切换语言或者-gemset">use 可以用来切换语言或者 gemset</h3>
+<p>use 可以用来切换语言或者 gemset</p>
 
 <p>前提是他们已经被安装(或者建立)。并可以在 <code class="highlighter-rouge">list</code> 命令中看到。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm use 1.8.7
-rvm use 1.8.7@rails23
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm use 1.8.7
+<span class="nv">$ </span>rvm use 1.8.7@rails23
 </code></pre></div></div>
 
 <p>然后所有安装的 Gem 都是安装在这个 gemset 之下。</p>
 
-<h3 id="列出当前-ruby-的-gemset">列出当前 Ruby 的 gemset</h3>
+<p>列出当前 Ruby 的 gemset</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm gemset list
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm gemset list
 </code></pre></div></div>
 
-<h3 id="清空-gemset-中的-gem">清空 gemset 中的 Gem</h3>
+<p>清空 gemset 中的 Gem</p>
 
 <p>如果你想清空一个 gemset 的所有 Gem, 想重新安装所有 Gem，可以这样</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm gemset empty 1.8.7@rails23
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm gemset empty 1.8.7@rails23
 </code></pre></div></div>
 
-<h3 id="删除一个-gemset">删除一个 gemset</h3>
+<p>删除一个 gemset</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm gemset delete rails2-3
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm gemset delete rails2-3
 </code></pre></div></div>
 
-<h3 id="项目自动加载-gemset">项目自动加载 gemset</h3>
+<p>项目自动加载 gemset</p>
 
 <p>RVM 还可以自动加载 gemset。 例如我们有一个 Rails 3.1.3 项目，需要 1.9.3 版本 Ruby，整个流程可以这样。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm install 1.9.3
-rvm use 1.9.3
-rvm gemset create rails313
-rvm use 1.9.3@rails313
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm <span class="nb">install </span>1.9.3
+<span class="nv">$ </span>rvm use 1.9.3
+<span class="nv">$ </span>rvm gemset create rails313
+<span class="nv">$ </span>rvm use 1.9.3@rails313
 </code></pre></div></div>
 
 <p>下面进入到项目目录，建立一个 <code class="highlighter-rouge">.rvmrc</code> 文件。</p>
 
 <p>在这个文件里可以很简单的加一个命令：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm use 1.9.3@rails313
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm use 1.9.3@rails313
 </code></pre></div></div>
 
 <p>然后无论你当前 Ruby 设置是什么，cd 到这个项目的时候，RVM 会帮你加载 Ruby 1.9.3 和 rails313 gemset.</p>
@@ -507,7 +507,7 @@ rvm use 1.9.3@rails313
                     
                     
                     <li>
-                        <a target="_blank" href="https://github.com/belikovvv">
+                        <a target="_blank" href="https://github.com/mal-suen">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>

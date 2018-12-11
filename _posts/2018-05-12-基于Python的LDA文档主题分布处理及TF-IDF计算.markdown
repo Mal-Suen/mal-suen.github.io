@@ -284,7 +284,7 @@ Features length: 15
 
 ## 附录
 
-### 微博热点话题检测运行结果
+#### 微博热点话题检测运行结果
 
 ```
 [[  1.02084567e-05   1.02084567e-05   1.02084567e-05]
@@ -421,10 +421,10 @@ doc: 8 topic: 29
 doc: 9 topic: 24
 ```
 
-### 文档主题分布图
+#### 文档主题分布图
 
 ![](https://ws1.sinaimg.cn/large/006MzNVDly1frkgischgzj30m80m8t96.jpg)
 
-### 主题对应的问题词权重分布情况图
+#### 主题对应的问题词权重分布情况图
 
 ![](https://ws1.sinaimg.cn/large/006MzNVDgy1frkg1taeagj30go0goglv.jpg)

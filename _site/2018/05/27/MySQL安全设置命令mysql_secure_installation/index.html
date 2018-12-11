@@ -258,7 +258,7 @@ Or, if you don't want/need a background service you can just run:
 
 <p>这时候就可以正常执行<code class="highlighter-rouge">mysql_secure_installation</code>命令了。</p>
 
-<h3 id="建立密码验证插件">建立密码验证插件</h3>
+<h4 id="建立密码验证插件">建立密码验证插件</h4>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Securing the MySQL server deployment.
 
@@ -269,7 +269,7 @@ VALIDATE PASSWORD PLUGIN can be used to test passwords and improve security. It 
 Press y|Y for Yes, any other key for No: y 
 </code></pre></div></div>
 
-<h3 id="选择密码规则">选择密码规则</h3>
+<h4 id="选择密码规则">选择密码规则</h4>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>There are three levels of password validation policy:
 
@@ -287,13 +287,13 @@ New password: （输入你的密码）
 Re-enter new password: （再次输入你的密码）
 </code></pre></div></div>
 
-<h3 id="创建符合规则的新密码">创建符合规则的新密码</h3>
+<h4 id="创建符合规则的新密码">创建符合规则的新密码</h4>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Estimated strength of the password: 50 		#密码强度
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
 </code></pre></div></div>
 
-<h3 id="删除匿名用户">删除匿名用户</h3>
+<h4 id="删除匿名用户">删除匿名用户</h4>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>By default, a MySQL installation has an anonymous user, allowing anyone to log into MySQL without having to have a user account created for them. This is intended only for testing, and to make the installation go a bit smoother.
 You should remove them before moving into a production environment.
@@ -302,7 +302,7 @@ Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
 Success.
 </code></pre></div></div>
 
-<h3 id="禁止远程登录">禁止远程登录</h3>
+<h4 id="禁止远程登录">禁止远程登录</h4>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normally, root should only be allowed to connect from 'localhost'. This ensures that someone cannot guess at the root password from the network.
 
@@ -310,7 +310,7 @@ Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
 Success.
 </code></pre></div></div>
 
-<h3 id="删除测试数据表">删除测试数据表</h3>
+<h4 id="删除测试数据表">删除测试数据表</h4>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>By default, MySQL comes with a database named 'test' that anyone can access. This is also intended only for testing, and should be removed before moving into a production environment.
 
@@ -322,7 +322,7 @@ Success.
 Success.
 </code></pre></div></div>
 
-<h3 id="done">Done</h3>
+<h4 id="done">Done</h4>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Reloading the privilege tables will ensure that all changes made so far will take effect immediately.
 
@@ -337,7 +337,7 @@ All done!
 
 <h2 id="可能会出现的问题">可能会出现的问题</h2>
 
-<h3 id="your-password-does-not-satisfy-the-current-policy-requirements">Your password does not satisfy the current policy requirements.</h3>
+<h4 id="your-password-does-not-satisfy-the-current-policy-requirements">Your password does not satisfy the current policy requirements.</h4>
 
 <p>如果你在选择密码规则的时候不小心选择了2，也就是数字、大小写字母、特殊符号和字典文件的组合。这时候设置密码会出现如下提示：</p>
 
@@ -362,7 +362,7 @@ All done!
 
 <p>这个时候重新运行<code class="highlighter-rouge">mysql_secure_installation</code>就可以安心设置了。</p>
 
-<h3 id="相关参数">相关参数</h3>
+<h2 id="相关参数">相关参数</h2>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>validate_password_dictionary_file：插件用于验证密码强度的字典文件路径。
 
@@ -391,9 +391,9 @@ validate_password_special_char_count：密码至少要包含的特殊字符数�
                     
                     
                     <li class="next">
-                        <a href="/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" data-toggle="tooltip" data-placement="top" title="Atom安装与配置">
+                        <a href="/2018/06/03/Node.js%E5%92%8Cnpm%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8Anpm%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-toggle="tooltip" data-placement="top" title="Node.js和npm的安装及npm的简单使用">
                         Next<br>
-                        <span>Atom安装与配置</span>
+                        <span>Node.js和npm的安装及npm的简单使用</span>
                         </a>
                     </li>
                     
@@ -516,7 +516,7 @@ validate_password_special_char_count：密码至少要包含的特殊字符数�
                     
                     
                     <li>
-                        <a target="_blank" href="https://github.com/belikovvv">
+                        <a target="_blank" href="https://github.com/mal-suen">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>

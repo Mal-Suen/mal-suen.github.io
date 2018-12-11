@@ -42,7 +42,7 @@ macOS下使用`brew install git`安装，Linux（Debian/Ubuntu）使用`apt-get 
 
 安装完成后配置用户名与邮箱：
 
-```
+```shell
 ### 如果想设置为全局生效，添加 --global 参数
 $ git config --global user.name "你的用户名"
 $ git config --global user.email "你的邮箱"
@@ -52,7 +52,7 @@ $ git config --global user.email "你的邮箱"
 
 #### 检查现有的ssh key
 
-```
+```shell
 $ cd ~/.ssh
 ```
 
@@ -62,7 +62,7 @@ $ cd ~/.ssh
 
 输入下面的代码，就可以生成新的key文件，我们只需要默认设置就好，所以当需要输入文件名的时候，回车就好。
 
-```
+```shell
 $ ssh-keygen -t rsa -C "邮件地址@youremail.com"
 Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):#密码不会回显
@@ -70,7 +70,7 @@ Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):#�
 
 然后系统会要你输入加密串（Passphrase）：
 
-```
+```shell
 Enter passphrase (empty for no passphrase):<输入加密串>
 Enter same passphrase again:<再次输入加密串>
 ```
@@ -89,11 +89,11 @@ PS：如果需要配置多个GitHub账号，可以参看这个[多个github帐�
 
 可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：
 
-```
+```shell
 $ ssh -T git@github.com
 ```
 
-```
+```shell
 Hi <em>username</em>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
@@ -117,7 +117,7 @@ Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个�
 
 安装 Jekyll 的最好方式就是使用 [RubyGems](http://docs.rubygems.org/read/chapter/3). 你只需要打开终端输入以下命令就可以安装了：
 
-```
+```shell
 $ gem install jekyll
 ```
 
@@ -145,7 +145,7 @@ $ gem install jekyll
 
 #### 常用Git命令
 
-```
+```shell
 $ git clone [url]	# 下载一个项目和它的整个代码历史
 $ git init			# 在当前目录新建一个Git代码库
 $ git add .			# 添加当前目录的所有文件到暂存区

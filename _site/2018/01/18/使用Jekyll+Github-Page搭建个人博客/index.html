@@ -252,16 +252,16 @@
 
 <p>安装完成后配置用户名与邮箱：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### 如果想设置为全局生效，添加 --global 参数
-$ git config --global user.name "你的用户名"
-$ git config --global user.email "你的邮箱"
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">### 如果想设置为全局生效，添加 --global 参数</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"你的用户名"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"你的邮箱"</span>
 </code></pre></div></div>
 
 <h3 id="ssh-key设置">SSH Key设置</h3>
 
 <h4 id="检查现有的ssh-key">检查现有的ssh key</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ~/.ssh
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/.ssh
 </code></pre></div></div>
 
 <p>如果显示“No such file or directory”，说明你是第一次使用 git。</p>
@@ -270,14 +270,14 @@ $ git config --global user.email "你的邮箱"
 
 <p>输入下面的代码，就可以生成新的key文件，我们只需要默认设置就好，所以当需要输入文件名的时候，回车就好。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ssh-keygen -t rsa -C "邮件地址@youremail.com"
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-C</span> <span class="s2">"邮件地址@youremail.com"</span>
 Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):#密码不会回显
+Enter file <span class="k">in </span>which to save the key <span class="o">(</span>/Users/your_user_directory/.ssh/id_rsa<span class="o">)</span>:#密码不会回显
 </code></pre></div></div>
 
 <p>然后系统会要你输入加密串（Passphrase）：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter passphrase <span class="o">(</span>empty <span class="k">for </span>no passphrase<span class="o">)</span>:&lt;输入加密串&gt;
 Enter same passphrase again:&lt;再次输入加密串&gt;
 </code></pre></div></div>
 
@@ -295,11 +295,11 @@ Enter same passphrase again:&lt;再次输入加密串&gt;
 
 <p>可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ssh -T git@github.com
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh <span class="nt">-T</span> git@github.com
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi &lt;em&gt;username&lt;/em&gt;! You've successfully authenticated, but GitHub does not provide shell access.
-</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi &lt;em&gt;username&lt;/em&gt;! You<span class="s1">'ve successfully authenticated, but GitHub does not provide shell access.
+</span></code></pre></div></div>
 
 <p>如果显示以上内容，则说明配置成功。此时你可以成功连接GitHub了。</p>
 
@@ -323,7 +323,7 @@ Enter same passphrase again:&lt;再次输入加密串&gt;
 
 <p>安装 Jekyll 的最好方式就是使用 <a href="http://docs.rubygems.org/read/chapter/3">RubyGems</a>. 你只需要打开终端输入以下命令就可以安装了：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gem install jekyll
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll
 </code></pre></div></div>
 
 <p>所有的 Jekyll 的 gem 依赖包都会被自动安装，所以你完全不用去担心。</p>
@@ -350,12 +350,12 @@ Enter same passphrase again:&lt;再次输入加密串&gt;
 
 <h4 id="常用git命令">常用Git命令</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone [url]	# 下载一个项目和它的整个代码历史
-$ git init			# 在当前目录新建一个Git代码库
-$ git add .			# 添加当前目录的所有文件到暂存区
-$ git commit -m [message]		# 提交暂存区到仓库区
-$ git remote add origin https://github.com/USER_NAME/repository_name.git
-$ git push -u origin master		# 上传本地指定分支到远程仓库
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone <span class="o">[</span>url]	<span class="c"># 下载一个项目和它的整个代码历史</span>
+<span class="nv">$ </span>git init			<span class="c"># 在当前目录新建一个Git代码库</span>
+<span class="nv">$ </span>git add <span class="nb">.</span>			<span class="c"># 添加当前目录的所有文件到暂存区</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="o">[</span>message]		<span class="c"># 提交暂存区到仓库区</span>
+<span class="nv">$ </span>git remote add origin https://github.com/USER_NAME/repository_name.git
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin master		<span class="c"># 上传本地指定分支到远程仓库</span>
 </code></pre></div></div>
 
 <p>上传成功之后就可以访问自己的博客了。除此之外你还可以根据<a href="https://www.jekyll.com.cn/docs/home/">Jekyll官方文档</a>对博客进行个性化定制，此处不再赘述。同时很多模板都会详细的写明配置信息，只需要认真阅读模板的说明信息即可。</p>
@@ -532,7 +532,7 @@ $ git push -u origin master		# 上传本地指定分支到远程仓库
                     
                     
                     <li>
-                        <a target="_blank" href="https://github.com/belikovvv">
+                        <a target="_blank" href="https://github.com/mal-suen">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>

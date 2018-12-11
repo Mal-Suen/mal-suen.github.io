@@ -248,14 +248,14 @@
 
 <p>安装时，安装程序会把bin目录加入PATH（Linux/macOS默认写入<code class="highlighter-rouge">~/.bashrc</code>，Windows添加到系统变量PATH），如果你安装了zsh之类的shell，需要手动配置一下PATH。举个栗子：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 将anaconda的bin目录加入PATH，根据版本不同，也可能是/anaconda2/bin
-# added by Anaconda3 5.0.1 installer
-export PATH="/anaconda3/bin:$PATH"
-# added by Anaconda3 5.0.1 installer
-export PATH="/Users/Belikovvv/anaconda3/bin:$PATH"
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 将anaconda的bin目录加入PATH，根据版本不同，也可能是/anaconda2/bin</span>
+<span class="c"># added by Anaconda3 5.0.1 installer</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/anaconda3/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="c"># added by Anaconda3 5.0.1 installer</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/Users/Belikovvv/anaconda3/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
 
-# 更新zshrc以立即生效
-source ~/.zshrc
+<span class="c"># 更新zshrc以立即生效</span>
+<span class="nv">$ </span><span class="nb">source</span> ~/.zshrc
 </code></pre></div></div>
 
 <p>配置好PATH后，可以通过<code class="highlighter-rouge">conda --version</code>命令检查是否正确。</p>
@@ -264,84 +264,81 @@ source ~/.zshrc
 
 <p>Conda的环境管理功能允许我们同时安装若干不同版本的Python，并能自由切换。假设我们需要安装Python 2.7，此时，我们需要做的操作如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建一个名为python2x的环境，指定Python版本是2.7
-conda create --name python2x python=2.7
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 创建一个名为python2x的环境，指定Python版本是2.7</span>
+<span class="nv">$ </span>conda create <span class="nt">--name</span> python2x <span class="nv">python</span><span class="o">=</span>2.7
 
-# 使用activate激活该环境
-activate python2x # for Windows
-source activate python2x # for Linux &amp; Mac
+<span class="c"># 使用activate激活该环境</span>
+<span class="nv">$ </span>activate python2x <span class="c"># for Windows</span>
+<span class="nv">$ </span><span class="nb">source </span>activate python2x <span class="c"># for Linux &amp; Mac</span>
 
-# 使用deactivate退出该环境
-deactivate python2x # for Windows
-source deactivate python2x # for Linux &amp; Mac
+<span class="c"># 使用deactivate退出该环境</span>
+<span class="nv">$ </span>deactivate python2x <span class="c"># for Windows</span>
+<span class="nv">$ </span><span class="nb">source </span>deactivate python2x <span class="c"># for Linux &amp; Mac</span>
 
-#在新环境下使用pip命令安装第三方库，如lxml
-conda install -n python2x lxml
+<span class="c">#在新环境下使用pip命令安装第三方库，如lxml</span>
+<span class="nv">$ </span>conda <span class="nb">install</span> <span class="nt">-n</span> python2x lxml
 
-#查看已有的环境
-conda info -e
+<span class="c">#查看已有的环境</span>
+<span class="nv">$ </span>conda info <span class="nt">-e</span>
 
-# 删除某个已有的环境（如果不添--all参数，而是指明某个库名，则是删除该库）
-conda remove --name python2x --all
-
+<span class="c"># 删除某个已有的环境（如果不添--all参数，而是指明某个库名，则是删除该库）</span>
+<span class="nv">$ </span>conda remove <span class="nt">--name</span> python2x <span class="nt">--all</span>
 </code></pre></div></div>
 
 <p>由于我们现在安装的是Anaconda3，之后又新添加了Python 2.7环境，但是Python 3.6环境中安装了Anaconda自带的科学计算环境，Python 2.7中却没有，那么如何为新添加的环境也装上Anaconda的科学计算包呢，没必要一个一个来，更没有必要再去安装Anaconda2了，只需：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install -n python2x anaconda
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ conda install -n python2x anaconda
 </code></pre></div></div>
 
 <h2 id="conda的包管理">Conda的包管理</h2>
 
 <p>Conda的包管理就比较好理解了，这部分功能与<code class="highlighter-rouge">pip</code>类似。</p>
 
-<p>例如，如果需要安装scipy：</p>
+<p>例如，如果需要安装scipy：shell</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 安装scipy
-conda install scipy
-# conda会从从远程搜索scipy的相关信息和依赖项目，同时安装numpy和mkl（运算加速的库）
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装scipy</span>
+<span class="nv">$ </span>conda <span class="nb">install </span>scipy
+<span class="c"># conda会从从远程搜索scipy的相关信息和依赖项目，同时安装numpy和mkl（运算加速的库）</span>
 
-# 查看已经安装的packages
-conda list
-# 最新版的conda是从site-packages文件夹中搜索已经安装的包，不依赖于pip，因此可以显示出通过各种方式安装的包
-
+<span class="c"># 查看已经安装的packages</span>
+<span class="nv">$ </span>conda list
+<span class="c"># 最新版的conda是从site-packages文件夹中搜索已经安装的包，不依赖于pip，因此可以显示出通过各种方式安装的包</span>
 </code></pre></div></div>
 
 <p>conda的一些常用操作如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 查看当前环境下已安装的包
-conda list
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 查看当前环境下已安装的包</span>
+<span class="nv">$ </span>conda list
 
-# 查看某个指定环境的已安装包
-conda list -n python2x
+<span class="c"># 查看某个指定环境的已安装包</span>
+<span class="nv">$ </span>conda list <span class="nt">-n</span> python2x
 
-# 查找package信息
-conda search numpy
+<span class="c"># 查找package信息</span>
+<span class="nv">$ </span>conda search numpy
 
-# 安装package
-conda install -n python2x numpy
-# 如果不用-n指定环境名称，则被安装在当前活跃环境
-# 也可以通过-c指定通过某个channel安装
+<span class="c"># 安装package</span>
+<span class="nv">$ </span>conda <span class="nb">install</span> <span class="nt">-n</span> python2x numpy
+<span class="c"># 如果不用-n指定环境名称，则被安装在当前活跃环境</span>
+<span class="c"># 也可以通过-c指定通过某个channel安装</span>
 
-# 更新package
-conda update -n python2x numpy
+<span class="c"># 更新package</span>
+<span class="nv">$ </span>conda update <span class="nt">-n</span> python2x numpy
 
-# 删除package
-conda remove -n python2x numpy
-
+<span class="c"># 删除package</span>
+<span class="nv">$ </span>conda remove <span class="nt">-n</span> python2x numpy
 </code></pre></div></div>
 
 <p>前面已经提到，conda将conda、python等都视为package，因此，完全可以使用conda来管理conda和python的版本，例如</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 更新conda，保持conda最新
-conda update conda
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 更新conda，保持conda最新</span>
+<span class="nv">$ </span>conda update conda
 
-# 更新anaconda
-conda update anaconda
+<span class="c"># 更新anaconda</span>
+<span class="nv">$ </span>conda update anaconda
 
-# 更新python
-conda update python
-# 假设当前环境是python 2.7, conda会将python升级为2.7.x系列的当前最新版本
+<span class="c"># 更新python</span>
+<span class="nv">$ </span>conda update python
+<span class="c"># 假设当前环境是python 2.7, conda会将python升级为2.7.x系列的当前最新版本</span>
 
 </code></pre></div></div>
 
@@ -349,12 +346,12 @@ conda update python
 
 <p>如果需要安装很多packages，你会发现conda下载的速度经常很慢，因为Anaconda.org的服务器在国外。所幸的是，清华TUNA镜像源有Anaconda仓库的镜像，我们将其加入conda的配置即可：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 添加Anaconda的TUNA镜像
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-# TUNA的help中镜像地址加有引号，需要去掉
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 添加Anaconda的TUNA镜像</span>
+<span class="nv">$ </span>conda config <span class="nt">--add</span> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+<span class="c"># TUNA的help中镜像地址加有引号，需要去掉</span>
 
-# 设置搜索时显示通道地址
-conda config --set show_channel_urls yes
+<span class="c"># 设置搜索时显示通道地址</span>
+<span class="nv">$ </span>conda config <span class="nt">--set</span> show_channel_urls <span class="nb">yes</span>
 
 </code></pre></div></div>
 
@@ -496,7 +493,7 @@ conda config --set show_channel_urls yes
                     
                     
                     <li>
-                        <a target="_blank" href="https://github.com/belikovvv">
+                        <a target="_blank" href="https://github.com/mal-suen">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>

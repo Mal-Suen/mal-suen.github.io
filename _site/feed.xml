@@ -5,9 +5,96 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 30 Oct 2018 18:46:37 +0800</pubDate>
-    <lastBuildDate>Tue, 30 Oct 2018 18:46:37 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Dec 2018 01:29:15 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Dec 2018 01:29:15 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>淘宝RubyGems镜像源暴毙后的求生之路</title>
+        <description>&lt;h3 id=&quot;淘宝镜像的暴毙&quot;&gt;淘宝镜像的暴毙&lt;/h3&gt;
+
+&lt;p&gt;晚上更新gem的时候忽然发现报了错，错误原因前所未见……&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ERROR:  Certificate /C=CN/ST=ZheJiang/L=HangZhou/O=Alibaba (China)
+Technology Co., Ltd./CN=&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;.taobao.org expired at 2018-12-05T03:16:02Z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;淘宝镜像竟然失效了？（虽然我从来都没用过淘宝的镜像）吓得我赶紧打开了&lt;code class=&quot;highlighter-rouge&quot;&gt;ruby.taobao.org&lt;/code&gt;，果不其然：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RubyGems 镜像的管理工作以后将交由 &lt;a href=&quot;http://gems.ruby-china.org/&quot;&gt;Ruby China&lt;/a&gt; 负责，以便能有更多的社区爱好者参与进来，保持持续发展。&lt;/p&gt;
+
+  &lt;p&gt;本站将不在继续维护，本站的维护者已经或即将参与到 &lt;a href=&quot;http://gems.ruby-china.org/&quot;&gt;Ruby China 镜像&lt;/a&gt; 的维护工作中，目前已将安装请求重定向到 &lt;a href=&quot;http://gems.ruby-china.org/&quot;&gt;Ruby China 镜像&lt;/a&gt;，请大家注意更换本地的 Gem Source。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我:&lt;img src=&quot;https://ws1.sinaimg.cn/large/006MzNVDly1fy3a2rd27vj30ib0bzmy0.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;百度了一下发现原来是镜像的维护者很多年前就已经离职了……直到2018-12-05彻底失效我才知道。不过原来的维护人员已经把请求重新定向到了Ruby China，应该没什么问题了？结果：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;因域名备案问题，&lt;code class=&quot;highlighter-rouge&quot;&gt;.org&lt;/code&gt; 域名无法继续提供 RubyGems 镜像服务，我们提供 &lt;code class=&quot;highlighter-rouge&quot;&gt;.com&lt;/code&gt; 代替 &lt;code class=&quot;highlighter-rouge&quot;&gt;.org&lt;/code&gt; 的域名，其他一切不变！！&lt;/p&gt;
+
+  &lt;p&gt;详情访问&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;https://gems.ruby-china.com/&quot;&gt;https://gems.ruby-china.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/006MzNVDly1fy3a2rhptgj307g07fdft.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;ruby镜像源的修改设置&quot;&gt;Ruby镜像源的修改设置&lt;/h3&gt;
+
+&lt;p&gt;查看当前镜像&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;l
+或
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;查询结果如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; CURRENT SOURCES &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt;
+
+https://rubygems.org/
+https://ruby.taobao.org/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后删除掉已经失效的镜像：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; https://ruby.taobao.org/
+&lt;span class=&quot;c&quot;&gt;#删除成功&lt;/span&gt;
+https://ruby.taobao.org/ removed from sources
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;删除成功后，再添加新的镜像：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem sources &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; https://gems.ruby-china.com/ &lt;span class=&quot;nt&quot;&gt;--remove&lt;/span&gt; https://rubygems.org/
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem sources &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+https://gems.ruby-china.com
+&lt;span class=&quot;c&quot;&gt;# 官方注明确保只有 gems.ruby-china.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果有条件还是使用原版镜像吧，万一国内的又不好使了呢……&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;参考资料：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;https://gems.ruby-china.com/&quot;&gt;RubyGems - Ruby China&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/hsl0530hsl/article/details/80056289&quot;&gt;修改Ruby的Gem镜像&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 12 Dec 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/12/12/%E6%B7%98%E5%AE%9DRubyGems%E9%95%9C%E5%83%8F%E6%BA%90%E6%9A%B4%E6%AF%99%E5%90%8E%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/12/12/%E6%B7%98%E5%AE%9DRubyGems%E9%95%9C%E5%83%8F%E6%BA%90%E6%9A%B4%E6%AF%99%E5%90%8E%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF/</guid>
+        
+        <category>Ruby</category>
+        
+        <category>Gem</category>
+        
+        
+      </item>
     
       <item>
         <title>Node.js和npm的安装及npm的简单使用</title>
@@ -15,7 +102,7 @@
 
 &lt;p&gt;Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。  Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。  Node.js 的包管理器 npm，是全球最大的开源库生态系统。&lt;/p&gt;
 
-&lt;h3 id=&quot;安装nodejs&quot;&gt;安装Node.js&lt;/h3&gt;
+&lt;h4 id=&quot;安装nodejs&quot;&gt;安装Node.js&lt;/h4&gt;
 
 &lt;p&gt;首先，从&lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js官网&lt;/a&gt;下载对应平台的安装程序，网速慢的童鞋请移步&lt;a href=&quot;https://pan.baidu.com/s/1kU5OCOB#list/path=%2Fpub%2Fnodejs&quot;&gt;国内镜像&lt;/a&gt;。&lt;/p&gt;
 
@@ -23,7 +110,7 @@
 
 &lt;p&gt;安装完成后，输入&lt;code class=&quot;highlighter-rouge&quot;&gt;node -v&lt;/code&gt;查看版本号。&lt;/p&gt;
 
-&lt;h3 id=&quot;npm&quot;&gt;npm&lt;/h3&gt;
+&lt;h4 id=&quot;安装npm&quot;&gt;安装npm&lt;/h4&gt;
 
 &lt;p&gt;我们为什么需要npm呢？因为我们在Node.js上开发时，会用到很多别人写的JavaScript代码。如果我们要使用别人写的某个包，每次都根据名称搜索一下官方网站，下载代码，解压，再使用，非常繁琐。于是一个集中管理的工具应运而生：大家都把自己开发的模块打包后放到npm官网上，如果要使用，直接通过npm安装就可以直接用，不用管代码存在哪，应该从哪下载。&lt;/p&gt;
 
@@ -31,7 +118,7 @@
 
 &lt;p&gt;npm已经在Node.js安装的时候顺带装好了，使用&lt;code class=&quot;highlighter-rouge&quot;&gt;npm -v&lt;/code&gt;查看版本号。&lt;/p&gt;
 
-&lt;h2 id=&quot;npm更新&quot;&gt;npm更新&lt;/h2&gt;
+&lt;h4 id=&quot;npm更新&quot;&gt;npm更新&lt;/h4&gt;
 
 &lt;p&gt;可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;npm update &amp;lt;name&amp;gt;&lt;/code&gt;对单个包进行升级，版本大于 &lt;code class=&quot;highlighter-rouge&quot;&gt;2.6.1&lt;/code&gt;则可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;进行升级。&lt;/p&gt;
 
@@ -40,12 +127,12 @@
 &lt;p&gt;&lt;a href=&quot;https://www.npmjs.com/package/npm-check&quot;&gt;npm-check&lt;/a&gt;是用来检查npm依赖包是否有更新，错误以及不在使用的，我们也可以使用npm-check进行包的更新。
 安装npm-check：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install npm-check
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;npm-check
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;检查npm包的状态:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm-check -u
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm-check &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;那么&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;npm update&lt;/code&gt;有什么区别呢，简而言之就是除了在package.json中处理依赖关系之外，npm install的功能更多。stackoverflow上的问题&lt;a href=&quot;https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference&quot;&gt;npm install vs. update - what’s the difference?&lt;/a&gt;有详细的对比，部分原文如下：&lt;/p&gt;
@@ -68,27 +155,27 @@
 
 &lt;p&gt;npm的包安装分为本地安装（local）、全局安装（global）两种，从命令来看，差别只是有没有&lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;而已，比如之前的&lt;code class=&quot;highlighter-rouge&quot;&gt;npm-check&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install npm-check # 本地安装
-npm install -g npm-check # 全局安装
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;npm-check &lt;span class=&quot;c&quot;&gt;# 本地安装&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; npm-check &lt;span class=&quot;c&quot;&gt;# 全局安装&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;这两种安装方式有什么区别呢？从&lt;a href=&quot;https://npmjs.org/doc/files/npm-folders.html&quot;&gt;npm官方文档的说明&lt;/a&gt;来看，主要区别在于：&lt;/p&gt;
 
-&lt;h3 id=&quot;本地安装&quot;&gt;本地安装&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;本地安装&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;将安装包放在 ./node_modules 下（运行npm时所在的目录）&lt;/li&gt;
   &lt;li&gt;本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;全局安装&quot;&gt;全局安装&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;全局安装&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;将安装包放在 /usr/local 下&lt;/li&gt;
   &lt;li&gt;全局安装后可以供命令行(command line)使用，用户可以在命令行中直接运行该组件包支持的命令&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;为什么全局安装还要本地安装&quot;&gt;为什么全局安装还要本地安装？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;为什么全局安装还要本地安装？&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;每一次的更新可能带来不一样的功能，在多人合作、发布模块到npmjs社区、上传到github给其他人使用时，保留模块的版本信息可用于下载指定的版本号显得特别重要。
  本地安装可以让每个项目拥有独立的包，不受全局包的影响，方便项目的移动、复制、打包等，&lt;strong&gt;保证不同版本包之间的相互依赖&lt;/strong&gt;，这些优点是全局安装难以做到的。
@@ -96,7 +183,7 @@ npm install -g npm-check # 全局安装
 
 &lt;h2 id=&quot;相关问题&quot;&gt;相关问题&lt;/h2&gt;
 
-&lt;h3 id=&quot;npm-installno-such-file-or-directory&quot;&gt;npm install：no such file or directory&lt;/h3&gt;
+&lt;h4 id=&quot;npm-installno-such-file-or-directory&quot;&gt;npm install：no such file or directory&lt;/h4&gt;
 
 &lt;p&gt;重新安装一次node之后，执行npm install命令时，报错如下：&lt;/p&gt;
 
@@ -115,14 +202,14 @@ found 0 vulnerabilities
 
 &lt;p&gt;初始化项目：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm init -f
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm init -f
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-f&lt;/code&gt;表示force的意思，不加这个，npm会让你输入一堆信息，比如name、version之类，如果只是做做实验小demo，直接&lt;code class=&quot;highlighter-rouge&quot;&gt;-f&lt;/code&gt;，npm帮你初始化package.json，并填充各种默认值，省事。&lt;/p&gt;
 
 &lt;p&gt;安装依赖：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install formidable --save
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install formidable --save
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--save&lt;/code&gt;表示将安装的包加入依赖列表的意思，可以看下package.json 里的&lt;code class=&quot;highlighter-rouge&quot;&gt;dependencies&lt;/code&gt;字段。后面再运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;，就会把所有依赖安装下来。如果不加&lt;code class=&quot;highlighter-rouge&quot;&gt;--save&lt;/code&gt;，什么都不会安装。&lt;/p&gt;
@@ -145,131 +232,6 @@ found 0 vulnerabilities
         <category>Node.js</category>
         
         <category>npm</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Atom安装与配置</title>
-        <description>&lt;h2 id=&quot;atom介绍&quot;&gt;Atom介绍&lt;/h2&gt;
-
-&lt;p&gt;Atom 是 Github 开源的文本编辑器，这个编辑器完全是使用Web技术构建的(基于Node-Webkit)。启动速度快，提供很多常用功能的插件和主题，可以说Atom已经足以胜任“半个IDE”了。&lt;/p&gt;
-
-&lt;p&gt;优点如下：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;多平台支持（Windows、Mac、Linux）&lt;/li&gt;
-  &lt;li&gt;界面美观、现代化,使用舒适&lt;/li&gt;
-  &lt;li&gt;多文件管理（Atom提供了文件树列表的功能）&lt;/li&gt;
-  &lt;li&gt;设置管理很方便，不用像Sublime需要自己手动安装第三方管理插件&lt;/li&gt;
-  &lt;li&gt;由GitHub打造，社区活跃,免费使用&lt;/li&gt;
-  &lt;li&gt;支持各种编程语言的代码高亮和代码补全(部分需要插件支持)&lt;/li&gt;
-  &lt;li&gt;原生Git的支持&lt;/li&gt;
-  &lt;li&gt;原生Markdown支持（实时预览、代码高亮，比Mou的代码高亮效果好很多）&lt;/li&gt;
-  &lt;li&gt;主题插件越来越丰富&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;atom的安装使用&quot;&gt;Atom的安装使用&lt;/h2&gt;
-
-&lt;h3 id=&quot;安装设置&quot;&gt;安装设置&lt;/h3&gt;
-
-&lt;p&gt;直接去Atom&lt;a href=&quot;[https://atom.io](https://atom.io/)&quot;&gt;官网下载&lt;/a&gt;安装即可.&lt;/p&gt;
-
-&lt;p&gt;Atom文本编辑器支持Windows、Mac、Linux 三大桌面平台，完全免费，并且已经在 GitHub 上开放了全部的源代码。功能设置和插件安装直接在设置选项里面即可设置，默认的很多设置选项已经很不错了，也不需要太多地修改。&lt;/p&gt;
-
-&lt;p&gt;主题插件的安装也很简单。打开&lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;Settings&lt;/code&gt;。在&lt;code class=&quot;highlighter-rouge&quot;&gt;Install&lt;/code&gt;中，输入自己的需要安装的主题或者插件的部分名称即可匹配搜索，点击’INSTALL’即可安装成功使用了（主题需要切换到Themes选项卡上）&lt;/p&gt;
-
-&lt;h3 id=&quot;原生markdown书写和预览&quot;&gt;原生Markdown书写和预览&lt;/h3&gt;
-
-&lt;p&gt;Atom原生支持Markdown的书写和预览，这相较于Sublime的需要安装第三方Markdown插件使用起来还要优秀，由于时Github自家打造，Markdown语法当然也是与github语法完全同步。&lt;/p&gt;
-
-&lt;p&gt;使用快捷键 Ctrl + Shift + M 则可打开Markdown的预览界面。&lt;/p&gt;
-
-&lt;h3 id=&quot;部分常用插件&quot;&gt;部分常用插件&lt;/h3&gt;
-
-&lt;p&gt;Atom的常用插件基本上都在 Atom Packages 首页中能找到，选择热门的、下载量较多的适合自己需要的基本上都是正确的选择。&lt;/p&gt;
-
-&lt;h4 id=&quot;minimap&quot;&gt;minimap&lt;/h4&gt;
-
-&lt;p&gt;minimap是一个预览全部代码的一个插件，同时能方便的移动到指定的文件位置。&lt;/p&gt;
-
-&lt;h4 id=&quot;atom-beautify&quot;&gt;atom-beautify&lt;/h4&gt;
-
-&lt;p&gt;atom-beautify是一个格式化代码的插件，支持HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C,CoffeeScript, TypeScript, SQL等多种语言。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;安装后可以使用 Crtl + Alt + B 快捷键进行格式化。&lt;/li&gt;
-  &lt;li&gt;也可以点击菜单“Packages”-&amp;gt;“Atom Beautify”-&amp;gt;“Beautify”进行格式化。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;emmet&quot;&gt;emmet&lt;/h4&gt;
-
-&lt;p&gt;emmet是HTML,CSS快速编写的神器。前端必备，又geek又方便。但是atom的emmet占的快捷键有点多，建议手工调教改掉不常用的一部分。&lt;/p&gt;
-
-&lt;h4 id=&quot;autocomplete--系列&quot;&gt;autocomplete-* 系列&lt;/h4&gt;
-
-&lt;p&gt;autocomplete-*系列包含各个语言的代码自动补全功能，你需要什么语言的就可以下载该语言相关的插件即可。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;autocomplete-paths：填写路径的时候有Sug提示&lt;/li&gt;
-  &lt;li&gt;autocomplete-php：php代码提示补全&lt;/li&gt;
-  &lt;li&gt;autocomplete-java：java代码提示补全&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;pigments&quot;&gt;pigments&lt;/h4&gt;
-
-&lt;p&gt;pigments是项目文件中，样式显色显示的的插件。在Atom中的下载量可是相当的高。对于前端人员来讲还是很重要的一个插件。&lt;/p&gt;
-
-&lt;h4 id=&quot;terminal-panel&quot;&gt;terminal-panel&lt;/h4&gt;
-
-&lt;p&gt;用于执行命令并显示输出。打开终端面板快捷键：&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + &lt;/code&gt;（别的终端插件在win10都有蜜汁问题）&lt;/p&gt;
-
-&lt;h4 id=&quot;docblockr&quot;&gt;docblockr&lt;/h4&gt;
-
-&lt;p&gt;可以帮助我们方便快速地写注释。&lt;/p&gt;
-
-&lt;h4 id=&quot;javascript-snippets&quot;&gt;javascript-snippets&lt;/h4&gt;
-
-&lt;p&gt;让我们书写js时使用各种缩写，自动补全代码。&lt;/p&gt;
-
-&lt;h4 id=&quot;markdown-preview&quot;&gt;markdown-preview&lt;/h4&gt;
-
-&lt;p&gt;Atom 自带的 markdown 预览插件，直接&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl+shift+m&lt;/code&gt;即可左右分屏实时预览编辑&lt;/p&gt;
-
-&lt;h4 id=&quot;markdown-writer&quot;&gt;markdown-writer&lt;/h4&gt;
-
-&lt;p&gt;各种各样的优化和具体配置，专为Blog写手而生。settings 列表&lt;strong&gt;仿佛&lt;/strong&gt;可以配置图片文件夹的路径&lt;/p&gt;
-
-&lt;h4 id=&quot;markdown-scroll-sync&quot;&gt;markdown-scroll-sync&lt;/h4&gt;
-
-&lt;p&gt;自动滚动，写到哪滚到哪&lt;/p&gt;
-
-&lt;h4 id=&quot;language-markdown&quot;&gt;language-markdown&lt;/h4&gt;
-
-&lt;p&gt;Markdown 语言语法支持，进行高亮。安装后在右下角选择即可。&lt;/p&gt;
-
-&lt;p&gt;Markdown保存时会把自然段尾部的双空格换行自动去除 该功能由&lt;code class=&quot;highlighter-rouge&quot;&gt;Whitespace&lt;/code&gt;包提供，默认开启。通过设置&lt;code class=&quot;highlighter-rouge&quot;&gt;config.cson&lt;/code&gt;可以解决：&lt;/p&gt;
-
-&lt;h2 id=&quot;相关问题&quot;&gt;相关问题&lt;/h2&gt;
-
-&lt;h3 id=&quot;zh-cn&quot;&gt;zh-CN&lt;/h3&gt;
-
-&lt;p&gt;问题：Cannot load the system dictionary for &lt;code class=&quot;highlighter-rouge&quot;&gt;zh-CN&lt;/code&gt;. Checked the following paths for dictionary files.&lt;/p&gt;
-
-&lt;p&gt;解决方案：遇到这种错误，我们可以在插件中禁用 &lt;code class=&quot;highlighter-rouge&quot;&gt;spell-check&lt;/code&gt; 来解决这个问题。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;参考资料：&lt;a href=&quot;http://donggu.me/2017/04/12/Atom/#&quot;&gt;冬菇酱 Atom 安装与配置记录&lt;/a&gt;，&lt;a href=&quot;http://www.hangge.com/blog/cache/detail_1149.html&quot;&gt;航歌 Atom - 介绍和使用方法&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-</description>
-        <pubDate>Wed, 30 May 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/30/Atom%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
-        
-        <category>Atom</category>
-        
-        <category>IDE</category>
         
         
       </item>
@@ -317,7 +279,7 @@ Or, if you don't want/need a background service you can just run:
 
 &lt;p&gt;这时候就可以正常执行&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql_secure_installation&lt;/code&gt;命令了。&lt;/p&gt;
 
-&lt;h3 id=&quot;建立密码验证插件&quot;&gt;建立密码验证插件&lt;/h3&gt;
+&lt;h4 id=&quot;建立密码验证插件&quot;&gt;建立密码验证插件&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Securing the MySQL server deployment.
 
@@ -328,7 +290,7 @@ VALIDATE PASSWORD PLUGIN can be used to test passwords and improve security. It 
 Press y|Y for Yes, any other key for No: y 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;选择密码规则&quot;&gt;选择密码规则&lt;/h3&gt;
+&lt;h4 id=&quot;选择密码规则&quot;&gt;选择密码规则&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;There are three levels of password validation policy:
 
@@ -346,13 +308,13 @@ New password: （输入你的密码）
 Re-enter new password: （再次输入你的密码）
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;创建符合规则的新密码&quot;&gt;创建符合规则的新密码&lt;/h3&gt;
+&lt;h4 id=&quot;创建符合规则的新密码&quot;&gt;创建符合规则的新密码&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Estimated strength of the password: 50 		#密码强度
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;删除匿名用户&quot;&gt;删除匿名用户&lt;/h3&gt;
+&lt;h4 id=&quot;删除匿名用户&quot;&gt;删除匿名用户&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;By default, a MySQL installation has an anonymous user, allowing anyone to log into MySQL without having to have a user account created for them. This is intended only for testing, and to make the installation go a bit smoother.
 You should remove them before moving into a production environment.
@@ -361,7 +323,7 @@ Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
 Success.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;禁止远程登录&quot;&gt;禁止远程登录&lt;/h3&gt;
+&lt;h4 id=&quot;禁止远程登录&quot;&gt;禁止远程登录&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Normally, root should only be allowed to connect from 'localhost'. This ensures that someone cannot guess at the root password from the network.
 
@@ -369,7 +331,7 @@ Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
 Success.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;删除测试数据表&quot;&gt;删除测试数据表&lt;/h3&gt;
+&lt;h4 id=&quot;删除测试数据表&quot;&gt;删除测试数据表&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;By default, MySQL comes with a database named 'test' that anyone can access. This is also intended only for testing, and should be removed before moving into a production environment.
 
@@ -381,7 +343,7 @@ Success.
 Success.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;done&quot;&gt;Done&lt;/h3&gt;
+&lt;h4 id=&quot;done&quot;&gt;Done&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Reloading the privilege tables will ensure that all changes made so far will take effect immediately.
 
@@ -396,7 +358,7 @@ All done!
 
 &lt;h2 id=&quot;可能会出现的问题&quot;&gt;可能会出现的问题&lt;/h2&gt;
 
-&lt;h3 id=&quot;your-password-does-not-satisfy-the-current-policy-requirements&quot;&gt;Your password does not satisfy the current policy requirements.&lt;/h3&gt;
+&lt;h4 id=&quot;your-password-does-not-satisfy-the-current-policy-requirements&quot;&gt;Your password does not satisfy the current policy requirements.&lt;/h4&gt;
 
 &lt;p&gt;如果你在选择密码规则的时候不小心选择了2，也就是数字、大小写字母、特殊符号和字典文件的组合。这时候设置密码会出现如下提示：&lt;/p&gt;
 
@@ -421,7 +383,7 @@ All done!
 
 &lt;p&gt;这个时候重新运行&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql_secure_installation&lt;/code&gt;就可以安心设置了。&lt;/p&gt;
 
-&lt;h3 id=&quot;相关参数&quot;&gt;相关参数&lt;/h3&gt;
+&lt;h2 id=&quot;相关参数&quot;&gt;相关参数&lt;/h2&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;validate_password_dictionary_file：插件用于验证密码强度的字典文件路径。
 
@@ -706,7 +668,7 @@ INFO:lda:&amp;lt;10&amp;gt; log likelihood: -140
 
 &lt;h2 id=&quot;附录&quot;&gt;附录&lt;/h2&gt;
 
-&lt;h3 id=&quot;微博热点话题检测运行结果&quot;&gt;微博热点话题检测运行结果&lt;/h3&gt;
+&lt;h4 id=&quot;微博热点话题检测运行结果&quot;&gt;微博热点话题检测运行结果&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[[  1.02084567e-05   1.02084567e-05   1.02084567e-05]
  [  3.01539200e-03   1.50019503e-05   1.50019503e-05]
@@ -842,11 +804,11 @@ doc: 8 topic: 29
 doc: 9 topic: 24
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;文档主题分布图&quot;&gt;文档主题分布图&lt;/h3&gt;
+&lt;h4 id=&quot;文档主题分布图&quot;&gt;文档主题分布图&lt;/h4&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/006MzNVDly1frkgischgzj30m80m8t96.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;主题对应的问题词权重分布情况图&quot;&gt;主题对应的问题词权重分布情况图&lt;/h3&gt;
+&lt;h4 id=&quot;主题对应的问题词权重分布情况图&quot;&gt;主题对应的问题词权重分布情况图&lt;/h4&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/006MzNVDgy1frkg1taeagj30go0goglv.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
@@ -881,75 +843,75 @@ doc: 9 topic: 24
 
 &lt;p&gt;如果你打算学习 Ruby / Rails, RVM 是必不可少的工具之一。&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-$ curl -sSL https://get.rvm.io | bash -s stable
-# 如果上面的连接失败，可以尝试: 
-$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gpg &lt;span class=&quot;nt&quot;&gt;--keyserver&lt;/span&gt; hkp://keys.gnupg.net &lt;span class=&quot;nt&quot;&gt;--recv-keys&lt;/span&gt; 409B6B1796C275462A1703113804BB82D39DC0E3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-sSL&lt;/span&gt; https://get.rvm.io | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; stable
+&lt;span class=&quot;c&quot;&gt;# 如果上面的连接失败，可以尝试: &lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; stable
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;期间可能会问你 sudo 管理员密码，以及自动通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;Homebrew&lt;/code&gt; 安装依赖包，等待一段时间后就可以成功安装好 RVM。&lt;/p&gt;
 
 &lt;p&gt;相关的配置会写入.bashrc与.bash_profile中，也可以手动进行配置：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH=&quot;$PATH:$HOME/.rvm/bin&quot;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.rvm/bin&quot;&lt;/span&gt;
 
-[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;amp;&amp;amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM into a shell session *as a function*
+&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.rvm/scripts/rvm&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.rvm/scripts/rvm&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# Load RVM into a shell session *as a function*&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;然后，载入 RVM 环境（新开终端就不用这么做了，会自动重新载入的）&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ source ~/.rvm/scripts/rvm
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.rvm/scripts/rvm
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;如果不能科学上网的话，可以修改 RVM 下载 Ruby 的源，到 Ruby China 的镜像，不然网速会很感人:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;echo &quot;ruby_url=https://cache.ruby-china.org/pub/ruby&quot; &amp;gt; ~/.rvm/user/db
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ruby_url=https://cache.ruby-china.org/pub/ruby&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; ~/.rvm/user/db
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;检查一下是否安装正确&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rvm -v
-rvm 1.29.3 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+rvm 1.29.3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;latest&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; by Michal Papis, Piotr Kuczynski, Wayne E. Seguin &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;https://rvm.io]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;使用rvm安装ruby环境&quot;&gt;使用RVM安装Ruby环境&lt;/h2&gt;
 
 &lt;p&gt;列出已知的 Ruby 版本&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rvm list known
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm list known
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;安装一个 Ruby 版本&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rvm install 2.5.0
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.5.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;这里安装了最新的 2.5.0, &lt;code class=&quot;highlighter-rouge&quot;&gt;rvm list known&lt;/code&gt; 列表里面的都可以拿来安装。&lt;/p&gt;
 
 &lt;p&gt;切换 Ruby 版本&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rvm use 2.5.0
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 2.5.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;如果想设置为默认版本，这样一来以后新打开的控制台默认的 Ruby 就是这个版本&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rvm use 2.5.0 --default 
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 2.5.0 &lt;span class=&quot;nt&quot;&gt;--default&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;这时候使用&lt;code class=&quot;highlighter-rouge&quot;&gt;ruby -v&lt;/code&gt;查看当前的Ruby的版本&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-darwin17]
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby 2.5.0p0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2017-12-25 revision 61468&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;x86_64-darwin17]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;查询已经安装的ruby&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm list
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm list
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;卸载一个已安装版本&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm remove 2.2.0
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm remove 2.2.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;gemset的使用补充&quot;&gt;gemset的使用（补充）&lt;/h2&gt;
@@ -962,56 +924,56 @@ rvm 1.29.3 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://r
 
 &lt;p&gt;gemset 是附加在 Ruby 语言版本下面的，例如你用了 1.9.2, 建立了一个叫 rails3 的 gemset,当切换到 1.8.7 的时候，rails3 这个 gemset 并不存在。&lt;/p&gt;
 
-&lt;h3 id=&quot;建立-gemset&quot;&gt;建立 gemset&lt;/h3&gt;
+&lt;p&gt;建立 gemset&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm use 1.8.7
-rvm gemset create rails23
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.8.7
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm gemset create rails23
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;然后可以设定已建立的 gemset 做为当前环境&lt;/p&gt;
 
-&lt;h3 id=&quot;use-可以用来切换语言或者-gemset&quot;&gt;use 可以用来切换语言或者 gemset&lt;/h3&gt;
+&lt;p&gt;use 可以用来切换语言或者 gemset&lt;/p&gt;
 
 &lt;p&gt;前提是他们已经被安装(或者建立)。并可以在 &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; 命令中看到。&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm use 1.8.7
-rvm use 1.8.7@rails23
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.8.7
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.8.7@rails23
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;然后所有安装的 Gem 都是安装在这个 gemset 之下。&lt;/p&gt;
 
-&lt;h3 id=&quot;列出当前-ruby-的-gemset&quot;&gt;列出当前 Ruby 的 gemset&lt;/h3&gt;
+&lt;p&gt;列出当前 Ruby 的 gemset&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm gemset list
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm gemset list
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;清空-gemset-中的-gem&quot;&gt;清空 gemset 中的 Gem&lt;/h3&gt;
+&lt;p&gt;清空 gemset 中的 Gem&lt;/p&gt;
 
 &lt;p&gt;如果你想清空一个 gemset 的所有 Gem, 想重新安装所有 Gem，可以这样&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm gemset empty 1.8.7@rails23
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm gemset empty 1.8.7@rails23
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;删除一个-gemset&quot;&gt;删除一个 gemset&lt;/h3&gt;
+&lt;p&gt;删除一个 gemset&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm gemset delete rails2-3
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm gemset delete rails2-3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;项目自动加载-gemset&quot;&gt;项目自动加载 gemset&lt;/h3&gt;
+&lt;p&gt;项目自动加载 gemset&lt;/p&gt;
 
 &lt;p&gt;RVM 还可以自动加载 gemset。 例如我们有一个 Rails 3.1.3 项目，需要 1.9.3 版本 Ruby，整个流程可以这样。&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm install 1.9.3
-rvm use 1.9.3
-rvm gemset create rails313
-rvm use 1.9.3@rails313
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;1.9.3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.9.3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm gemset create rails313
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.9.3@rails313
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;下面进入到项目目录，建立一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;.rvmrc&lt;/code&gt; 文件。&lt;/p&gt;
 
 &lt;p&gt;在这个文件里可以很简单的加一个命令：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm use 1.9.3@rails313
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.9.3@rails313
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;然后无论你当前 Ruby 设置是什么，cd 到这个项目的时候，RVM 会帮你加载 Ruby 1.9.3 和 rails313 gemset.&lt;/p&gt;
@@ -1062,16 +1024,16 @@ rvm use 1.9.3@rails313
 
 &lt;p&gt;安装完成后配置用户名与邮箱：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;### 如果想设置为全局生效，添加 --global 参数
-$ git config --global user.name &quot;你的用户名&quot;
-$ git config --global user.email &quot;你的邮箱&quot;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;### 如果想设置为全局生效，添加 --global 参数&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;你的用户名&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;你的邮箱&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;ssh-key设置&quot;&gt;SSH Key设置&lt;/h3&gt;
 
 &lt;h4 id=&quot;检查现有的ssh-key&quot;&gt;检查现有的ssh key&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/.ssh
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/.ssh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;如果显示“No such file or directory”，说明你是第一次使用 git。&lt;/p&gt;
@@ -1080,14 +1042,14 @@ $ git config --global user.email &quot;你的邮箱&quot;
 
 &lt;p&gt;输入下面的代码，就可以生成新的key文件，我们只需要默认设置就好，所以当需要输入文件名的时候，回车就好。&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;邮件地址@youremail.com&quot;&lt;/span&gt;
 Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):#密码不会回显
+Enter file &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;which to save the key &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;/Users/your_user_directory/.ssh/id_rsa&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:#密码不会回显
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;然后系统会要你输入加密串（Passphrase）：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Enter passphrase (empty for no passphrase):&amp;lt;输入加密串&amp;gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Enter passphrase &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;empty &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;no passphrase&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:&amp;lt;输入加密串&amp;gt;
 Enter same passphrase again:&amp;lt;再次输入加密串&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1105,11 +1067,11 @@ Enter same passphrase again:&amp;lt;再次输入加密串&amp;gt;
 
 &lt;p&gt;可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ssh -T git@github.com
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@github.com
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You've successfully authenticated, but GitHub does not provide shell access.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class=&quot;s1&quot;&gt;'ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;如果显示以上内容，则说明配置成功。此时你可以成功连接GitHub了。&lt;/p&gt;
 
@@ -1133,7 +1095,7 @@ Enter same passphrase again:&amp;lt;再次输入加密串&amp;gt;
 
 &lt;p&gt;安装 Jekyll 的最好方式就是使用 &lt;a href=&quot;http://docs.rubygems.org/read/chapter/3&quot;&gt;RubyGems&lt;/a&gt;. 你只需要打开终端输入以下命令就可以安装了：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem install jekyll
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;所有的 Jekyll 的 gem 依赖包都会被自动安装，所以你完全不用去担心。&lt;/p&gt;
@@ -1160,12 +1122,12 @@ Enter same passphrase again:&amp;lt;再次输入加密串&amp;gt;
 
 &lt;h4 id=&quot;常用git命令&quot;&gt;常用Git命令&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone [url]	# 下载一个项目和它的整个代码历史
-$ git init			# 在当前目录新建一个Git代码库
-$ git add .			# 添加当前目录的所有文件到暂存区
-$ git commit -m [message]		# 提交暂存区到仓库区
-$ git remote add origin https://github.com/USER_NAME/repository_name.git
-$ git push -u origin master		# 上传本地指定分支到远程仓库
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;url]	&lt;span class=&quot;c&quot;&gt;# 下载一个项目和它的整个代码历史&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git init			&lt;span class=&quot;c&quot;&gt;# 在当前目录新建一个Git代码库&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# 添加当前目录的所有文件到暂存区&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;message]		&lt;span class=&quot;c&quot;&gt;# 提交暂存区到仓库区&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote add origin https://github.com/USER_NAME/repository_name.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin master		&lt;span class=&quot;c&quot;&gt;# 上传本地指定分支到远程仓库&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;上传成功之后就可以访问自己的博客了。除此之外你还可以根据&lt;a href=&quot;https://www.jekyll.com.cn/docs/home/&quot;&gt;Jekyll官方文档&lt;/a&gt;对博客进行个性化定制，此处不再赘述。同时很多模板都会详细的写明配置信息，只需要认真阅读模板的说明信息即可。&lt;/p&gt;
@@ -1249,14 +1211,14 @@ $ git push -u origin master		# 上传本地指定分支到远程仓库
 
 &lt;p&gt;安装时，安装程序会把bin目录加入PATH（Linux/macOS默认写入&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.bashrc&lt;/code&gt;，Windows添加到系统变量PATH），如果你安装了zsh之类的shell，需要手动配置一下PATH。举个栗子：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 将anaconda的bin目录加入PATH，根据版本不同，也可能是/anaconda2/bin
-# added by Anaconda3 5.0.1 installer
-export PATH=&quot;/anaconda3/bin:$PATH&quot;
-# added by Anaconda3 5.0.1 installer
-export PATH=&quot;/Users/Belikovvv/anaconda3/bin:$PATH&quot;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 将anaconda的bin目录加入PATH，根据版本不同，也可能是/anaconda2/bin&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# added by Anaconda3 5.0.1 installer&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/anaconda3/bin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# added by Anaconda3 5.0.1 installer&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/Users/Belikovvv/anaconda3/bin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 
-# 更新zshrc以立即生效
-source ~/.zshrc
+&lt;span class=&quot;c&quot;&gt;# 更新zshrc以立即生效&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.zshrc
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;配置好PATH后，可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;conda --version&lt;/code&gt;命令检查是否正确。&lt;/p&gt;
@@ -1265,84 +1227,81 @@ source ~/.zshrc
 
 &lt;p&gt;Conda的环境管理功能允许我们同时安装若干不同版本的Python，并能自由切换。假设我们需要安装Python 2.7，此时，我们需要做的操作如下：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 创建一个名为python2x的环境，指定Python版本是2.7
-conda create --name python2x python=2.7
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 创建一个名为python2x的环境，指定Python版本是2.7&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda create &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; python2x &lt;span class=&quot;nv&quot;&gt;python&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;2.7
 
-# 使用activate激活该环境
-activate python2x # for Windows
-source activate python2x # for Linux &amp;amp; Mac
+&lt;span class=&quot;c&quot;&gt;# 使用activate激活该环境&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;activate python2x &lt;span class=&quot;c&quot;&gt;# for Windows&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;activate python2x &lt;span class=&quot;c&quot;&gt;# for Linux &amp;amp; Mac&lt;/span&gt;
 
-# 使用deactivate退出该环境
-deactivate python2x # for Windows
-source deactivate python2x # for Linux &amp;amp; Mac
+&lt;span class=&quot;c&quot;&gt;# 使用deactivate退出该环境&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;deactivate python2x &lt;span class=&quot;c&quot;&gt;# for Windows&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;deactivate python2x &lt;span class=&quot;c&quot;&gt;# for Linux &amp;amp; Mac&lt;/span&gt;
 
-#在新环境下使用pip命令安装第三方库，如lxml
-conda install -n python2x lxml
+&lt;span class=&quot;c&quot;&gt;#在新环境下使用pip命令安装第三方库，如lxml&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; python2x lxml
 
-#查看已有的环境
-conda info -e
+&lt;span class=&quot;c&quot;&gt;#查看已有的环境&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda info &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
 
-# 删除某个已有的环境（如果不添--all参数，而是指明某个库名，则是删除该库）
-conda remove --name python2x --all
-
+&lt;span class=&quot;c&quot;&gt;# 删除某个已有的环境（如果不添--all参数，而是指明某个库名，则是删除该库）&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda remove &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; python2x &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;由于我们现在安装的是Anaconda3，之后又新添加了Python 2.7环境，但是Python 3.6环境中安装了Anaconda自带的科学计算环境，Python 2.7中却没有，那么如何为新添加的环境也装上Anaconda的科学计算包呢，没必要一个一个来，更没有必要再去安装Anaconda2了，只需：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda install -n python2x anaconda
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ conda install -n python2x anaconda
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;conda的包管理&quot;&gt;Conda的包管理&lt;/h2&gt;
 
 &lt;p&gt;Conda的包管理就比较好理解了，这部分功能与&lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt;类似。&lt;/p&gt;
 
-&lt;p&gt;例如，如果需要安装scipy：&lt;/p&gt;
+&lt;p&gt;例如，如果需要安装scipy：shell&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 安装scipy
-conda install scipy
-# conda会从从远程搜索scipy的相关信息和依赖项目，同时安装numpy和mkl（运算加速的库）
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 安装scipy&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;scipy
+&lt;span class=&quot;c&quot;&gt;# conda会从从远程搜索scipy的相关信息和依赖项目，同时安装numpy和mkl（运算加速的库）&lt;/span&gt;
 
-# 查看已经安装的packages
-conda list
-# 最新版的conda是从site-packages文件夹中搜索已经安装的包，不依赖于pip，因此可以显示出通过各种方式安装的包
-
+&lt;span class=&quot;c&quot;&gt;# 查看已经安装的packages&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda list
+&lt;span class=&quot;c&quot;&gt;# 最新版的conda是从site-packages文件夹中搜索已经安装的包，不依赖于pip，因此可以显示出通过各种方式安装的包&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;conda的一些常用操作如下：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 查看当前环境下已安装的包
-conda list
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 查看当前环境下已安装的包&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda list
 
-# 查看某个指定环境的已安装包
-conda list -n python2x
+&lt;span class=&quot;c&quot;&gt;# 查看某个指定环境的已安装包&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda list &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; python2x
 
-# 查找package信息
-conda search numpy
+&lt;span class=&quot;c&quot;&gt;# 查找package信息&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda search numpy
 
-# 安装package
-conda install -n python2x numpy
-# 如果不用-n指定环境名称，则被安装在当前活跃环境
-# 也可以通过-c指定通过某个channel安装
+&lt;span class=&quot;c&quot;&gt;# 安装package&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; python2x numpy
+&lt;span class=&quot;c&quot;&gt;# 如果不用-n指定环境名称，则被安装在当前活跃环境&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 也可以通过-c指定通过某个channel安装&lt;/span&gt;
 
-# 更新package
-conda update -n python2x numpy
+&lt;span class=&quot;c&quot;&gt;# 更新package&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda update &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; python2x numpy
 
-# 删除package
-conda remove -n python2x numpy
-
+&lt;span class=&quot;c&quot;&gt;# 删除package&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda remove &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; python2x numpy
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;前面已经提到，conda将conda、python等都视为package，因此，完全可以使用conda来管理conda和python的版本，例如&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 更新conda，保持conda最新
-conda update conda
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 更新conda，保持conda最新&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda update conda
 
-# 更新anaconda
-conda update anaconda
+&lt;span class=&quot;c&quot;&gt;# 更新anaconda&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda update anaconda
 
-# 更新python
-conda update python
-# 假设当前环境是python 2.7, conda会将python升级为2.7.x系列的当前最新版本
+&lt;span class=&quot;c&quot;&gt;# 更新python&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda update python
+&lt;span class=&quot;c&quot;&gt;# 假设当前环境是python 2.7, conda会将python升级为2.7.x系列的当前最新版本&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1350,12 +1309,12 @@ conda update python
 
 &lt;p&gt;如果需要安装很多packages，你会发现conda下载的速度经常很慢，因为Anaconda.org的服务器在国外。所幸的是，清华TUNA镜像源有Anaconda仓库的镜像，我们将其加入conda的配置即可：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 添加Anaconda的TUNA镜像
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-# TUNA的help中镜像地址加有引号，需要去掉
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 添加Anaconda的TUNA镜像&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda config &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+&lt;span class=&quot;c&quot;&gt;# TUNA的help中镜像地址加有引号，需要去掉&lt;/span&gt;
 
-# 设置搜索时显示通道地址
-conda config --set show_channel_urls yes
+&lt;span class=&quot;c&quot;&gt;# 设置搜索时显示通道地址&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;conda config &lt;span class=&quot;nt&quot;&gt;--set&lt;/span&gt; show_channel_urls &lt;span class=&quot;nb&quot;&gt;yes&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
