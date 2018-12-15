@@ -4,10 +4,36 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="">
     <meta name="keywords"  content="孙长智, 阿扎提路的贝斯手, MalcolmSuen, 孙长智的博客, Malcolm`s Blog, 博客, 个人网站, 信息安全, 网络空间安全, 互联网, Web, JavaScript, 前端, 新疆大学">
     <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="基于Python的LDA文档主题分布处理及TF-IDF计算 - Malcolm的博客 | Malcolm Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="什么是LDA？
+
+">
+    
+    <meta property="article:published_time" content="2018-05-12T00:00:00Z">
+    
+    
+    <meta property="article:author" content="Malcolm Suen">
+    
+    
+    <meta property="article:tag" content="Python">
+    
+    <meta property="article:tag" content="机器学习">
+    
+    <meta property="article:tag" content="LDA">
+    
+    
+    <meta property="og:image" content="http://localhost:4000/img/avatar.jpg">
+    <meta property="og:url" content="http://localhost:4000/2018/05/12/%E5%9F%BA%E4%BA%8EPython%E7%9A%84LDA%E6%96%87%E6%A1%A3%E4%B8%BB%E9%A2%98%E5%88%86%E5%B8%83%E5%A4%84%E7%90%86%E5%8F%8ATF-IDF%E8%AE%A1%E7%AE%97/">
+    <meta property="og:site_name" content="Malcolm的博客 | Malcolm Blog">
     
     <title>基于Python的LDA文档主题分布处理及TF-IDF计算 - Malcolm的博客 | Malcolm Blog</title>
 
@@ -20,37 +46,16 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="http://localhost:4000/2018/05/12/%E5%9F%BA%E4%BA%8EPython%E7%9A%84LDA%E6%96%87%E6%A1%A3%E4%B8%BB%E9%A2%98%E5%88%86%E5%B8%83%E5%A4%84%E7%90%86%E5%8F%8ATF-IDF%E8%AE%A1%E7%AE%97/">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        
-    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-    <!--[if lt IE 9]>
-     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-     <![endif]-->
-    
     <!-- Bootstrap Core CSS -->
-<!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/custom.min.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Custom Fonts -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
-    <!--    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
-
-
-    <!-- Delete, sad but pending in China
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -69,7 +74,9 @@
 <body ontouchstart="">
 
     <!-- Navigation -->
+
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -90,16 +97,33 @@
                         <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="/tags">Tags</a>
+                        <a href="/archive">archive</a>
                     </li>
                     <li>
                         <a href="/about">About</a>
                     </li>
                     
-        <!--    彩蛋    -->
+<!--                    -->
+<!--                    -->
+<!--                    -->
+<!--                    -->
 <!--                    <li>-->
-<!--                        <a href="/easter eggs">Easter Eggs</a>-->
+<!--                        <a href="/about/">About</a>-->
 <!--                    </li>-->
+<!--                    -->
+<!--                    -->
+<!--                    -->
+<!--                    <li>-->
+<!--                        <a href="/archive/">Archive</a>-->
+<!--                    </li>-->
+<!--                    -->
+<!--                    -->
+<!--                    -->
+<!--                    -->
+<!--                    -->
+<!--                    -->
+<!--                    -->
+<!--                    -->
                 </ul>
             </div>
         </div>
@@ -161,11 +185,19 @@
 </script>
 
 
-    <!-- Post Header -->
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-2015.jpg')
+        background-image: url('/img/post-bg-2015.jpg');
+        background: ;
     }
 
     
@@ -179,31 +211,36 @@
 </style>
 
 <header class="intro-header" >
+
     <div class="header-mask"></div>
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        <a class="tag" href="/archive/?tag=Python" title="Python">Python</a>
                         
-                        <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                        <a class="tag" href="/archive/?tag=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" title="机器学习">机器学习</a>
                         
-                        <a class="tag" href="/tags/#LDA" title="LDA">LDA</a>
+                        <a class="tag" href="/archive/?tag=LDA" title="LDA">LDA</a>
                         
                     </div>
                     <h1>基于Python的LDA文档主题分布处理及TF-IDF计算</h1>
                     
-                    
                     <h2 class="subheading">这篇文章主要是讲述如何通过LDA处理文本内容TXT，并计算其文档主题分布及TF-IDF。</h2>
-                    
                     <span class="meta">Posted by Malcolm Suen on May 12, 2018</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
+
+
+
+
+
 
 <!-- Post Content -->
 <article>
@@ -237,7 +274,66 @@
 
 <h2 id="核心代码">核心代码</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># coding=utf-8</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+</pre></td><td class="rouge-code"><pre><span class="c"># coding=utf-8</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
@@ -296,7 +392,7 @@
         <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topic_most_pr</span><span class="p">)</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"doc: {} topic: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">topic_most_pr</span><span class="p">))</span>
 
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="代码分析">代码分析</h2>
 
@@ -304,7 +400,17 @@
 
 <p>输入是test.txt文件，它是使用<a href="http://blog.csdn.net/eastmount/article/details/50256163">Jieba分词</a>之后的文本内容，通常每行代表一篇文档。该文本内容原自博客：<a href="http://blog.csdn.net/vs412237401/article/details/50628239">文本分析之TFIDF/LDA/Word2vec实践</a></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>新春 备 年货 ， 新年 联欢晚会  
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>新春 备 年货 ， 新年 联欢晚会  
 新春 节目单 ， 春节 联欢晚会 红火  
 大盘 下跌 股市 散户  
 下跌 股市 赚钱  
@@ -314,12 +420,24 @@
 股市 散户 赚钱  
 新年 , 看 春节 联欢晚会  
 大盘 下跌 散户
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>输出则是这十篇文档的主题分布，shape: (10, 2)表示10篇文档，2个主题。
 具体结果如下所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>type(doc_topic): &lt;type 'numpy.ndarray'&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>type(doc_topic): &lt;type 'numpy.ndarray'&gt;
 shape: (10, 2)
 doc: 0 topic: 0
 doc: 1 topic: 0
@@ -331,11 +449,24 @@ doc: 6 topic: 1
 doc: 7 topic: 1
 doc: 8 topic: 0
 doc: 9 topic: 1
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>同时可以调用<code class="highlighter-rouge">matplotlib.pyplot</code>输出了对应的文档主题分布图，实现代码如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c">#计算文档主题分布图  </span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>    <span class="c">#计算文档主题分布图  </span>
     <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>    
     <span class="n">f</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>    
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]):</span>    
@@ -348,13 +479,21 @@ doc: 9 topic: 1
     <span class="n">ax</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Topic"</span><span class="p">)</span>  
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>    
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>可以看到主题Doc0、Doc1、Doc8分布于Topic0，它们主要描述主题新春；而Doc2、Doc3、Doc9分布于Topic1，主要描述股市。</p>
 
 <p><img src="https://ws1.sinaimg.cn/large/006MzNVDgy1fr8f62cg7nj318g18g405.jpg" alt="" />LDA运行结果如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INFO:lda:n_documents: 10	#文档数
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>INFO:lda:n_documents: 10	#文档数
 INFO:lda:vocab_size: 15		
 INFO:lda:n_words: 36		#总词数
 INFO:lda:n_topics: 2		#话题数
@@ -362,11 +501,25 @@ INFO:lda:n_iter: 500		#迭代次数
 INFO:lda:&lt;0&gt; log likelihood: -192
 INFO:lda:&lt;10&gt; log likelihood: -140
 ……
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>如果希望查询每个主题对应的问题词权重分布情况，代码实现如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>    
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>    
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>    
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]):</span>         <span class="c">#两个主题  </span>
     <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">topic_word</span><span class="p">[</span><span class="n">k</span><span class="p">,:],</span> <span class="n">linefmt</span><span class="o">=</span><span class="s">'b-'</span><span class="p">,</span>    
@@ -380,7 +533,7 @@ INFO:lda:&lt;10&gt; log likelihood: -140
     
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>    
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>运行结果如下图所示，共2个主题Topics，15个核心词汇。</p>
 
@@ -390,7 +543,17 @@ INFO:lda:&lt;10&gt; log likelihood: -140
 
 <p>通过word = vectorizer.get_feature_names()获取整个预料的词向量，其中TF-IDF对应的就是它的值。然后再获取其位置对应的关键词即可，代码中输出5个关键词，代码实现如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c"># 输出主题中的TopN关键词</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>    <span class="c"># 输出主题中的TopN关键词</span>
     <span class="n">word</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
         <span class="k">print</span> <span class="n">w</span>
@@ -400,18 +563,25 @@ INFO:lda:&lt;10&gt; log likelihood: -140
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">topic_dist</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">topic_word</span><span class="p">):</span>
         <span class="n">topic_words</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">topic_dist</span><span class="p">)][:</span><span class="o">-</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">print</span><span class="p">(</span><span class="s">u'*Topic {}</span><span class="se">\n</span><span class="s">- {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">topic_words</span><span class="p">)))</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>运行结果如下所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>下跌 反弹 大盘 年货 散户 新年 新春 新车 春节 红火 联欢晚会 股市 节目单 赚钱 金猴
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>下跌 反弹 大盘 年货 散户 新年 新春 新车 春节 红火 联欢晚会 股市 节目单 赚钱 金猴
 [[ 0.00049628  0.00049628  0.00049628]
  [ 0.24829721  0.0625387   0.1244582 ]]
 *Topic 0
 - 新春 新年 联欢晚会 红火 春节
 *Topic 1
 - 股市 下跌 散户 赚钱 大盘
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="tf-idf计算及词频tf计算">TF-IDF计算及词频TF计算</h3>
 
@@ -457,7 +627,20 @@ INFO:lda:&lt;10&gt; log likelihood: -140
 
 <p>输出如下图所示，共统计处特征词15个，对应TF-IDF矩阵，共10行数据对应txt文件中的10个文档，每个文档15维数据，存储TF-IDF权重，这就可以通过10*15的矩阵表示整个文档权重信息。运行结果如下所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Features length: 15  
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>Features length: 15  
 下跌 反弹 大盘 年货 散户 新年 新春 新车 春节 红火 联欢晚会 股市 节目单 赚钱 金猴  
   
 0.0 0.0 0.0 0.579725686076 0.0 0.450929562568 0.450929562568 0.0 0.0 0.0 0.507191470855 0.0 0.0 0.0 0.0   
@@ -470,7 +653,7 @@ INFO:lda:&lt;10&gt; log likelihood: -140
 0.0 0.0 0.0 0.0 0.568243852685 0.0 0.0 0.0 0.0 0.0 0.0 0.505209504985 0.0 0.649509260872 0.0   
 0.0 0.0 0.0 0.0 0.0 0.505209504985 0.0 0.0 0.649509260872 0.0 0.568243852685 0.0 0.0 0.0 0.0   
 0.505209504985 0.0 0.649509260872 0.0 0.568243852685 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0   
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p><strong>感谢来自北京理工大学的杨秀璋同学，现任教于贵州财经大学信息学院；感谢陈炳宏同学的数据</strong>。</p>
 
@@ -478,7 +661,139 @@ INFO:lda:&lt;10&gt; log likelihood: -140
 
 <h4 id="微博热点话题检测运行结果">微博热点话题检测运行结果</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[  1.02084567e-05   1.02084567e-05   1.02084567e-05]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+</pre></td><td class="rouge-code"><pre>[[  1.02084567e-05   1.02084567e-05   1.02084567e-05]
  [  3.01539200e-03   1.50019503e-05   1.50019503e-05]
  [  1.52304365e-05   1.52304365e-05   1.52304365e-05]
  [  1.22013714e-05   1.22013714e-05   1.22013714e-05]
@@ -610,7 +925,7 @@ doc: 6 topic: 18
 doc: 7 topic: 6
 doc: 8 topic: 29
 doc: 9 topic: 24
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h4 id="文档主题分布图">文档主题分布图</h4>
 
@@ -622,7 +937,6 @@ doc: 9 topic: 24
 
 
                 <hr style="visibility: hidden;">
-
                 <ul class="pager">
                     
                     <li class="previous">
@@ -641,49 +955,84 @@ doc: 9 topic: 24
                     </li>
                     
                 </ul>
+                <hr style="visibility: hidden;">
+
                 
-                
+
             </div>  
 
-        <!-- Side Catalog Container -->
+    <!-- Side Catalog Container -->
         
-        <div class="
-            col-lg-2 col-lg-offset-0
-            visible-lg-block
-            sidebar-container
-            catalog-container">
-            <div class="side-catalog">
-                <hr class="hidden-sm hidden-xs">
-                <h5>
-                    <a class="catalog-toggle" href="#">CATALOG</a>
-                </h5>
-                <ul class="catalog-body"></ul>
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
             </div>
-        </div>
         
-    
+
     <!-- Sidebar Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 sidebar-container">
 
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        </a>
+        
+        
+                <a data-sort="0005" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="2">Python</a>
+        
+                <a data-sort="0005" 
+                    href="/archive/?tag=Ruby"
+                    title="Ruby"
+                    rel="2">Ruby
+    </div>
+</section>
+
+
                 <!-- Friends Blog -->
                 
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="https://blog.csdn.net/BYS_PrintF_/">一只朴素的贝叶斯</a></li>
-                    
-                        <li><a href=""></a></li>
-                    
-                </ul>
-                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://blog.csdn.net/BYS_PrintF_/">一只朴素的贝叶斯</a></li>
+  
+  <li><a href=""></a></li>
+  
+</ul>
+
             </div>
         </div>
     </div>
 </article>
+
+<!-- add support for mathjax by voleking-->
+
+
 
 
 
@@ -730,76 +1079,75 @@ doc: 9 topic: 24
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    
-                    
-                    
-                    <li>
-                        <a target="_blank" href="http://music.163.com/user/home?id=287462241">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-music fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
-                    
-                    
-                    <li>
-                        <a target="_blank" href="http://weibo.com/u/6214594529">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    
-                    
-                    <li>
-                        <a target="_blank" href="https://github.com/mal-suen">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li>
-                        <a target="_blank" href="mailto:malcolmsuen@gmail.com">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
+                <!-- SNS Link -->
+                
 
-                </ul>
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  <li>
+      <a target="_blank" href="http://music.163.com/user/home?id=287462241">
+          <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-music fa-stack-1x fa-inverse"></i>
+          </span>
+      </a>
+  </li>
+  
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/u/6214594529">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/mal-suen">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+      <a target="_blank" href="mailto:malcolmsuen@gmail.com">
+          <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+          </span>
+      </a>
+  </li>
+  
+  
+</ul>
+
+
                 <p class="copyright text-muted">
                     Copyright &copy; Malcolm`s Blog 2018
-                    <br>
                 </p>
             </div>
         </div>
     </div>
 </footer>
 
-
-<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <!-- jQuery -->
-<!--<script src="/js/jquery.min.js "></script>-->
+<script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<!--<script src="/js/bootstrap.min.js "></script>-->
+<script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="/js/hux-blog.min.js "></script>
@@ -842,19 +1190,8 @@ doc: 9 topic: 24
 -->
 
 
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async('/js/jquery.tagcloud.js',function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
+
+
 
 <!--fastClick.js -->
 <script>
@@ -878,8 +1215,15 @@ doc: 9 topic: 24
 <script type="text/javascript">
     function generateCatalog (selector) {
 
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
         // init
-        var P = $('div.post-container'),a,n,t,l,i,c;
+        var P = $(_containerSelector),a,n,t,l,i,c;
         a = P.find('h1,h2,h3,h4,h5,h6');
 
         // clean
@@ -907,6 +1251,7 @@ doc: 9 topic: 24
 
     /*
      * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
      */
     async("/js/jquery.nav.js", function () {
         $('.catalog-body').onePageNav({
