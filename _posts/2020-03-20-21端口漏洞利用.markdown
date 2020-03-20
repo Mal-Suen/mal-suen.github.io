@@ -33,7 +33,7 @@ Using binary mode to transfer files.
 
 当进行FTP认证时，如果用户名USER中包含:)，那么直接就触发监听6200端口的连接的shell。此漏洞只存在于2.3.4版本的vsftpd中，尝试过几个其他的版本，并没有成功。
 
-### 手动触发漏洞
+#### 手动触发漏洞
 
 首先使用nc触发vsftpd-2.3.4后门漏洞
 
@@ -58,7 +58,7 @@ id
 uid=0(root) gid=0(root)
 ```
 
-### 使用metasploit触发漏洞
+#### 使用metasploit触发漏洞
 
 ```shell
 msfconsole
