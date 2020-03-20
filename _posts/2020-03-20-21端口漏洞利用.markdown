@@ -141,7 +141,7 @@ ACCOUNT CHECK: [ftp] Host: 10.x.x.x (1 of 1, 0 complete) User: msfadmin (2 of 4,
 ACCOUNT FOUND: [ftp] Host: 10.0.2.5 User: msfadmin Password: msfadmin [SUCCESS]
 ```
 
-### Kali Linux中的默认字典
+#### Kali Linux中的默认字典
 
 kali默认字典目录： /usr/share/wordlists/
 可以用crunch自己选择生成适合自己的密码字典
