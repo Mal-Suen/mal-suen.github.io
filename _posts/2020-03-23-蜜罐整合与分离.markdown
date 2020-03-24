@@ -42,13 +42,13 @@ tags:
 
 1. 使用find / -name logstash.conf查找logstash.conf文件。
 
-   根据目录创建日期判断diff/etc/logstash/conf.d/logstash.conf为镜像的配置文件，merged/etc/logstash/conf.d/logstash.conf为当前容器的配置文件。
+根据目录创建日期判断diff/etc/logstash/conf.d/logstash.conf为镜像的配置文件，merged/etc/logstash/conf.d/logstash.conf为当前容器的配置文件。
 
 ![](/img/in-post/2020-03-23/03.png)
 
 2. 修改logstash.conf的output插件
 
-   在logstash.conf中添加一个output到elasticsearch（独立的es平台端口一般为9200，其他tpot蜜罐的es端口为64298只对内部开放，需先修改tpot.yml使其对外开放）。
+在logstash.conf中添加一个output到elasticsearch（独立的es平台端口一般为9200，其他tpot蜜罐的es端口为64298只对内部开放，需先修改tpot.yml使其对外开放）。
 
 ```shell
 # Output section
