@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "21端口漏洞利用"
-subtitle:   "21端口FTP（文件传输协议）常见漏洞利用方式"
+title:      "21端口常见漏洞利用"
+subtitle:   "此外还介绍了medusa和Kali Linux默认字典"
 date:       2020-03-20
 author:     "Malcolm Suen"
 header-img: "img/post-bg-2015.jpg"
@@ -11,6 +11,7 @@ tags:
     - 高危端口
     - FTP
     - 漏洞利用
+    - Inspur
 ---
 
 ## 匿名登录漏洞
@@ -188,6 +189,4 @@ common.txt	#公共wifi账户密码
 
 > 参考资料：
 >
-> [RubyGems - Ruby China](https://gems.ruby-china.com/)
->
-> [修改Ruby的Gem镜像](https://blog.csdn.net/hsl0530hsl/article/details/80056289)
+> [FTP漏洞原理及利用 - 系统安全漏洞](https://www.jianshu.com/p/9498ccf62348)

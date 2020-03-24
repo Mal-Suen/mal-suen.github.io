@@ -1,0 +1,87 @@
+---
+layout:     post
+title:      "蜜罐整合与分离"
+subtitle:   ""
+date:       2020-03-23
+author:     "Malcolm Suen"
+header-img: "img/post-bg-2015.jpg"
+header-mask:  0.3
+catalog: true
+tags:
+    - 蜜罐
+    - Inspur
+---
+
+## TPot蜜罐架构
+
+![](/img/in-post/2020-03-23/01.png)
+
+单个tpot蜜罐大致由4部分组成：
+
+* Honeytrap、Dionaea等蜜罐与Suricata入侵检测，负载监测攻击行为并以日志的形式进行记录。
+
++ Logstash通过input插件读取日志文件，再通过filter插件对日志进行分字段处理、最后通过output插件发送到elasticsearch。
+
+- Elasticsearch数据的存储及搜索。
+
+- Kibana读取elasticsearch数据并在前台展示。Nginx整合kibana、es-head等多个插件并设置身份验证。
+
+## 需求分析
+
+- 多个tpot蜜罐的数据集中收集展示。（收集到新搭建的ES中或收集到某个蜜罐的ES中）。
+
+- 删除蜜罐64297端口的前台，使单个蜜罐只具备监测功能，不具备展示功能，所有数据只能在规定平台进行展示。
+
+## 设计思路
+
+![](/img/in-post/2020-03-23/02.png)
+
+修改logstash的output配置，使其输出到其他ES并删除原蜜罐系统中的Elasticsearch、kibana、nginx等组件。由于Tpot蜜罐是通过docker部署各个组件，要完成上述操作需先删除镜像，再修改dockerfile文件。
+
+## 操作步骤
+
+1. 使用find / -name logstash.conf查找logstash.conf文件。
+
+   根据目录创建日期判断diff/etc/logstash/conf.d/logstash.conf为镜像的配置文件，merged/etc/logstash/conf.d/logstash.conf为当前容器的配置文件。
+
+![](/img/in-post/2020-03-23/03.png)
+
+2. 修改logstash.conf的output插件
+
+   在logstash.conf中添加一个output到elasticsearch（独立的es平台端口一般为9200，其他tpot蜜罐的es端口为64298只对内部开放，需先修改tpot.yml使其对外开放）。
+
+```shell
+# Output section
+output {            
+  elasticsearch {
+	hosts => ["http://10.10.4.123:64298"]  
+	index => "logstash-10.110.6.174-%{+YYYY.MM.dd}" 
+    document_type => "doc"
+  }
+```
+
+​		文件修改之后应重启组件（容器）logstash，确保配置文件生效。
+
+3. 查看es中是否接受数据。登录https://[IP]:9200，(或https://[IP]:64297/myhead/)查看索引，有新索引生成。
+
+4. 比较一段时间内原蜜罐与输出蜜罐的日志数量是否有出入，判断日志是否全部传输到新系统中。
+
+5. 删除Elasticsearch、kibana、nginx等多余组件（容器）。通过64294端口的控制端删除多余容器对应的镜像。
+
+```shell
+docker ps #查看运行容器
+
+docker ps –a #查看所有容器
+
+docker stop [容器名] #停用容器
+
+docker rm [容器名]  #删除容器
+```
+
+![](/img/in-post/2020-03-23/04.png)
+
+6. 修改/opt/tpot/etc/tpot.yml文件，删除Elasticsearch、kibana、nginx等部分的内容。
+
+![](/img/in-post/2020-03-23/05.png)
+
+7. 重启系统，查看蜜罐是否能够正常运行。
