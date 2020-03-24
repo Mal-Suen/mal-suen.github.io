@@ -40,13 +40,13 @@ tags:
 
 ## 操作步骤
 
-1. 使用find / -name logstash.conf查找logstash.conf文件。
+​	1.使用find / -name logstash.conf查找logstash.conf文件。
 
 根据目录创建日期判断diff/etc/logstash/conf.d/logstash.conf为镜像的配置文件，merged/etc/logstash/conf.d/logstash.conf为当前容器的配置文件。
 
 ![](/img/in-post/2020-03-23/03.png)
 
-2. 修改logstash.conf的output插件
+​	2.修改logstash.conf的output插件
 
 在logstash.conf中添加一个output到elasticsearch（独立的es平台端口一般为9200，其他tpot蜜罐的es端口为64298只对内部开放，需先修改tpot.yml使其对外开放）。
 
@@ -62,11 +62,11 @@ output {
 
 ​		文件修改之后应重启组件（容器）logstash，确保配置文件生效。
 
-3. 查看es中是否接受数据。登录https://[IP]:9200，(或https://[IP]:64297/myhead/)查看索引，有新索引生成。
+​	3.查看es中是否接受数据。登录https://[IP]:9200，(或https://[IP]:64297/myhead/)查看索引，有新索引生成 
 
-4. 比较一段时间内原蜜罐与输出蜜罐的日志数量是否有出入，判断日志是否全部传输到新系统中。
+​	4.比较一段时间内原蜜罐与输出蜜罐的日志数量是否有出入，判断日志是否全部传输到新系统中。
 
-5. 删除Elasticsearch、kibana、nginx等多余组件（容器）。通过64294端口的控制端删除多余容器对应的镜像。
+​	5.删除Elasticsearch、kibana、nginx等多余组件（容器）。通过64294端口的控制端删除多余容器对应的镜像。
 
 ```shell
 docker ps #查看运行容器
@@ -80,8 +80,8 @@ docker rm [容器名]  #删除容器
 
 ![](/img/in-post/2020-03-23/04.png)
 
-6. 修改/opt/tpot/etc/tpot.yml文件，删除Elasticsearch、kibana、nginx等部分的内容。
+​	6.修改/opt/tpot/etc/tpot.yml文件，删除Elasticsearch、kibana、nginx等部分的内容。
 
 ![](/img/in-post/2020-03-23/05.png)
 
-7. 重启系统，查看蜜罐是否能够正常运行。
+​	7.重启系统，查看蜜罐是否能够正常运行。
