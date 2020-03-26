@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "蜜罐整合与分离"
-subtitle:   ""
+title:      "蜜罐的整合与分离"
+subtitle:   "将多个蜜罐的数据集中展示"
 date:       2020-03-23
 author:     "Malcolm Suen"
 header-img: "img/post-bg-2015.jpg"
