@@ -15,7 +15,6 @@
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="安装MySQL
-
 ">
     
     <meta property="article:published_time" content="2018-05-27T00:00:00Z">
@@ -254,11 +253,11 @@
 
 				<h2 id="安装mysql">安装MySQL</h2>
 
-<p>通过<code class="highlighter-rouge">Homebrew</code>安装，执行<code class="highlighter-rouge">brew install mysql</code>即可。</p>
+<p>通过<code class="language-plaintext highlighter-rouge">Homebrew</code>安装，执行<code class="language-plaintext highlighter-rouge">brew install mysql</code>即可。</p>
 
-<p>安装完成后会显示<code class="highlighter-rouge">Caveats </code>警告，如下所示：</p>
+<p>安装完成后会显示<code class="language-plaintext highlighter-rouge">Caveats </code>警告，如下所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -288,29 +287,29 @@ Or, if you don't want/need a background service you can just run:
 
 <h2 id="安全设置向导mysql_secure_installation">安全设置向导mysql_secure_installation</h2>
 
-<p>使用brew命令安装完mysql后，根据提示我们可以知道当前root是没有密码的，我们可以通过执行<code class="highlighter-rouge">mysql_secure_installation</code>命令来进行安全设置。</p>
+<p>使用brew命令安装完mysql后，根据提示我们可以知道当前root是没有密码的，我们可以通过执行<code class="language-plaintext highlighter-rouge">mysql_secure_installation</code>命令来进行安全设置。</p>
 
-<p>同时这种方法也同样可以用来解决使用<code class="highlighter-rouge">mysql -u root -p</code>登录时的<code class="highlighter-rouge">Access denied </code>问题。</p>
+<p>同时这种方法也同样可以用来解决使用<code class="language-plaintext highlighter-rouge">mysql -u root -p</code>登录时的<code class="language-plaintext highlighter-rouge">Access denied </code>问题。</p>
 
-<p>首先执行命令<code class="highlighter-rouge">mysql_secure_installation</code>，会出现如下的错误：</p>
+<p>首先执行命令<code class="language-plaintext highlighter-rouge">mysql_secure_installation</code>，会出现如下的错误：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>Error: Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>当前<code class="highlighter-rouge">/tmp/</code> 目录下并没有<code class="highlighter-rouge">mysql.sock</code>这个文件，它在mysql服务启动时才会创建，所以需要提前执行<code class="highlighter-rouge">mysql.server start </code>命令。提示如下：</p>
+<p>当前<code class="language-plaintext highlighter-rouge">/tmp/</code> 目录下并没有<code class="language-plaintext highlighter-rouge">mysql.sock</code>这个文件，它在mysql服务启动时才会创建，所以需要提前执行<code class="language-plaintext highlighter-rouge">mysql.server start </code>命令。提示如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre>Starting MySQL
 . SUCCESS! 
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>这时候就可以正常执行<code class="highlighter-rouge">mysql_secure_installation</code>命令了。</p>
+<p>这时候就可以正常执行<code class="language-plaintext highlighter-rouge">mysql_secure_installation</code>命令了。</p>
 
 <h4 id="建立密码验证插件">建立密码验证插件</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -328,7 +327,7 @@ Press y|Y for Yes, any other key for No: y
 
 <h4 id="选择密码规则">选择密码规则</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -360,7 +359,7 @@ Re-enter new password: （再次输入你的密码）
 
 <h4 id="创建符合规则的新密码">创建符合规则的新密码</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre>Estimated strength of the password: 50 		#密码强度
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
@@ -368,7 +367,7 @@ Do you wish to continue with the password provided?(Press y|Y for Yes, any other
 
 <h4 id="删除匿名用户">删除匿名用户</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -382,7 +381,7 @@ Success.
 
 <h4 id="禁止远程登录">禁止远程登录</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -394,7 +393,7 @@ Success.
 
 <h4 id="删除测试数据表">删除测试数据表</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -414,7 +413,7 @@ Success.
 
 <h4 id="done">Done</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -430,7 +429,7 @@ Success.
 All done! 
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>现在可以使用<code class="highlighter-rouge">mysql -u root -p</code>进行密码链接了。</p>
+<p>现在可以使用<code class="language-plaintext highlighter-rouge">mysql -u root -p</code>进行密码链接了。</p>
 
 <h2 id="可能会出现的问题">可能会出现的问题</h2>
 
@@ -438,17 +437,17 @@ All done!
 
 <p>如果你在选择密码规则的时候不小心选择了2，也就是数字、大小写字母、特殊符号和字典文件的组合。这时候设置密码会出现如下提示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>Your password does not satisfy the current policy requirements.
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>这时候重新运行<code class="highlighter-rouge">mysql_secure_installation</code>也不会再给你机会重新设置了。手动微笑，mmp。</p>
+<p>这时候重新运行<code class="language-plaintext highlighter-rouge">mysql_secure_installation</code>也不会再给你机会重新设置了。手动微笑，mmp。</p>
 
 <p>解决方案如下：</p>
 
-<p>使用命令<code class="highlighter-rouge">mysql -uroot</code>登陆，执行：</p>
+<p>使用命令<code class="language-plaintext highlighter-rouge">mysql -uroot</code>登陆，执行：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre>set global validate_password_policy=0;  
 #将密码规则设置为LOW，就可以使用纯数字纯字母密码
@@ -456,17 +455,17 @@ All done!
 
 <p>LOW强度下密码位数的最低要求为8位，如果你想用诸如123456这类的密码，执行：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre>set global validate_password_length=4;  
 #最低位数为4位
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>这个时候重新运行<code class="highlighter-rouge">mysql_secure_installation</code>就可以安心设置了。</p>
+<p>这个时候重新运行<code class="language-plaintext highlighter-rouge">mysql_secure_installation</code>就可以安心设置了。</p>
 
 <h2 id="相关参数">相关参数</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -690,7 +689,7 @@ validate_password_special_char_count：密码至少要包含的特殊字符数�
 
 
                 <p class="copyright text-muted">
-                    Copyright &copy; Malcolm`s Blog 2018
+                    Copyright &copy; Malcolm`s Blog 2020
                 </p>
             </div>
         </div>

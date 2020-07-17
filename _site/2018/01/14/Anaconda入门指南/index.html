@@ -15,7 +15,6 @@
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="前言
-
 ">
     
     <meta property="article:published_time" content="2018-01-14T00:00:00Z">
@@ -281,7 +280,7 @@
 
 <p>安装时，会发现有两个不同版本的Anaconda，分别对应Python 2.x和Python 3.x，两个版本其实除了这点区别外其他都一样。通过环境管理，我们可以很方便地切换运行时的Python版本。</p>
 
-<p>安装时，安装程序会把bin目录加入PATH（Linux/macOS默认写入<code class="highlighter-rouge">~/.bashrc</code>，Windows添加到系统变量PATH），如果你安装了zsh之类的shell，需要手动配置一下PATH。举个栗子：</p>
+<p>安装时，安装程序会把bin目录加入PATH（Linux/macOS默认写入<code class="language-plaintext highlighter-rouge">~/.bashrc</code>，Windows添加到系统变量PATH），如果你安装了zsh之类的shell，需要手动配置一下PATH。举个栗子：</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -301,7 +300,7 @@
 <span class="nv">$ </span><span class="nb">source</span> ~/.zshrc
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>配置好PATH后，可以通过<code class="highlighter-rouge">conda --version</code>命令检查是否正确。</p>
+<p>配置好PATH后，可以通过<code class="language-plaintext highlighter-rouge">conda --version</code>命令检查是否正确。</p>
 
 <h2 id="conda的环境管理">Conda的环境管理</h2>
 
@@ -349,13 +348,13 @@
 
 <p>由于我们现在安装的是Anaconda3，之后又新添加了Python 2.7环境，但是Python 3.6环境中安装了Anaconda自带的科学计算环境，Python 2.7中却没有，那么如何为新添加的环境也装上Anaconda的科学计算包呢，没必要一个一个来，更没有必要再去安装Anaconda2了，只需：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>$ conda install -n python2x anaconda
 </pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="conda的包管理">Conda的包管理</h2>
 
-<p>Conda的包管理就比较好理解了，这部分功能与<code class="highlighter-rouge">pip</code>类似。</p>
+<p>Conda的包管理就比较好理解了，这部分功能与<code class="language-plaintext highlighter-rouge">pip</code>类似。</p>
 
 <p>例如，如果需要安装scipy：shell</p>
 
@@ -461,7 +460,7 @@
 
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>执行完上述命令后，会生成<code class="highlighter-rouge">~/.condarc</code>(Linux/Mac)或<code class="highlighter-rouge">C:\Users\USER_NAME\.condarc</code>文件，记录着我们对conda的配置，直接手动创建、编辑该文件是相同的效果。</p>
+<p>执行完上述命令后，会生成<code class="language-plaintext highlighter-rouge">~/.condarc</code>(Linux/Mac)或<code class="language-plaintext highlighter-rouge">C:\Users\USER_NAME\.condarc</code>文件，记录着我们对conda的配置，直接手动创建、编辑该文件是相同的效果。</p>
 
 <p>P.S：翻墙也是一个好的选择……</p>
 
@@ -660,7 +659,7 @@
 
 
                 <p class="copyright text-muted">
-                    Copyright &copy; Malcolm`s Blog 2018
+                    Copyright &copy; Malcolm`s Blog 2020
                 </p>
             </div>
         </div>
