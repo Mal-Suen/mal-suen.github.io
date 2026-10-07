@@ -9,11 +9,12 @@
 :root{
   --blue:#0066cc;--blue-focus:#0071e3;--blue-on-dark:#2997ff;
   --ink:#1d1d1f;--ink-80:#333333;--ink-48:#7a7a7a;
-  --canvas:#ffffff;--parchment:#f5f5f7;
+  --canvas:#ffffff;--parchment:#f5f5f7;--pearl:#fafafc;
   --tile1:#272729;--tile2:#2a2a2c;--black:#000000;
   --hairline:#e0e0e0;--muted-on-dark:#cccccc;
   --font:"SF Pro Display","SF Pro Text",system-ui,-apple-system,
     "PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,"SF Mono",Consolas,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -39,7 +40,7 @@ a{text-decoration:none}
 .tile-parchment{background:var(--parchment)}
 h1{font-size:56px;font-weight:600;line-height:1.07;letter-spacing:-0.28px}
 h2{font-size:40px;font-weight:600;line-height:1.1}
-.lead{font-size:28px;font-weight:400;line-height:1.14;margin-top:16px}
+.lead{font-size:28px;font-weight:400;line-height:1.14;margin-top:16px;color:var(--ink)}
 .sub{font-size:17px;line-height:1.47;color:var(--ink-80);margin-top:22px;max-width:680px}
 .center{text-align:center}
 .center .sub{margin-left:auto;margin-right:auto}
@@ -56,46 +57,101 @@ h2{font-size:40px;font-weight:600;line-height:1.1}
   transition:transform .12s;display:inline-block}
 .btn-secondary:active{transform:scale(.95)}
 
-/* 精选瓦片（Apple 首页网格风格：无圆角、留白大、明暗交替） */
+/* 首屏数据条 */
+.hero-stats{display:flex;gap:72px;margin-top:56px;flex-wrap:wrap;justify-content:center}
+.hero-stats b{font-size:44px;font-weight:600;letter-spacing:-0.28px;display:block}
+.hero-stats span{font-size:14px;color:var(--ink-80);display:block;margin-top:6px}
+
+/* 精选瓦片：棋盘式明暗交替，各配产品视觉 */
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:56px}
-.ftile{padding:56px 48px;border-radius:0;min-height:360px;
-  display:flex;flex-direction:column}
+.ftile{padding:48px 44px;display:flex;flex-direction:column}
 .ftile-parchment{background:var(--parchment)}
-.ftile-white{background:var(--canvas);border:1px solid var(--hairline)}
 .ftile-dark{background:var(--tile1);color:#fff}
 .ftile-dark .f-desc{color:var(--muted-on-dark)}
 .ftile-dark .f-meta{color:var(--muted-on-dark)}
 .ftile h3{font-size:34px;font-weight:600;line-height:1.1;letter-spacing:-0.374px}
 .f-lead{font-size:21px;font-weight:600;line-height:1.19;margin-top:10px}
 .ftile-dark .f-lead{color:var(--blue-on-dark)}
-.ftile-parchment .f-lead,.ftile-white .f-lead{color:var(--blue)}
+.ftile-parchment .f-lead{color:var(--blue)}
 .f-desc{font-size:17px;line-height:1.47;color:var(--ink-80);margin-top:16px}
-.f-meta{font-size:12px;letter-spacing:-0.12px;color:var(--ink-48);margin-top:auto;
+.f-meta{font-size:12px;letter-spacing:-0.12px;color:var(--ink-80);margin-top:auto;
   padding-top:24px}
 .f-links{display:flex;gap:20px;margin-top:14px}
 .f-links a{color:var(--blue);font-size:17px}
 .ftile-dark .f-links a{color:var(--blue-on-dark)}
 .f-links a span{margin-left:4px}
 
-/* 项目卡片网格（商店风格：18px 圆角、发丝边框） */
+/* 产品视觉通用 */
+.fv{margin-top:28px;border-radius:14px;overflow:hidden}
+
+/* SecureClean：风险报告卡（白卡） */
+.vsc{background:var(--canvas);border:1px solid var(--hairline);padding:20px 22px}
+.vsc-head{display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:14px;border-bottom:1px solid var(--hairline)}
+.vsc-head span{font-size:14px;font-weight:600;color:var(--ink)}
+.vsc-head b{font-size:34px;font-weight:600;letter-spacing:-0.374px}
+.vsc-head b i{font-style:normal;font-size:14px;font-weight:400;color:var(--ink-80)}
+.vsc-row{display:flex;align-items:center;gap:10px;font-size:13px;
+  color:var(--ink-80);padding:9px 0;border-bottom:1px solid var(--divider,#f0f0f0)}
+.vsc-row:last-child{border-bottom:none}
+.vsc-row i{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+.vsc-row em{font-style:normal;margin-left:auto;color:var(--ink);font-weight:600;
+  font-size:12.5px}
+
+/* BiliCommentManager：评论列表模型（深色内嵌） */
+.vbcm{background:var(--tile2);padding:18px 20px}
+.vbcm-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.vbcm-chips b{font-size:11.5px;font-weight:400;color:var(--muted-on-dark);
+  background:rgba(255,255,255,.07);border-radius:9999px;padding:4px 11px}
+.vbcm-chips b em{font-style:normal;color:#fff;font-weight:600}
+.vbcm-row{display:flex;gap:12px;align-items:baseline;padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);font-size:12.5px}
+.vbcm-row .t{color:var(--muted-on-dark);font-size:11px;white-space:nowrap}
+.vbcm-row .c{color:#e8eaf0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vbcm-row .k{margin-left:auto;color:var(--blue-on-dark);font-size:11px;
+  white-space:nowrap}
+.vbcm-prog{margin-top:14px;height:7px;background:rgba(255,255,255,.1);
+  border-radius:9999px;overflow:hidden}
+.vbcm-prog div{width:63%;height:100%;background:var(--blue-on-dark)}
+
+/* IntrusionScope：取证终端（深色内嵌） */
+.vscp{background:#1a1a1c;padding:18px 20px;font-family:var(--mono);font-size:12px;
+  line-height:1.9}
+.vscp .ln{color:var(--muted-on-dark);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.vscp .ln.cmd{color:#e8eaf0}
+.vscp .ln.hit{color:var(--blue-on-dark);font-weight:600}
+
+/* JianYing：时间线（白卡） */
+.vjy{background:var(--canvas);border:1px solid var(--hairline);padding:20px 22px}
+.vjy-track{display:flex;gap:4px;height:14px;margin-bottom:10px}
+.vjy-track span{border-radius:3px}
+.vjy-subs{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.vjy-subs b{font-size:11px;font-weight:400;color:var(--ink-80);
+  background:var(--parchment);border-radius:9999px;padding:4px 10px}
+
+/* 分类卡片 */
 .cat{margin-top:56px}
 .cat:first-of-type{margin-top:48px}
-.cat h4{font-size:21px;font-weight:600;line-height:1.19;color:var(--ink-48)}
+.cat-head{display:flex;align-items:baseline;gap:12px}
+.cat-head h4{font-size:21px;font-weight:600;line-height:1.19;color:var(--ink)}
+.cat-head span{font-size:12px;color:var(--ink-80)}
 .cgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:20px}
 .card{background:var(--canvas);border:1px solid var(--hairline);border-radius:18px;
-  padding:28px;display:flex;flex-direction:column;min-height:200px}
-.card h3{font-size:21px;font-weight:600;line-height:1.19}
+  padding:28px;display:flex;flex-direction:column;min-height:190px}
+.card h3{font-size:21px;font-weight:600;line-height:1.19;color:var(--ink)}
 .card p{font-size:14px;line-height:1.43;color:var(--ink-80);margin-top:10px}
-.card .meta{margin-top:auto;padding-top:20px;font-size:12px;color:var(--ink-48);
-  display:flex;gap:12px;align-items:center}
-.card .meta .star{color:var(--ink-80)}
+.card .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:20px}
+.card .tags span{font-size:11px;color:var(--ink-80);background:var(--parchment);
+  border-radius:9999px;padding:4px 11px}
 .card .go{color:var(--blue);font-size:14px;margin-top:14px}
 .card .go span{margin-left:4px}
+.card .go em{font-style:normal;color:var(--ink-80);margin-left:10px;font-size:12px}
 
 footer{background:var(--parchment);padding:48px 0;border-top:1px solid var(--hairline)}
 footer .wrap{display:flex;gap:24px;flex-wrap:wrap;align-items:center;
-  font-size:12px;color:var(--ink-48);line-height:1.6}
-footer a{color:var(--ink-80)}
+  font-size:12px;color:var(--ink-80);line-height:1.6}
+footer a{color:var(--ink)}
 footer .sep{color:var(--hairline)}
 
 @media (max-width:860px){
@@ -105,7 +161,9 @@ footer .sep{color:var(--hairline)}
   .tile{padding:64px 0}
   .fgrid{grid-template-columns:1fr}
   .cgrid{grid-template-columns:1fr}
-  .ftile{padding:40px 32px;min-height:0}
+  .ftile{padding:36px 28px}
+  .hero-stats{gap:36px}
+  .hero-stats b{font-size:34px}
   .gnav .links{display:none}
 }
 </style>
@@ -127,13 +185,17 @@ footer .sep{color:var(--hairline)}
 <section class="tile tile-parchment center">
   <div class="wrap">
     <h1>Mal-Suen.</h1>
-    <p class="lead" style="color:var(--ink-80);font-size:24px;font-weight:300">
-      安全工具与效率工具的开发者。</p>
+    <p class="lead" style="font-size:24px">安全工具与效率工具的开发者。</p>
     <p class="sub">从主机取证到隐私残留检测，从剪映自动化到 B 站评论清理——
       把麻烦的、重复的、危险的事，做成可靠的工具。</p>
     <div class="cta-row">
       <a class="btn-primary" href="https://github.com/Mal-Suen">GitHub 主页</a>
       <a class="btn-secondary" href="https://mal-suen.cn">访问博客</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>9</b><span>开源项目</span></div>
+      <div><b>4</b><span>类别</span></div>
+      <div><b>GPL-3.0</b><span>全部开源</span></div>
     </div>
   </div>
 </section>
@@ -143,44 +205,87 @@ footer .sep{color:var(--hairline)}
   <div class="wrap">
     <h2>精选项目。</h2>
     <div class="fgrid">
+
       <div class="ftile ftile-parchment">
         <h3>SecureClean</h3>
         <p class="f-lead">敏感数据，无处藏身。</p>
+        <div class="fv vsc">
+          <div class="vsc-head"><span>隐私体检报告</span><b>72<i>/100</i></b></div>
+          <div class="vsc-row"><i></i>浏览器保存密码<em>12 项</em></div>
+          <div class="vsc-row"><i></i>聊天记录<em>3.8 GB</em></div>
+          <div class="vsc-row"><i></i>卸载残留目录<em>6 处</em></div>
+        </div>
         <p class="f-desc">换机卖机前的隐私泄露面体检，软件搬家卸载后的残留检测。
-          四层豁免防误报，覆盖写入防恢复，0-100 风险评分。</p>
+          四层豁免防误报，覆盖写入防恢复。</p>
         <div class="f-links"><a href="https://github.com/Mal-Suen/SecureClean">了解
           SecureClean<span>→</span></a></div>
         <div class="f-meta">Electron · Windows · GPL-3.0</div>
       </div>
+
       <div class="ftile ftile-dark">
         <h3>BiliCommentManager</h3>
         <p class="f-lead">黑历史，自己管理。</p>
+        <div class="fv vbcm">
+          <div class="vbcm-chips">
+            <b>已删 <em>806</em></b><b>待删 <em>474</em></b><b>保留 <em>12</em></b>
+          </div>
+          <div class="vbcm-row"><span class="t">2021-03-14</span>
+            <span class="c">前排围观，这个视频太真实了</span></div>
+          <div class="vbcm-row"><span class="t">2023-11-20</span>
+            <span class="c">这个梗我居然看懂了</span><span class="k">保留</span></div>
+          <div class="vbcm-prog"><div></div></div>
+        </div>
         <p class="f-desc">B 站评论全量拉取、时间段筛选、低频批量删除。
-          扫码登录，Cookie 不出本机，删除进度实时可见。</p>
+          扫码登录，Cookie 不出本机。</p>
         <div class="f-links">
           <a href="https://mal-suen.github.io/BiliCommentManager/">在线介绍页<span>→</span></a>
           <a href="https://github.com/Mal-Suen/BiliCommentManager">GitHub<span>→</span></a>
         </div>
         <div class="f-meta">Python · Windows · GPL-3.0</div>
       </div>
-      <div class="ftile ftile-white">
+
+      <div class="ftile ftile-dark">
         <h3>IntrusionScope</h3>
         <p class="f-lead">取证级威胁狩猎。</p>
+        <div class="fv vscp">
+          <div class="ln cmd">$ intrusionscope collect --all</div>
+          <div class="ln">37 collectors · processes network registry logs</div>
+          <div class="ln hit">DETECT persistence.runkey · suspicious entry</div>
+          <div class="ln">report saved · json csv html</div>
+        </div>
         <p class="f-desc">跨平台主机取证与威胁狩猎：37 类采集器，
-          IOC/Sigma/YARA 检测，IFQL 查询语言，多格式取证报告。</p>
+          IOC/Sigma/YARA 检测，IFQL 查询语言。</p>
         <div class="f-links"><a href="https://github.com/Mal-Suen/IntrusionScope">了解
           IntrusionScope<span>→</span></a></div>
         <div class="f-meta">Go · Rust · Windows/Linux/macOS · GPL-3.0</div>
       </div>
+
       <div class="ftile ftile-parchment">
         <h3>JianYing-AutoEdit-MCP</h3>
         <p class="f-lead">剪映自动化剪辑。</p>
+        <div class="fv vjy">
+          <div class="vjy-track">
+            <span style="width:22%;background:var(--blue)"></span>
+            <span style="width:34%;background:#a1a1a6"></span>
+            <span style="width:18%;background:var(--blue)"></span>
+            <span style="width:14%;background:#d2d2d7"></span>
+          </div>
+          <div class="vjy-track">
+            <span style="width:40%;background:#d2d2d7"></span>
+            <span style="width:26%;background:var(--ink)"></span>
+            <span style="width:22%;background:#a1a1a6"></span>
+          </div>
+          <div class="vjy-subs">
+            <b>分镜 01</b><b>分镜 02</b><b>分镜 03</b><b>分镜 04</b>
+          </div>
+        </div>
         <p class="f-desc">通过 MCP 协议驱动剪映草稿生成——分镜脚本一次成稿，
           草稿即状态，对接 AI 视频生产流水线。</p>
         <div class="f-links"><a href="https://github.com/Mal-Suen/JianYing-AutoEdit-MCP">了解
           项目<span>→</span></a></div>
         <div class="f-meta">Python · MCP · 剪映</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -191,49 +296,49 @@ footer .sep{color:var(--hairline)}
     <h2>全部项目。</h2>
 
     <div class="cat">
-      <h4>安全</h4>
+      <div class="cat-head"><h4>安全</h4><span>2 个项目</span></div>
       <div class="cgrid">
         <div class="card">
           <h3>NetflowSight</h3>
           <p>高性能 PCAP 分析平台：零误报威胁检测，智能情报缓存，结构化报告输出。</p>
-          <div class="meta"><span class="star">★ 1</span><span>2026</span></div>
-          <a class="go" href="https://github.com/Mal-Suen/NetflowSight">GitHub<span>→</span></a>
+          <div class="tags"><span>PCAP</span><span>威胁检测</span></div>
+          <a class="go" href="https://github.com/Mal-Suen/NetflowSight">GitHub<span>→</span><em>★ 1</em></a>
         </div>
         <div class="card">
           <h3>Malicious-Website-Detection</h3>
           <p>可扩展的恶意网站识别机器学习框架，模块化数据预处理与多模型分类。</p>
-          <div class="meta"><span>2026</span></div>
+          <div class="tags"><span>机器学习</span><span>Web 安全</span></div>
           <a class="go" href="https://github.com/Mal-Suen/Malicious-Website-Detection">GitHub<span>→</span></a>
         </div>
       </div>
     </div>
 
     <div class="cat">
-      <h4>多媒体与水印</h4>
+      <div class="cat-head"><h4>多媒体与水印</h4><span>2 个项目</span></div>
       <div class="cgrid">
         <div class="card">
           <h3>DCT-Watermark-Camera</h3>
           <p>数字水印相机——拍摄即嵌入不可见水印。</p>
-          <div class="meta"><span class="star">★ 10</span><span>2026</span></div>
-          <a class="go" href="https://github.com/Mal-Suen/DCT-Watermark-Camera">GitHub<span>→</span></a>
+          <div class="tags"><span>DCT</span><span>图像水印</span></div>
+          <a class="go" href="https://github.com/Mal-Suen/DCT-Watermark-Camera">GitHub<span>→</span><em>★ 10</em></a>
         </div>
         <div class="card">
           <h3>DCT_Watermark_Tool</h3>
           <p>基于 DCT 的鲁棒文本水印 C 库：抗裁剪涂抹，多图片格式，含命令行工具。</p>
-          <div class="meta"><span>2026</span></div>
+          <div class="tags"><span>C</span><span>鲁棒水印</span></div>
           <a class="go" href="https://github.com/Mal-Suen/DCT_Watermark_Tool">GitHub<span>→</span></a>
         </div>
       </div>
     </div>
 
     <div class="cat">
-      <h4>数据科学</h4>
+      <div class="cat-head"><h4>数据科学</h4><span>1 个项目</span></div>
       <div class="cgrid">
         <div class="card">
           <h3>LDA-Topic-Modeling</h3>
           <p>中文 LDA 主题建模工具：THUCNews 上 C_V 一致性 0.65，命令行工具与多种子验证。</p>
-          <div class="meta"><span class="star">★ 1</span><span>2026</span></div>
-          <a class="go" href="https://github.com/Mal-Suen/LDA-Topic-Modeling">GitHub<span>→</span></a>
+          <div class="tags"><span>NLP</span><span>主题建模</span></div>
+          <a class="go" href="https://github.com/Mal-Suen/LDA-Topic-Modeling">GitHub<span>→</span><em>★ 1</em></a>
         </div>
       </div>
     </div>
