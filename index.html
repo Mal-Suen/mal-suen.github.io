@@ -11,7 +11,7 @@
   --ink:#1d1d1f;--ink-80:#333333;--ink-48:#7a7a7a;
   --canvas:#ffffff;--parchment:#f5f5f7;--pearl:#fafafc;
   --tile1:#272729;--tile2:#2a2a2c;--black:#000000;
-  --hairline:#e0e0e0;--muted-on-dark:#cccccc;
+  --hairline:#e0e0e0;--divider:#f0f0f0;--muted-on-dark:#cccccc;
   --font:"SF Pro Display","SF Pro Text",system-ui,-apple-system,
     "PingFang SC","Microsoft YaHei",sans-serif;
   --mono:ui-monospace,"SF Mono",Consolas,monospace;
@@ -41,6 +41,7 @@ a{text-decoration:none}
 h1{font-size:56px;font-weight:600;line-height:1.07;letter-spacing:-0.28px}
 h2{font-size:40px;font-weight:600;line-height:1.1}
 .lead{font-size:28px;font-weight:400;line-height:1.14;margin-top:16px;color:var(--ink)}
+.lead-airy{font-size:24px;font-weight:300;line-height:1.5}
 .sub{font-size:17px;line-height:1.47;color:var(--ink-80);margin-top:22px;max-width:680px}
 .center{text-align:center}
 .center .sub{margin-left:auto;margin-right:auto}
@@ -56,6 +57,7 @@ h2{font-size:40px;font-weight:600;line-height:1.1}
   border-radius:9999px;padding:14px 30px;font-size:18px;font-weight:300;
   transition:transform .12s;display:inline-block}
 .btn-secondary:active{transform:scale(.95)}
+.btn-secondary:focus-visible{outline:2px solid var(--blue-focus)}
 
 /* 首屏数据条 */
 .hero-stats{display:flex;gap:72px;margin-top:56px;flex-wrap:wrap;justify-content:center}
@@ -67,10 +69,12 @@ h2{font-size:40px;font-weight:600;line-height:1.1}
 .ftile{padding:48px 44px;display:flex;flex-direction:column}
 .ftile-parchment{background:var(--parchment)}
 .ftile-dark{background:var(--tile1);color:#fff}
+.ftile-wide{grid-column:1 / -1}
+.ftile-wide .f-desc{max-width:680px}
 .ftile-dark .f-desc{color:var(--muted-on-dark)}
 .ftile-dark .f-meta{color:var(--muted-on-dark)}
 .ftile h3{font-size:34px;font-weight:600;line-height:1.1;letter-spacing:-0.374px}
-.f-lead{font-size:21px;font-weight:600;line-height:1.19;margin-top:10px}
+.f-lead{font-size:21px;font-weight:600;line-height:1.19;letter-spacing:.231px;margin-top:10px}
 .ftile-dark .f-lead{color:var(--blue-on-dark)}
 .ftile-parchment .f-lead{color:var(--blue)}
 .f-desc{font-size:17px;line-height:1.47;color:var(--ink-80);margin-top:16px}
@@ -83,6 +87,7 @@ h2{font-size:40px;font-weight:600;line-height:1.1}
 
 /* 产品视觉通用 */
 .fv{margin-top:28px;border-radius:14px;overflow:hidden}
+.vbcm,.vscp,.vns{box-shadow:3px 5px 30px rgba(0,0,0,.22)}
 
 /* SecureClean：风险报告卡（白卡） */
 .vsc{background:var(--canvas);border:1px solid var(--hairline);padding:20px 22px}
@@ -121,6 +126,24 @@ h2{font-size:40px;font-weight:600;line-height:1.1}
   text-overflow:ellipsis}
 .vscp .ln.cmd{color:#e8eaf0}
 .vscp .ln.hit{color:var(--blue-on-dark);font-weight:600}
+
+/* NetflowSight：流量分析（深色内嵌） */
+.vns{background:var(--tile2);padding:18px 20px}
+.vns-head{display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.vns-head span{font-size:12px;color:var(--muted-on-dark)}
+.vns-head b{font-size:26px;font-weight:600;letter-spacing:-0.374px;color:#fff}
+.vns-head b i{font-style:normal;font-size:12px;font-weight:400;color:var(--muted-on-dark)}
+.vns-row{display:flex;gap:8px;align-items:baseline;padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);font-size:12px;
+  font-family:var(--mono);white-space:nowrap;overflow:hidden}
+.vns-row:last-child{border-bottom:none}
+.vns-row .a{color:#e8eaf0;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.vns-row .b{color:var(--muted-on-dark);flex:none}
+.vns-row em{font-style:normal;margin-left:auto;color:var(--muted-on-dark);
+  font-size:11px;flex:none;font-family:var(--font)}
+.vns-row.hit .a{color:var(--blue-on-dark)}
+.vns-row.hit em{color:var(--blue-on-dark);font-weight:600}
 
 /* JianYing：时间线（白卡） */
 .vjy{background:var(--canvas);border:1px solid var(--hairline);padding:20px 22px}
@@ -185,7 +208,7 @@ footer .sep{color:var(--hairline)}
 <section class="tile tile-parchment center">
   <div class="wrap">
     <h1>Mal-Suen.</h1>
-    <p class="lead" style="font-size:24px">安全工具与效率工具的开发者。</p>
+    <p class="lead lead-airy">安全工具与效率工具的开发者。</p>
     <div class="cta-row">
       <a class="btn-primary" href="https://github.com/Mal-Suen">GitHub 主页</a>
       <a class="btn-secondary" href="https://mal-suen.cn">访问博客</a>
@@ -193,7 +216,7 @@ footer .sep{color:var(--hairline)}
     <div class="hero-stats">
       <div><b>9</b><span>开源项目</span></div>
       <div><b>4</b><span>类别</span></div>
-      <div><b>GPL-3.0</b><span>全部开源</span></div>
+      <div><b>5</b><span>种语言</span></div>
     </div>
   </div>
 </section>
@@ -203,22 +226,6 @@ footer .sep{color:var(--hairline)}
   <div class="wrap">
     <h2>精选项目。</h2>
     <div class="fgrid">
-
-      <div class="ftile ftile-parchment">
-        <h3>SecureClean</h3>
-        <p class="f-lead">敏感数据，无处藏身。</p>
-        <div class="fv vsc">
-          <div class="vsc-head"><span>隐私体检报告</span><b>72<i>/100</i></b></div>
-          <div class="vsc-row"><i></i>浏览器保存密码<em>12 项</em></div>
-          <div class="vsc-row"><i></i>聊天记录<em>3.8 GB</em></div>
-          <div class="vsc-row"><i></i>卸载残留目录<em>6 处</em></div>
-        </div>
-        <p class="f-desc">换机卖机前的隐私泄露面体检，软件搬家卸载后的残留检测。
-          四层豁免防误报，覆盖写入防恢复。</p>
-        <div class="f-links"><a href="https://github.com/Mal-Suen/SecureClean">了解
-          SecureClean<span>→</span></a></div>
-        <div class="f-meta">Electron · Windows · GPL-3.0</div>
-      </div>
 
       <div class="ftile ftile-dark">
         <h3>BiliCommentManager</h3>
@@ -242,7 +249,23 @@ footer .sep{color:var(--hairline)}
         <div class="f-meta">Python · Windows · GPL-3.0</div>
       </div>
 
-      <div class="ftile ftile-dark">
+      <div class="ftile ftile-parchment">
+        <h3>SecureClean</h3>
+        <p class="f-lead">敏感数据，无处藏身。</p>
+        <div class="fv vsc">
+          <div class="vsc-head"><span>隐私体检报告</span><b>72<i>/100</i></b></div>
+          <div class="vsc-row"><i></i>浏览器保存密码<em>12 项</em></div>
+          <div class="vsc-row"><i></i>聊天记录<em>3.8 GB</em></div>
+          <div class="vsc-row"><i></i>卸载残留目录<em>6 处</em></div>
+        </div>
+        <p class="f-desc">换机卖机前的隐私泄露面体检，软件搬家卸载后的残留检测。
+          四层豁免防误报，覆盖写入防恢复。</p>
+        <div class="f-links"><a href="https://github.com/Mal-Suen/SecureClean">了解
+          SecureClean<span>→</span></a></div>
+        <div class="f-meta">Electron · Windows · GPL-3.0</div>
+      </div>
+
+      <div class="ftile ftile-parchment">
         <h3>IntrusionScope</h3>
         <p class="f-lead">取证级威胁狩猎。</p>
         <div class="fv vscp">
@@ -258,7 +281,24 @@ footer .sep{color:var(--hairline)}
         <div class="f-meta">Go · Rust · Windows/Linux/macOS · GPL-3.0</div>
       </div>
 
-      <div class="ftile ftile-parchment">
+      <div class="ftile ftile-dark">
+        <h3>NetflowSight</h3>
+        <p class="f-lead">流量即证据。</p>
+        <div class="fv vns">
+          <div class="vns-head"><span>威胁检测</span><b>0<i>误报</i></b></div>
+          <div class="vns-row"><span class="a">192.168.1.24:443</span><span class="b">→</span><span class="a">104.16.132.229</span><em>TLS</em></div>
+          <div class="vns-row"><span class="a">192.168.1.24:53</span><span class="b">→</span><span class="a">8.8.8.8</span><em>DNS</em></div>
+          <div class="vns-row hit"><span class="a">192.168.1.31:8080</span><span class="b">→</span><span class="a">203.0.113.7</span><em>IOC 命中</em></div>
+          <div class="vns-row"><span class="a">192.168.1.24:443</span><span class="b">→</span><span class="a">142.250.66.74</span><em>TLS</em></div>
+        </div>
+        <p class="f-desc">高性能 PCAP 分析：零误报威胁检测，智能情报缓存，
+          结构化报告输出。</p>
+        <div class="f-links"><a href="https://github.com/Mal-Suen/NetflowSight">了解
+          NetflowSight<span>→</span></a></div>
+        <div class="f-meta">Python · PCAP · nfstream</div>
+      </div>
+
+      <div class="ftile ftile-parchment ftile-wide">
         <h3>JianYing-AutoEdit-MCP</h3>
         <p class="f-lead">剪映自动化剪辑。</p>
         <div class="fv vjy">
@@ -294,14 +334,8 @@ footer .sep{color:var(--hairline)}
     <h2>全部项目。</h2>
 
     <div class="cat">
-      <div class="cat-head"><h4>安全</h4><span>2 个项目</span></div>
+      <div class="cat-head"><h4>安全</h4><span>1 个项目</span></div>
       <div class="cgrid">
-        <div class="card">
-          <h3>NetflowSight</h3>
-          <p>高性能 PCAP 分析平台：零误报威胁检测，智能情报缓存，结构化报告输出。</p>
-          <div class="tags"><span>PCAP</span><span>威胁检测</span></div>
-          <a class="go" href="https://github.com/Mal-Suen/NetflowSight">GitHub<span>→</span><em>★ 1</em></a>
-        </div>
         <div class="card">
           <h3>Malicious-Website-Detection</h3>
           <p>可扩展的恶意网站识别机器学习框架，模块化数据预处理与多模型分类。</p>
@@ -349,8 +383,6 @@ footer .sep{color:var(--hairline)}
     <span class="sep">|</span>
     <a href="https://mal-suen.cn">博客</a>
     <a href="https://github.com/Mal-Suen">GitHub</a>
-    <span class="sep">|</span>
-    <span>项目均为 GPL-3.0 开源</span>
   </div>
 </footer>
 
